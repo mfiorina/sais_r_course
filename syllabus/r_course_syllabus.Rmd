@@ -55,7 +55,7 @@ This course approaches the use of a statistical software -- R -- from the perspe
 
 By the end of this course, students will be familiar with the instruments they are expected to use in entry-level professional research positions. They will also have resources to further their education in R past the course.
 
-Students will be introduced to the use of:
+In more detail, students will be introduced to the use of:
 
 - `dplyr`'s `select()` and `mutate()` functions to explore and modify datasets;
 - `dplyr`'s `group_by()` and `summarize()` functions to generate summary statistics;
@@ -165,7 +165,7 @@ Note -- Readings and resources below are optional and are provided for context a
   
 - For those interested in data visualization:
   - The R community organizes ["Tidy Tuesday"](https://www.tidytuesday.com/). This is a weekly challenge where users are provided a dataset and participants then swap graphs and scripts used to create their visualizations.
-  - David Robinson's [Tidy Tuesday live screencasts](https://www.youtube.com/user/safe4democracy) on Youtube. The perfect resource to follow along and try to replicate a professional coder's scripts.
+  - David Robinson's [Tidy Tuesday live screencasts](https://www.youtube.com/user/safe4democracy) on YouTube. The perfect resource to follow along and try to replicate a professional coder's scripts.
   - Yan Holtz and Conor Healy, ["From Data to Viz"](https://www.data-to-viz.com/). An amazing repository of methods to create different data visualizations using R. 
   
 <br>
