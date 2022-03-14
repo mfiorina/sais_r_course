@@ -53,7 +53,9 @@ This course approaches the use of a statistical software -- R -- from the perspe
 
 ## Course Objectives
 
-By the end of this course, students will be introduced to the use of:
+By the end of this course, students will be familiar with the instruments they are expected to use in entry-level professional research positions. They will also have resources to further their education in R past the course.
+
+Students will be introduced to the use of:
 
 - `dplyr`'s `select()` and `mutate()` functions to explore and modify datasets;
 - `dplyr`'s `group_by()` and `summarize()` functions to generate summary statistics;
