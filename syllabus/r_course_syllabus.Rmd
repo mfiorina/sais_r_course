@@ -86,7 +86,15 @@ Students will also be taught how to clean raw data by:
 
 ---
 
-## Course Requirements
+## Course Structure
+
+Each two-hour session will be split into two halves. The first half (approx. one hour) will consist of an interactive lecture using slides and live coding. The second half (approx. one hour) will consist of practical exercises that the students will accomplish with my support.
+
+The last two sessions will begin with multiple-choice questionnaires on the topic of the previous week's content. At the end of the course, there will be an open-ended assignment in which the students will have the option to create a script, which I will then review and provide feedback.
+
+---
+
+## Course Readings/Resources
 
 As there will be no time for this in class, **YOU NEED TO DO THE FOLLOWING BEFORE THE FIRST SESSION:**
 
