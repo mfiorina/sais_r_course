@@ -1,0 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Atkinson+Hyperlegible:400,400i,700,700i');
+@import url('https://fonts.googleapis.com/css?family=EB+Garamond:400,400i,500,500i,600,600i,700,700i,800,800i');
+
+body{
+  font-family: "Atkinson Hyperlegible", serif;
+  font-size: 12pt;
+  margin: 50px;
+}
