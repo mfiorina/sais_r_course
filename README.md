@@ -8,10 +8,10 @@ This repository will store the resources needed for the "Programming for Profess
 
 Click on the links below to get access to:
 
-- The syllabus (html or pdf)
+- The syllabus ([.html](https://mfiorina.github.io/sais_r_course/syllabus/r_course_syllabus.html) or [.pdf](https://mfiorina.github.io/sais_r_course/syllabus/r_course_syllabus.pdf))
 
-- Session 1 slides (html)
+- Session 1 slides (.html)
 
-- Session 2 slides (html)
+- Session 2 slides (.html)
 
-- Session 3 slides (html)
+- Session 3 slides (.html)
