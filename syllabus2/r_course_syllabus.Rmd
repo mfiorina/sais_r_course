@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 <div style="text-align: right"><font size = -1>For a PDF version of this document, please click here.</font></div>
 
 ```{r, echo = FALSE, out.width = "50%", fig.align = "center"}
-
+ 
 knitr::include_graphics(
   
     "meta/sais_logo.png"
