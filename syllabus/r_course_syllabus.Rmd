@@ -84,6 +84,8 @@ Students will also be taught how to clean raw data by:
 | **III -- Producing Research Output Using R** | - Exporting Summary/Regression Tables -- How to produce (i) regression tables and (ii) descriptive summary tables for academic or policy audiences<br>- Introduction to R Data Visualization -- How to produce beautiful and informative visualizations: scatter plots, density plots, and more |
 </center>
 
+**Note** -- The course slides, syllabus, and other resources will be shared at the following link: https://mfiorina.github.io/sais_r_course/.
+
 ---
 
 ## Course Structure
@@ -106,7 +108,7 @@ As there will be no time for this in class, **YOU NEED TO DO THE FOLLOWING BEFOR
 
 <br><br>
 
-Note -- Readings and resources below are optional and are provided for context and use after the course is finished. The session slides will cover everything needed for the course.
+**Note** -- Readings and resources below are optional and are provided for context and use after the course is finished. The session slides will cover everything needed for the course.
 
 <br>
 
