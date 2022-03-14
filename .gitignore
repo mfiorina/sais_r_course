@@ -75,6 +75,12 @@
 !/**/*.sthlp
 !/**/*.toc
 
+# Marc-Andrea Fiorina, 03/14/2022 -- Adding lines so that .pdf, .html, and .png files are okay
+
+!/**/*.pdf
+!/**/*.html
+!/**/*.png
+
 #######################
 # Include some additional file formats in any output folder. You might have
 # to change the name of the Output folder to whatever it is called in your
