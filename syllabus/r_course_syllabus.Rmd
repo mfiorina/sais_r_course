@@ -27,6 +27,7 @@ knitr::include_graphics(
 # Programming for Professional Research Using R
 
 ## Marc-Andrea Fiorina
+Contact: mfiorina@worldbank.org
 </center>
 
 ---
@@ -34,11 +35,11 @@ knitr::include_graphics(
 ## Schedule
 <br>
 <center>
-| Weekday   | Date           | Start Time | End Time |
-|:---------:|:--------------:|:----------:|:--------:|
-| Wednesday | March 30, 2022 | 6:30pm     | 8:30pm   |
-| Thursday  | April 7, 2022  | 6:00pm     | 8:00pm   |
-| Thursday  | April 14, 2022 | 6:00pm     | 8:00pm   |
+| Weekday   | Date           | Room      | Start Time | End Time |
+|:---------:|:--------------:|:---------:|:----------:|:--------:|
+| Wednesday | March 30, 2022 | Nitze 517 | 6:30pm     | 8:30pm   |
+| Thursday  | April 7, 2022  | BOB 736   | 6:00pm     | 8:00pm   |
+| Thursday  | April 14, 2022 | BOB 736   | 6:00pm     | 8:00pm   |
 </center>
 
 ---
@@ -97,6 +98,8 @@ The last two sessions will begin with multiple-choice questionnaires on the topi
 ---
 
 ## Course Readings/Resources
+
+Students should download data and code templates from [this linked Dropbox folder](https://www.dropbox.com/sh/hx6r5hcqvndorgu/AAA2LbKrtMXmJSaPUsMpN2_2a?dl=0).
 
 As there will be no time for this in class, **YOU NEED TO DO THE FOLLOWING BEFORE THE FIRST SESSION:**
 
