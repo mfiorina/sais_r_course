@@ -75,9 +75,10 @@
 !/**/*.sthlp
 !/**/*.toc
 
-# Marc-Andrea Fiorina, 03/14/2022 -- Adding lines so that .css, .pdf, .html, and .png files are okay
+# Marc-Andrea Fiorina, 03/14/2022 -- Adding lines so that .css, .js, .pdf, .html, and .png files are okay
 
 !/**/*.css
+!/**/*.js
 !/**/*.pdf
 !/**/*.html
 !/**/*.png
