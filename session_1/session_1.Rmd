@@ -18,6 +18,7 @@ output:
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 library(tidyverse)
+library(xaringanExtra)
 ```
 
 ```{r xaringan-themer, include=FALSE, warning=FALSE}
