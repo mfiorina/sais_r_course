@@ -35,10 +35,6 @@ style_duo_accent(
 xaringanExtra::use_panelset()
 ```
 
-```{r broadcast, echo=FALSE}
-xaringanExtra::use_broadcast()
-```
-
 class: center, middle
 
 # Programming for Professional Research Using R
