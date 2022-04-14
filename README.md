@@ -16,4 +16,4 @@ Click on the links below to get access to:
 
 - Session 2 slides ([.html](https://mfiorina.github.io/sais_r_course/session_2/session_2.html))
 
-- Session 3 slides (.html)
+- Session 3 slides ([.html](https://mfiorina.github.io/sais_r_course/session_3/session_3.html))
