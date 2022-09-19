@@ -99,7 +99,7 @@ The last two sessions will begin with multiple-choice questionnaires on the topi
 
 ## Course Readings/Resources
 
-Students should download data and code templates from [this linked Dropbox folder](https://www.dropbox.com/sh/hx6r5hcqvndorgu/AAA2LbKrtMXmJSaPUsMpN2_2a?dl=0).
+Students should download data and code templates from [this linked Dropbox folder](https://www.dropbox.com/sh/c4ep84ztz1rhi6f/AACKR9yFBjZhzwb375behONja?dl=0).
 
 As there will be no time for this in class, **YOU NEED TO DO THE FOLLOWING BEFORE THE FIRST SESSION:**
 

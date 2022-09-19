@@ -358,7 +358,7 @@ class: center, middle
 
 - For "life", find the 2 most important things in life for the survey's respondents. For "neighbor", find the 5 things that respondents would least want a neighbor to do.
     
-**NOTE** You should refer to documentation for the dataset, which can be found in `Dropbox/SAIS R Course/documentation/`, for details on the variables and their given values.
+**NOTE** You should refer to documentation for the dataset, which can be found in `SAIS R Course/documentation/`, for details on the variables and their given values.
 
 ---
 
