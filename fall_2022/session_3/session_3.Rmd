@@ -132,7 +132,7 @@ table_d2  # population
 
 class: middle, center
 
-## Data Visualization -- Simple Regression Table
+## Data Visualization — Simple Regression Table
 
 ---
 
@@ -166,7 +166,7 @@ Unless you're getting into academic research, you don't need to know how to prop
 
 ---
 
-### Regression Table -- Step by Step
+### Regression Table — Step by Step
 
 .panelset[
 
@@ -237,7 +237,7 @@ To visualize your table, the easiest solution is to:
 
 class: center, middle
 
-## Data Visualization -- Descriptive Statistics -- Tables
+## Data Visualization — Descriptive Statistics — Tables
 
 ---
 
@@ -273,7 +273,7 @@ There are countless R packages to help do this. Today, we're looking at the `gt`
 
 ---
 
-### Descriptive Statistics Table -- Step-by-Step
+### Descriptive Statistics Table — Step-by-Step
 
 We will mainly use the example in the script for this. To summarize, the steps are:
 
@@ -282,10 +282,10 @@ We will mainly use the example in the script for this. To summarize, the steps a
 - Run the dataset through the `gt()` function to create a gt object
 
 - Customize the table using functions from the `gt` package (see online for further things you can do). Examples of what you can do include:
-    - Modify column names -- `cols_label()`
-    - Modify borders -- `tab_style()`, `cell_borders()`
-    - Add colors conditional on cell value -- `data_color()`
-    - Add title/subtitle -- `tab_header()`
+    - Modify column names — `cols_label()`
+    - Modify borders — `tab_style()`, `cell_borders()`
+    - Add colors conditional on cell value — `data_color()`
+    - Add title/subtitle — `tab_header()`
 
 - Export the table using `gtsave()`
 
@@ -293,7 +293,7 @@ We will mainly use the example in the script for this. To summarize, the steps a
 
 class: center, middle
 
-## Data Visualization -- Descriptive Statistics -- Plots
+## Data Visualization — Descriptive Statistics — Plots
 
 ---
 
@@ -327,7 +327,7 @@ I've included a lot of links at the end of these slides to explore the possibili
 
 ---
 
-### Descriptive Statistics Table -- Step-by-Step
+### Descriptive Statistics Table — Step-by-Step
 
 .panelset[
 
@@ -440,7 +440,7 @@ mtcars %>%
 
 class: center, middle
 
-## Practical Exercise -- Using the World Values Survey Dataset
+## Practical Exercise — Using the World Values Survey Dataset
 
 ---
 <font size='+3'><b>World Values Survey</b></font>
@@ -469,6 +469,14 @@ class: center, middle
 - Political culture and political regimes
 - Demography
 ]
+
+---
+
+class: middle, center
+
+## Before the practical component...
+
+## [Course survey](https://forms.gle/bAcZB2iQK3MFJ72Y6)
 
 ---
 
