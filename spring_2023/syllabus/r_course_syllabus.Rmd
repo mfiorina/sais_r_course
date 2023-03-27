@@ -9,7 +9,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-<div style="text-align: right"><font size = -1>For a PDF version of this document, please click [here](https://mfiorina.github.io/sais_r_course/syllabus/r_course_syllabus.pdf).</font></div>
+<div style="text-align: right"><font size = -1>For a PDF version of this document, please click [here](https://mfiorina.github.io/sais_r_course/spring_2023/syllabus/r_course_syllabus.pdf).</font></div>
 
 ```{r, echo = FALSE, out.width = "50%", fig.align = "center"}
  
