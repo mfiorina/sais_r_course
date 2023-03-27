@@ -12,4 +12,6 @@ Links to:
 
 - [Fall 2022 Sessions](https://mfiorina.github.io/sais_r_course/fall_2022/)
 
+- [Spring 2023 Sessions](https://mfiorina.github.io/sais_r_course/spring_2023/)
+
 
