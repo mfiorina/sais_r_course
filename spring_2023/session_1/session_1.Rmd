@@ -1,5 +1,5 @@
 ---
-title: "SAIS R Course"
+title: "SAIS R Course — Session 1"
 subtitle: "Session 1"
 author: "Marc-Andrea Fiorina"
 date: "2022/03/29 (updated: `r Sys.Date()`)"
