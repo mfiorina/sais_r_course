@@ -44,7 +44,7 @@ class: center, middle
 
 ## Session 1
 
-### March 29, 2022
+### March 30, 2023
 
 ---
 

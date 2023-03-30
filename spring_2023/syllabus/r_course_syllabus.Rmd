@@ -104,8 +104,10 @@ Students should download data and code templates from [this linked Dropbox folde
 As there will be no time for this in class, **YOU NEED TO DO THE FOLLOWING BEFORE THE FIRST SESSION:**
 
 - Download R at this link: https://cran.r-project.org/
-  - Windows users, click on 'Download R for Windows' and then download the 'base' version. The file should be called `R-4.1.3-win.exe`.
-  - Mac users, click on 'Download R for MacOS' and then download the file called `R-4.1.3.pkg`.
+  - Windows users, click on 'Download R for Windows' and then download the 'base' version. The file should be called `R-4.2.3-win.exe`.
+  - Mac users, click on 'Download R for MacOS' and then download the file called:
+      - `R-4.2.3-arm64.pkg` if you have a more recent MacBook with an M1 chip.
+      - `R-4.2.3.pkg` if you have an older MacBook with an Intel chip or run an older iOs.
   
 - Download RStudio at this link: https://www.rstudio.com/products/rstudio/. Download the 'RStudio Desktop: Open Source Edition' version.
 
