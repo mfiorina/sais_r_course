@@ -41,7 +41,7 @@ class: center, middle
 
 ## Session 2
 
-### April 7, 2022
+### April 6, 2023
 
 ---
 
@@ -358,15 +358,15 @@ class: center, middle
 
 - For "life", find the 2 most important things in life for the survey's respondents. For "neighbor", find the 5 things that respondents would least want a neighbor to do.
     
-**NOTE** You should refer to documentation for the dataset, which can be found in `Dropbox/SAIS R Course/documentation/`, for details on the variables and their given values.
+**NOTE** You should refer to documentation for the dataset, which can be found in `SAIS R Course/documentation/`, for details on the variables and their given values.
 
 ---
 
 ## Links
 
-Syllabus: **https://mfiorina.github.io/sais_r_course/syllabus/r_course_syllabus.html**
+Syllabus: **https://mfiorina.github.io/sais_r_course/spring_2023/syllabus/r_course_syllabus.html**
 
-Session 1: **https://mfiorina.github.io/sais_r_course/session_1/session_1.html**
+Session 1: **https://mfiorina.github.io/sais_r_course/spring_2023/session_1/session_1.html**
 
 DIME World Bank Wiki, **[https://dimewiki.worldbank.org/Data_Cleaning](https://dimewiki.worldbank.org/Data_Cleaning)**
 
