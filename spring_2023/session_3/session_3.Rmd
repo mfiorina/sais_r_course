@@ -41,7 +41,7 @@ class: center, middle
 
 ## Session 3
 
-### April 14, 2022
+### April 13, 2023
 
 ---
 
@@ -192,13 +192,23 @@ reg_example %>% summary()
 
 ]
 
-.panel[.panel-name[Convert to LateX]
+.panel[.panel-name[Convert to Exportable Table]
+
+Simply do one of these!
 
 ```{r eval = FALSE}
 
-# Simply do this!
+reg_example_ht <- reg_example %>%
+    
+    huxtable::huxreg()
 
-reg_example_latex <- reg_example %>%
+```
+
+OR
+
+```{r eval = FALSE}
+
+reg_example_sg <- reg_example %>%
     
     stargazer::stargazer() # Many options to make prettier
 
@@ -206,7 +216,40 @@ reg_example_latex <- reg_example %>%
 
 ]
 
-.panel[.panel-name[Export LateX script]
+]
+
+---
+
+### Regression Table -- Step by Step
+
+.panelset[
+
+.panel[.panel-name[Export Huxtable Table]
+
+Some simple options for the Huxtable table:
+
+```{r eval = FALSE}
+  
+  huxtable::quick_latex(
+      reg_example_ht,
+      file = "filepath/filepath/filepath/reg_example_ht.tex"
+  )
+  
+  huxtable::quick_pdf
+      reg_example_ht,
+      file = "filepath/filepath/filepath/reg_example_ht.pdf"
+  )
+  
+  huxtable::quick_html(
+      reg_example_ht,
+      file = "filepath/filepath/filepath/reg_example_ht.html"
+  )
+  
+```
+
+]
+
+.panel[.panel-name[Export Stargazer Table]
 
 ```{r eval = FALSE}
 
@@ -214,9 +257,9 @@ reg_example_latex <- reg_example %>%
 
 writeLines(
     
-    reg_example_latex,
+    reg_example_sg,
     
-    "filepath/filepath/filepath/reg_example_latex.tex"
+    "filepath/filepath/filepath/reg_example_sg.tex"
     
 )
 
@@ -228,6 +271,8 @@ To visualize your table, the easiest solution is to:
 - Open a new document
 - Copy/paste your .tex output in between the `begin{document}` and `end{document}` lines
 - Click compile and then save!
+
+You can also install the `tinytex` package and use `pdftolatex` to save a PDF file.
 
 ]
 

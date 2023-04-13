@@ -26,7 +26,7 @@ class: center, middle
 
 ## Session 3
 
-### April 14, 2022
+### April 13, 2023
 
 ---
 
@@ -173,20 +173,61 @@ reg_example %&gt;% summary()
 
 ]
 
-.panel[.panel-name[Convert to LateX]
+.panel[.panel-name[Convert to Exportable Table]
+
+Simply do one of these!
 
 
 ```r
-# Simply do this!
+reg_example_ht &lt;- reg_example %&gt;%
+    
+    huxtable::huxreg()
+```
 
-reg_example_latex &lt;- reg_example %&gt;%
+OR
+
+
+```r
+reg_example_sg &lt;- reg_example %&gt;%
     
     stargazer::stargazer() # Many options to make prettier
 ```
 
 ]
 
-.panel[.panel-name[Export LateX script]
+]
+
+---
+
+### Regression Table -- Step by Step
+
+.panelset[
+
+.panel[.panel-name[Export Huxtable Table]
+
+Some simple options for the Huxtable table:
+
+
+```r
+  huxtable::quick_latex(
+      reg_example_ht,
+      file = "filepath/filepath/filepath/reg_example_ht.tex"
+  )
+  
+  huxtable::quick_pdf
+      reg_example_ht,
+      file = "filepath/filepath/filepath/reg_example_ht.pdf"
+  )
+  
+  huxtable::quick_html(
+      reg_example_ht,
+      file = "filepath/filepath/filepath/reg_example_ht.html"
+  )
+```
+
+]
+
+.panel[.panel-name[Export Stargazer Table]
 
 
 ```r
@@ -194,9 +235,9 @@ reg_example_latex &lt;- reg_example %&gt;%
 
 writeLines(
     
-    reg_example_latex,
+    reg_example_sg,
     
-    "filepath/filepath/filepath/reg_example_latex.tex"
+    "filepath/filepath/filepath/reg_example_sg.tex"
     
 )
 ```
@@ -207,6 +248,8 @@ To visualize your table, the easiest solution is to:
 - Open a new document
 - Copy/paste your .tex output in between the `begin{document}` and `end{document}` lines
 - Click compile and then save!
+
+You can also install the `tinytex` package and use `pdftolatex` to save a PDF file.
 
 ]
 
@@ -331,7 +374,7 @@ mtcars %&gt;%
 
 .pull-right-wide[
 
-&lt;img src="session_3_files/figure-html/unnamed-chunk-9-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="session_3_files/figure-html/unnamed-chunk-11-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -354,7 +397,7 @@ mtcars %&gt;%
 
 .pull-right-wide[
 
-&lt;img src="session_3_files/figure-html/unnamed-chunk-11-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="session_3_files/figure-html/unnamed-chunk-13-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -386,7 +429,7 @@ mtcars %&gt;%
 
 .pull-right-wide[
 
-&lt;img src="session_3_files/figure-html/unnamed-chunk-13-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="session_3_files/figure-html/unnamed-chunk-15-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -559,6 +602,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable
