@@ -1,10 +1,10 @@
-# Programming for Professional Research Using R
+# R for Professional Research
 
 ## Johns Hopkins School of Advanced International Studies (SAIS) — Professional Skills Course
 
 ## Marc-Andrea Fiorina
 
-This repository will store the resources needed for the "Programming for Professional Research Using R" professional skills course.
+This repository will store the resources needed for the "R for Professional Research" professional skills course.
 
 Click on the links below to get access to:
 
