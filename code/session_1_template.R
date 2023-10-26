@@ -49,38 +49,10 @@
   
   pacman::p_load(tidyverse, data.table, janitor)
   
-    ### File Paths
-  
-      # Set User (this allows us to use fixed file paths but to adapt them for multiple possible
-      # users)
-  
-      # 1 -- Marc-Andrea Fiorina
-  
-      # 2 -- Your name here
-  
-  user <- 2
-  
-  if(user == 1) {
-      
-      main_filepath <- "/Users/marc-andreafiorina/Dropbox/SAIS R Course/"
-      
-  }
-  
-  if(user == 2) {
-      
-      main_filepath <- "Your file path here"
-      
-  }
-  
-  data_filepath <- paste0(main_filepath, "data/") # Then we can dynamically add file paths that
-                                                  # work for everyone!
-  
   ## 2. Import Data ----
  
-  norms_values_data <- read.csv( # Other options are base R's read.csv() and data.table::fread()
-      
-      paste0(data_filepath, "session_1/wvs_values_norms_data.csv"), na.strings = ""
-      
+  norms_values_data <- data.table::fread( # Other options are base R's read.csv() and data.table::fread()
+      "data/final/wvs_values_norms_data.csv", na.strings = ""
   )
 
   ## 3. Data 'Wrangling' ----
@@ -95,47 +67,35 @@
 # Check the names of the variables in my dataset
   
   norms_values_data %>%
-      
       names()
   
 # Check which countries are in my dataset
   
   norms_values_data %>%
-      
       janitor::tabyl(B_COUNTRY_ALPHA)
   
 # Use ISO codes to distinguish European countries
   
   european_iso_codes <- c( # This creates a character list
-      
       "AND", "CYP", "DEU", "GRC", "RUS", "SRB", "TUR", "UKR"
-      
   )
   
   norms_values_data <- norms_values_data %>%
-      
       dplyr::mutate(
-          
           european = dplyr::case_when( # This creates a dummy variable
-              
               B_COUNTRY_ALPHA %in% european_iso_codes ~ 1,
-              
               TRUE                                    ~ 0
-              
           )
-          
       )
   
 # Check that it worked
   
   norms_values_data %>%
-      
       janitor::tabyl(european, B_COUNTRY_ALPHA)
   
 # Now subset using filter()
   
   european_data <- norms_values_data %>%
-      
       dplyr::filter(european == 1)
   
     ### Step 2 -- Select relevant variables ----
@@ -145,13 +105,10 @@
 # So we keep those questions, as well as D_INTERVIEW (unique ID, always keep) and B_COUNTRY_ALPHA
   
   european_data <- european_data %>%
-      
       dplyr::select(
-          
           D_INTERVIEW, B_COUNTRY_ALPHA, dplyr::matches("^Q0[1-6]")
           # matches() allows us to select multiple variables at once using a common string in
           # their name
-          
       )
   
     ### Step 3 -- Clean variables ----
@@ -160,28 +117,19 @@
 # using numerically
   
   european_data <- european_data %>%
-      
       dplyr::mutate(
-          
           dplyr::across( # Across is magic and allows you to modify multiple variables at once
-              
               matches("^Q0[1-6]"), # Same as for select() above. IMPORTANT -- all variables need
                                    # to be of the same 'type' (e.g. character, numeric)
-              
               ~ case_when( # across() basically loops over every relevant variable. '.x' refers to
                            # each variable being treated
-                  
                   .x %in% c(-1, -2, -4, -5) ~ NA_integer_,
                   # Key to understand what NA_ to use.Here the possible answers will be 1, 2, 3,
                   # 4 so those are integers
-                  
                   TRUE                      ~ .x # We've created NAs and are leaving the other
                                                  # values alone
-                  
               )
-              
           )
-          
       )
   
     ### Step 4 -- Summarize variables at the country level ----
@@ -190,23 +138,15 @@
 # group_by() and summarize()
   
   european_country_data <- european_data %>% # New observation level so new dataset
-      
       dplyr::group_by(B_COUNTRY_ALPHA) %>% # We're telling R at which level to do the grouping
-      
       dplyr::summarize( # Summarize aggregated values based on what we instruct it to do. If we
                         # didn't use group_by(), it would summarize to one single value. Here,
                         # it will output one value per country.
-          
           dplyr::across( # Using across() again to summarize multiple variables at once
-              
               matches("^Q0[1-6]"),
-              
               ~ mean(.x, na.rm = TRUE) # Removing NAs and taking the mean of each variable
-              
           )
-          
       ) %>%
-      
       dplyr::ungroup() # Always remember to do this! Otherwise your future code will do weird
                        # things
   
@@ -217,31 +157,19 @@
 # 'wide' one.
   
   european_country_data_wide <- european_country_data %>%
-      
       tidyr::pivot_longer(
-          
           cols      = matches("^Q0[1-6]"), # Variables whose data we want to be in a single,
                                            # 'long' variable
-          
           names_to  = "topic", # Creates a variable named 'topic' that saves the variable names
-          
           values_to = "score" # Creates a 'long' variable named 'score' that holds all of the
                               # original values
-          
       ) %>%
-      
       dplyr::mutate( # I don't like how 'topic' has more information than necessary
-          
           topic = stringr::str_replace( # stringr is the best package for string manipulation
-              
               topic,
-              
               "^Q0[1-6]_life_",
-              
               ""
-              
           )
-          
       )
   
 # Check that it worked
@@ -251,20 +179,15 @@
 # Now for example I can look at average 'enthusiasm' by country
   
   average_country_enthusiasm <- european_country_data_wide %>%
-      
       dplyr::group_by(B_COUNTRY_ALPHA) %>%
-      
       dplyr::summarize(
-          
           average_score = mean(score, na.rm = TRUE)
-          
       ) %>%
-      
       dplyr::ungroup() %>%
-      
       dplyr::arrange(average_score) # Order them from highest to lowest enthusiasm (NOTE --
                                     # smaller number means more enthusiasm)
       
 # check what we created:
   
   average_country_enthusiasm %>% head()
+  

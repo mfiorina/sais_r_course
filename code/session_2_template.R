@@ -38,39 +38,11 @@
   
   pacman::p_load(tidyverse, data.table, janitor)
   
-    ### File Paths
-  
-      # Set User (this allows us to use fixed file paths but to adapt them for
-      # multiple possible users)
-  
-      # 1 -- Marc-Andrea Fiorina
-  
-      # 2 -- Enter here if needed
-  
-  user <- 1
-  
-  if(user == 1) {
-      
-      main_filepath <- "/Users/marc-andreafiorina/Dropbox/SAIS R Course/"
-      
-  }
-  
-  if(user == 2) {
-      
-      main_filepath <- "Your own filepath"
-      # Modify this to refer to your file path. Don't forget the '/' at the
-      # end!
-      
-  }
-  
-  data_filepath <- paste0(main_filepath, "data/")
-  # Then we can dynamically add file paths that work for everyone!
-  
   ## 2. Import Data ----
  
-  norms_values_data <- read.csv(
+  norms_values_data <- data.table::fread(
       
-      paste0(data_filepath, "session_2/wvs_values_norms_data.csv"),
+      "data/final/wvs_values_norms_data.csv",
       
       na.strings = ""
       

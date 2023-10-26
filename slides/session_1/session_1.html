@@ -20,13 +20,34 @@
 
 
 
+class: middle
+
+# Setting Up
+
+- Open RStudio
+- Type in the following lines, &lt;font color = "red"&gt;&lt;b&gt;replacing "YOURFILEPATHHERE" with a file path where these files will be saved&lt;/b&gt;&lt;/font&gt;.
+    - For MacBook users, this could be "/Users/marc-andreafiorina/Desktop/"
+    - For Windows users, this could be "C:/Users/marc-andreafiorina/Desktop/"
+
+
+```r
+install.packages("usethis")
+library(usethis)
+usethis::use_course(
+    "https://github.com/mfiorina/sais_r_course/archive/main.zip",
+    destdir = "YOURFILEPATHHERE"
+)
+```
+
+---
+
 class: center, middle
 
 # Programming for Professional Research Using R
 
 ## Session 1
 
-### March 30, 2023
+### October 26, 2023
 
 ---
 
@@ -211,7 +232,6 @@ class: center, middle
 
 ```r
 install.packages("tidyverse")
-
 library(tidyverse)
 ```
 
@@ -222,7 +242,6 @@ The `pacman` package installs packages if they aren't installed yet, loads them 
 
 ```r
 if(!require(pacman)) install.packages("pacman")
-
 pacman::p_load(tidyverse)
 ```
 
@@ -232,7 +251,9 @@ pacman::p_load(tidyverse)
 
 You want your code to be **reproducible** and **easy to use by other people**
 
-Solution:
+Simple solution: Create an `.rproj` file that people can open to access your R environment
+
+Better solution:
 
 
 ```r
@@ -246,11 +267,8 @@ Solution:
 user &lt;- 1
   
 if(user == 1) {
-    
     # Absolute file path
-      
     main_filepath &lt;- "/Users/marc-andreafiorina/Dropbox/SAIS R Course/"
-      
 }
 
 # Notice the relative file paths
@@ -280,9 +298,8 @@ Easiest file type to import into R is a .csv file. But you can also import .xlsx
 
 ```r
 norms_values_data &lt;- data.table::fread(
-    paste0(data_filepath, "session_1/wvs_values_norms_data.csv"),
+    "raw/wvs_values_norms_data.csv",
     na.strings = ""
-      
 )
 ```
 

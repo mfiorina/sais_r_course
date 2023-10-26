@@ -47,6 +47,7 @@
 # R
 !/**/*.R
 !/**/*.Rmd
+!/**/*.Rproj
 
 # LaTeX
 !/**/*.tex
@@ -83,7 +84,7 @@
 !/**/*.html
 !/**/*.png
 
-# Marc-Andrea Fiorina, 10/26/2023 -- Adding .zip files so that students can use use this::use_course()
+# Marc-Andrea Fiorina, 10/26/2023 -- Adding .zip files so that students can use usethis::use_course()
 
 !/**/*.zip
 

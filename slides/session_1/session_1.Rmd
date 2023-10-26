@@ -2,7 +2,7 @@
 title: "SAIS R Course — Session 1"
 subtitle: "Session 1"
 author: "Marc-Andrea Fiorina"
-date: "2022/03/29 (updated: `r Sys.Date()`)"
+date: "2022/10/26 (updated: `r Sys.Date()`)"
 output:
   xaringan::moon_reader:
     seal: false
@@ -38,13 +38,35 @@ style_duo_accent(
 xaringanExtra::use_panelset()
 ```
 
+class: middle
+
+# Setting Up
+
+- Open RStudio.
+- Type in the following lines, <font color = "red"><b>replacing "YOURFILEPATHHERE" with a file path where these files will be saved</b></font>.
+    - For MacBook users, this could be "/Users/marc-andreafiorina/Desktop/"
+    - For Windows users, this could be "C:/Users/marc-andreafiorina/Desktop/"
+
+```{r eval = FALSE}
+
+install.packages("usethis")
+library(usethis)
+usethis::use_course(
+    "https://github.com/mfiorina/sais_r_course/archive/main.zip",
+    destdir = "YOURFILEPATHHERE"
+)
+
+```
+
+---
+
 class: center, middle
 
 # Programming for Professional Research Using R
 
 ## Session 1
 
-### March 30, 2023
+### October 26, 2023
 
 ---
 
@@ -99,9 +121,7 @@ class: center, middle
 ```{r, echo = FALSE, out.width = "100%", fig.align = "center"}
 
 knitr::include_graphics(
-  
     "pics/table_example.png"
-  
 )
 ```
 
@@ -112,9 +132,7 @@ knitr::include_graphics(
 ```{r, echo = FALSE, out.width = "85%", fig.align = "center"}
 
 knitr::include_graphics(
-  
     "pics/plot_example.png"
-  
 )
 ```
 
@@ -125,9 +143,7 @@ knitr::include_graphics(
 ```{r, echo = FALSE, out.width = "75%", fig.align = "center"}
 
 knitr::include_graphics(
-  
     "pics/map_example.png"
-  
 )
 ```
 
@@ -232,7 +248,6 @@ class: center, middle
 
 ```{r eval = FALSE}
 install.packages("tidyverse")
-
 library(tidyverse)
 ```
 
@@ -242,7 +257,6 @@ The `pacman` package installs packages if they aren't installed yet, loads them 
 
 ```{r eval = FALSE}
 if(!require(pacman)) install.packages("pacman")
-
 pacman::p_load(tidyverse)
 ```
 
@@ -252,7 +266,9 @@ pacman::p_load(tidyverse)
 
 You want your code to be **reproducible** and **easy to use by other people**
 
-Solution:
+Simple solution: Create an `.rproj` file that people can open to access your R environment
+
+Better solution:
 
 ```{r eval = FALSE}
 # Set User (this allows us to use fixed file paths but to adapt them
@@ -265,11 +281,8 @@ Solution:
 user <- 1
   
 if(user == 1) {
-    
     # Absolute file path
-      
     main_filepath <- "/Users/marc-andreafiorina/Dropbox/SAIS R Course/"
-      
 }
 
 # Notice the relative file paths
@@ -298,9 +311,8 @@ Easiest file type to import into R is a .csv file. But you can also import .xlsx
 
 ```{r eval = FALSE}
 norms_values_data <- data.table::fread(
-    paste0(data_filepath, "session_1/wvs_values_norms_data.csv"),
+    "raw/wvs_values_norms_data.csv",
     na.strings = ""
-      
 )
 ```
 
@@ -478,9 +490,7 @@ GitHub is the preferred code storing platform for data teams because of the foll
 ```{r, echo = FALSE, out.width = "75%", fig.align = "center"}
 
 knitr::include_graphics(
-  
     "pics/github_example.png"
-  
 )
 ```
 

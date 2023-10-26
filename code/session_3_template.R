@@ -49,50 +49,17 @@
   
   pacman::p_load(tidyverse, data.table, janitor, stargazer, huxtable, gt, paletteer)
   
-    ### File Paths
- 
-      # Set User (this allows us to use fixed file paths but to adapt them for multiple possible users)
-  
-      # 1 -- Marc-Andrea Fiorina
-  
-      # 2 -- Enter here if needed
-  
-  user <- 1 # Remember to change this to your user number!
-  
-  if(user == 1) {
-      
-      main_filepath <- "/Users/marc-andreafiorina/Dropbox/SAIS R Course/"
-      
-  }
-  
-  if(user == 2) {
-      
-      main_filepath <- "/Users/someone_else/Dropbox/SAIS R Course/" # Modify this to refer to your file
-                                                                    # path. Don't forget the '/' at the
-                                                                    # end!
-      
-  }
-  
-  data_filepath <- paste0(main_filepath, "data/") # Then we can dynamically add file paths that work
-                                                  # for everyone!
-  
-  output_filepath <- paste0(main_filepath, "output/")
-  
   ## 2. Import Data ----
  
-  norms_values_data <- read.csv( # Other options are base R's read.csv() and readr::read_csv(), but
+  norms_values_data <- data.table::fread( # Other options are base R's read.csv() and readr::read_csv(), but
                                           # data.table::fread() is considered to be the fastest
-      
-      paste0(data_filepath, "session_3/wvs_values_norms_data.csv"), na.strings = ""
-      
+      "data/final/wvs_values_norms_data.csv", na.strings = ""
   )
   
   ## Country Continent Data
   
-  country_continent_data <- read.csv(
-      
-      paste0(data_filepath, "session_3/country_continent.csv"), na.strings = ""
-      
+  country_continent_data <- data.table::fread(
+      "data/raw//country_continent.csv", na.strings = ""
   )
 
   ## 3. SESSION 1 -- Data 'Wrangling' ----
