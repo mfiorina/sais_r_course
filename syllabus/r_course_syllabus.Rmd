@@ -1,5 +1,5 @@
 ---
-title: ""
+title: "r_course_syllabus"
 output:
     html_document:
         css: "meta/style.css"
@@ -9,7 +9,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-<div style="text-align: right"><font size = -1>For a PDF version of this document, please click [here](https://mfiorina.github.io/sais_r_course/spring_2023/syllabus/r_course_syllabus.pdf).</font></div>
+<div style="text-align: right"><font size = -1>For a PDF version of this document, please click [here](https://mfiorina.github.io/sais_r_course/syllabus/r_course_syllabus.pdf).</font></div>
 
 ```{r, echo = FALSE, out.width = "50%", fig.align = "center"}
  
@@ -22,7 +22,7 @@ knitr::include_graphics(
 
 <center>
 ### Professional Skills Course
-### Syllabus -- Spring 2023
+### Syllabus -- Fall 2023
 
 # Programming for Professional Research Using R
 
@@ -35,11 +35,11 @@ Contact: mfiorina@worldbank.org
 ## Schedule
 <br>
 <center>
-| Weekday  | Date           | Room      | Start Time | End Time |
-|:--------:|:--------------:|:---------:|:----------:|:--------:|
-| Thursday | March 30, 2023 | BOB 616   | 6:00pm     | 8:00pm   |
-| Thursday | April 6, 2023  | BOB 616   | 6:00pm     | 8:00pm   |
-| Thursday | April 13, 2023 | BOB 616   | 6:00pm     | 8:00pm   |
+| Weekday  | Date             | Room           | Start Time | End Time |
+|:--------:|:----------------:|:--------------:|:----------:|:--------:|
+| Thursday | October 26, 2023 | 555 Penn 659   | 6:00pm     | 8:00pm   |
+| Thursday | November 2, 2023 | 555 Penn 659   | 6:00pm     | 8:00pm   |
+| Thursday | November 9, 2023 | 555 Penn 659   | 6:00pm     | 8:00pm   |
 </center>
 
 ---
@@ -99,8 +99,6 @@ The last two sessions will begin with multiple-choice questionnaires on the topi
 
 ## Course Readings/Resources
 
-Students should download data and code templates from [this linked Dropbox folder](https://www.dropbox.com/sh/hx6r5hcqvndorgu/AAA2LbKrtMXmJSaPUsMpN2_2a?dl=0).
-
 As there will be no time for this in class, **YOU NEED TO DO THE FOLLOWING BEFORE THE FIRST SESSION:**
 
 - Download R at this link: https://cran.r-project.org/
@@ -110,6 +108,22 @@ As there will be no time for this in class, **YOU NEED TO DO THE FOLLOWING BEFOR
       - `R-4.2.3.pkg` if you have an older MacBook with an Intel chip or run an older iOs.
   
 - Download RStudio at this link: https://www.rstudio.com/products/rstudio/. Download the 'RStudio Desktop: Open Source Edition' version.
+
+Students can then download data and code templates using the following instructions:
+
+- Open RStudio.
+- Type in the following lines, replacing "YOURFILEPATHHERE" with a file path where these files will be saved:
+
+```{r eval = FALSE}
+
+install.packages("usethis")
+library(usethis)
+usethis::use_course(
+    "https://github.com/mfiorina/sais_r_course/archive/main.zip",
+    destdir = "YOURFILEPATHHERE"
+)
+
+```
 
 <br><br>
 
