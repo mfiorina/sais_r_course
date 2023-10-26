@@ -447,45 +447,28 @@
 # Properly encode the missing values
   
   norms_values_data <- norms_values_data %>%
-      
       mutate(
-          
           Q27_agree_parents_proud = case_when(
-              
               Q27_agree_parents_proud < 0 ~ NA_real_,
-              
               Q27_agree_parents_proud == 4 ~ 1, # 4 is 'strongly disagree' and 1 is 'strongly agree'.
                                                 # I like bigger = better
               Q27_agree_parents_proud == 3 ~ 2,
-              
               Q27_agree_parents_proud == 2 ~ 3,
-              
               Q27_agree_parents_proud == 1 ~ 4
-              
           )
-          
       )
   
   parent_child_dataset <- norms_values_data %>%
-      
       select(
-          
           D_INTERVIEW, B_COUNTRY_ALPHA,
-          
           Q07_child_manners:Q17_child_obedient, Q27_agree_parents_proud
-          
       )
   
   parent_child_regression <- lm(
-      
       data    = parent_child_dataset,
-      
       formula = Q27_agree_parents_proud ~ Q08_child_independence + Q09_child_hard_work +
-          
           Q10_child_responsibility + Q11_child_imagination + Q12_child_tolerance + Q13_child_thrift +
-          
           Q14_child_determined + Q15_child_faith + Q16_child_unselfish + Q17_child_obedient
-      
   )
   
 # Look at what the results of the regression are
@@ -497,9 +480,7 @@
 # Stargazer outputs a simple LateX script
   
   parent_child_sg <- parent_child_regression %>%
-      
       stargazer()
-  
 # Looks super ugly -- you'd want to add labels to replace your variable names in the table.
 # stargazer() is very customizable, just use help(stargazer) to see how to add labels
   
@@ -513,55 +494,35 @@
 # Huxtable transforms a regression output into a table described in 'LateX' script.
   
   parent_child_names <- c(
-      
       "Independence"   = "Q08_child_independence",
-      
       "Hard Work"      = "Q09_child_hard_work",
-      
       "Responsibility" = "Q10_child_responsibility",
-      
       "Imagination"    = "Q11_child_imagination",
-      
       "Tolerance"      = "Q12_child_tolerance",
-      
       "Thriftiness"    = "Q13_child_thrift",
-      
       "Determination"  = "Q14_child_determined",
-      
       "Faith"          = "Q15_child_faith",
-      
       "Selflessness"   = "Q16_child_unselfish",
-      
       "Obedience"      = "Q17_child_obedient"
-      
   )
   
   parent_child_hux <- parent_child_regression %>%
-      
       huxtable::huxreg(
-          
           coefs = parent_child_names
-          
       )
   
 # Some saving options:
   
   huxtable::quick_latex(
-      
       parent_child_hux, file = "output/regression_table.tex"
-      
   )
   
   quick_pdf(
-      
       parent_child_hux, file = "output/regression_table.pdf"
-      
   )
   
   quick_html(
-      
       parent_child_hux, file = "output/regression_table.html"
-      
   )
   
     ### Step 2 -- Descriptive Statistics Table ----
@@ -576,162 +537,92 @@
   norms_values_data %>% tabyl(Q06_life_religion)
   
   politics_religion_dataset <- norms_values_data %>%
-      
       select(
-          
           D_INTERVIEW, B_COUNTRY_ALPHA,
-          
           Q04_life_politics, Q06_life_religion
-          
       ) %>%
-      
       mutate(
-          
           across(
-              
               Q04_life_politics:Q06_life_religion,
-              
               ~ case_when(
-                  
                   .x < 0 ~ NA_real_,
-                  
                   .x == 4 ~ 1, # 4 is 'strongly disagree' and 1 is 'strongly agree'.
                                # I like bigger = better
                   .x == 3 ~ 2,
-                  
                   .x == 2 ~ 3,
-                  
                   .x == 1 ~ 4
-                  
               )
-              
           )
-          
       ) %>%
-      
       # We want to visualize the relationship between the politics and religion variables, but there
       # are 83,000 observations (too many). So aggregate at the country level
-      
       group_by(B_COUNTRY_ALPHA) %>%
-      
       dplyr::summarize(
-          
           across(
-              
               Q04_life_politics:Q06_life_religion,
-              
               ~ mean(.x, na.rm = TRUE)
-              
           )
-          
       ) %>%
-      
       ungroup() %>%
-      
       # Add continent data to the politics/religion dataset to compare continent statistics
-      
       left_join(
-          
           country_continent_data,
-          
           by = c("B_COUNTRY_ALPHA" = "country")
-          
       ) %>%
-      
       select(
-          
           country_long, continent, everything()
-          
       ) %>%
-      
       arrange(continent, country_long)
-   
+
 # Use the gt() package to create a descriptive statistics table out of this. Using gt() is a very
 # iterative process, I'd recommend just trying out the basic one shown below and then adding
 # components one by one.
   
   simple_desc_gt_table <- politics_religion_dataset %>%
-      
       select(-B_COUNTRY_ALPHA) %>% # Don't need it
-      
       gt()
   
 # Looks pretty rough. Time to make it look nicer:
   
   politics_religion_gt_table <- politics_religion_dataset %>%
-      
       select(-B_COUNTRY_ALPHA) %>% # Don't need it
-      
       mutate( # Too many digits in our numeric variables
-          
           across(
-              
               Q04_life_politics:Q06_life_religion,
-              
               ~ round(.x, digits = 3)
-              
           )
-          
       ) %>%
-      
       group_by(continent) %>% # See what this does
-      
       gt() %>%
-      
       cols_label( # Lets you assign names to columns
-          
           country_long      = "Country",
-          
           Q04_life_politics = "Politics",
-          
           Q06_life_religion = "Religion"
-          
       ) %>%
-      
       tab_header( # Add title/subtitle
-          
           title    = "World Values Survey",
-          
           subtitle = "Importance in Life -- Politics vs. Religion"
-          
       ) %>%
-      
       data_color( # Adding some color scales to make the numbers easier to parse
-          
           columns = Q04_life_politics,
-          
           colors  = scales::col_numeric(
-              
               palette = as.character(paletteer::paletteer_d("ggsci::red_material", n = 5)),
-              
               domain = NULL
-              
           )
-          
       ) %>%
-      
       data_color( # Adding some color scales to make the numbers easier to parse
-          
           columns = Q06_life_religion,
-          
           colors  = scales::col_numeric(
-              
               palette = as.character(paletteer::paletteer_d("ggsci::blue_material", n = 5)),
-              
               domain = NULL
-              
           )
-          
       )
   
 # Could do a lot more but this is enough for now. Save:
   
   gtsave(
-      
       politics_religion_gt_table,
-      
       "output/politics_religion_gt.png"
-      
   )
 
     ### Step 3 -- Descriptive Statistics Plot(s) ----
@@ -744,82 +635,47 @@
 # First -- Let's use a simple density plot to assess the distribution of both variables
   
   politics_religion_density_plot <- politics_religion_dataset %>%
-      
       ggplot() +
-      
       geom_density(
-          
           aes( # aesthetics -- variables always go inside of this
-              
               x = Q04_life_politics # geom_density only requires an 'x'
           ),
-          
           color = "red"
-          
       ) +
-      
       geom_density(
-          
           aes( # aesthetics -- variables always go inside of this
-              
               x = Q06_life_religion # geom_density only requires an 'x'
-              
           ),
-          
           color = "blue"
-          
       ) +
-      
       xlab("Importance in Life (1 - 4)")
   
 # No legend though. Solution: Use pivot_longer so that each variable is a group
   
   politics_religion_dataset_long <- politics_religion_dataset %>%
-      
       pivot_longer(
-          
           cols = c(Q04_life_politics, Q06_life_religion),
-          
           names_to  = "variable",
-          
           values_to = "life_importance"
-          
       ) %>%
-      
       mutate( # So that it looks good in the plot
-          
           variable = case_when(
-              
               variable == "Q04_life_politics" ~ "Politics",
-              
               variable == "Q06_life_religion" ~ "Religion"
-              
           )
-          
       )
   
   politics_religion_density_plot2 <- politics_religion_dataset_long %>%
-      
       ggplot() +
-      
       geom_density(
-          
           aes(
-              
               x = life_importance, color = variable
-              
           )
-          
       ) +
-      
       xlab("Importance in Life (1-4)") +
-      
       theme_minimal() + # Always looks better
-      
       theme(
-          
           legend.position = "bottom", # I prefer this
-          
           plot.background = element_rect(color = "white") # Without this the graph's background is
                                                           # transparent
       )
@@ -827,57 +683,31 @@
 # Second -- Bar chart, grouping by continent
   
   politics_religion_bar_chart <- politics_religion_dataset_long %>%
-      
       mutate( # South and North America are too long strings
-          
           continent = case_when(
-              
               continent == "South America" ~ "South\nAmerica", # Line break
-               
               continent == "North America" ~ "North\nAmerica",
-              
               TRUE                         ~ continent
-              
           )
-          
       ) %>%
-      
       group_by(continent, variable) %>%
-      
       dplyr::summarize(
-          
           life_importance = mean(life_importance, na.rm = TRUE)
-          
       ) %>%
-      
       ungroup() %>%
-      
       ggplot() +
-      
       geom_bar(
-          
           aes(
-              
               x = continent, y = life_importance, fill = variable
-              
           ),
-          
           position = "dodge", stat = "identity"
-          
       ) +
-      
       xlab("Continent") +
-      
       ylab("Importance in Life (1-4)") +
-      
       scale_fill_discrete(name = "") + # An easy way to get rid of the legend title
-      
       theme_minimal() + # Always looks better
-      
       theme(
-          
           legend.position = "bottom",
-          
           plot.background = element_rect(color = "white") # Without this the graph's background is
                                                           # transparent
       )
@@ -888,41 +718,23 @@
 # Here it's politics and religion's importance in life
   
   politics_religion_scatter_plot <- politics_religion_dataset %>%
-      
       ggplot() +
-      
       geom_point(
-          
           aes(
-              
               x = Q04_life_politics, y = Q06_life_religion, color = continent
-              
           )
-          
       ) +
-      
       xlab("Importance of Politics") +
-      
       ylab("Importance of Religion") +
-      
       scale_x_continuous( # Make sure scale is 1-4
-          
           limits = c(1, 4)
-          
       ) +
-      
       scale_y_continuous(
-          
           limits = c(1, 4)
-          
       ) +
-      
       theme_minimal() +
-      
       theme(
-          
           legend.position = "bottom",
-          
           plot.background = element_rect(color = "white") # Without this the graph's background is
                                                           # transparent
       )
@@ -930,45 +742,25 @@
 # Fun alternative -- replace points with country abbreviation
   
   politics_religion_scatter_plot2 <- politics_religion_dataset %>%
-      
       ggplot() +
-      
       geom_text(
-          
           aes(
-              
               x = Q04_life_politics, y = Q06_life_religion,
-              
               label = B_COUNTRY_ALPHA, color = continent
-              
           ),
-          
           check_overlap = TRUE
-          
       ) +
-      
       xlab("Importance of Politics") +
-      
       ylab("Importance of Religion") +
-      
       scale_x_continuous( # Make sure scale is 1-4
-          
           limits = c(1, 4)
-          
       ) +
-      
       scale_y_continuous(
-          
           limits = c(1, 4)
-          
       ) +
-      
       theme_minimal() +
-      
       theme(
-          
           legend.position = "bottom",
-          
           plot.background = element_rect(color = "white") # Without this the graph's background is
                                                           # transparent
       )
@@ -976,35 +768,23 @@
 # Save everything important
   
   ggsave(
-      
       "output/politics_religion_density.png",
-      
       politics_religion_density_plot2
-      
   )
   
   ggsave(
-      
       "output/politics_religion_bar.png",
-      
       politics_religion_bar_chart
-      
   )
   
   ggsave(
-      
       "output/politics_religion_scatter.png",
-      
       politics_religion_scatter_plot
-      
   )
   
   ggsave(
-      
       "output/politics_religion_scatter2.png",
-      
       politics_religion_scatter_plot2
-      
   )
   
 # Challenges for today:
@@ -1012,40 +792,6 @@
   # Using child_data_long, create a gt() table showing the five most important child qualities
   # for a given country, along with either the number or %age of respondents in each country who
   # called it important (hint: you'll have to use filter() and summarize() for this)
-  
-  child_data_andorra <- child_data_long %>%
-      
-      filter(B_COUNTRY_ALPHA == "AND") %>%
-      
-      group_by(child_quality) %>%
-      
-      summarize(
-          
-          child_quality_value = sum(child_quality_value, na.rm = TRUE),
-          
-          num_respondents = n()
-          
-      ) %>%
-      
-      mutate(percentage = child_quality_value / num_respondents)
-  
-  child_data_andorra_table <- child_data_andorra %>%
-      
-      arrange(-child_quality_value) %>%
-      
-      select(-child_quality_value) %>%
-      
-      head(n = 5) %>%
-      
-      gt() %>%
-      
-      cols_label(
-          
-          child_quality = "Quality",
-          
-          percentage = "%age of Respondents"
-          
-      )
   
   # Then create a density plot showing the distribution of importance of these five child qualities
   # across countries (i.e. summarize at the country level then use ggplot() and geom_density())
