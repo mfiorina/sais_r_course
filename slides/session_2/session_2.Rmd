@@ -2,7 +2,7 @@
 title: "SAIS R Course"
 subtitle: "Session 2"
 author: "Marc-Andrea Fiorina"
-date: "2022/03/29 (updated: `r Sys.Date()`)"
+date: "2023/10/26 (updated: `r Sys.Date()`)"
 output:
   xaringan::moon_reader:
     seal: false
@@ -41,7 +41,7 @@ class: center, middle
 
 ## Session 2
 
-### April 6, 2023
+### November 2, 2023
 
 ---
 
@@ -364,13 +364,13 @@ class: center, middle
 
 ## Links
 
-Syllabus: **https://mfiorina.github.io/sais_r_course/spring_2023/syllabus/r_course_syllabus.html**
+Syllabus: **https://mfiorina.github.io/sais_r_course/syllabus/r_course_syllabus.html**
 
-Session 1: **https://mfiorina.github.io/sais_r_course/spring_2023/session_1/session_1.html**
+Session 1: **https://mfiorina.github.io/sais_r_course/session_1/session_1.html**
 
 DIME World Bank Wiki, **[https://dimewiki.worldbank.org/Data_Cleaning](https://dimewiki.worldbank.org/Data_Cleaning)**
 
-Hadley Wickham & Garrett Grolemund, **[R for Data Science Chaper 12 -- Tidy data](https://r4ds.had.co.nz/tidy-data.html)**
+Hadley Wickham & Garrett Grolemund, **[R for Data Science Chapter 12 -- Tidy data](https://r4ds.had.co.nz/tidy-data.html)**
 
 RStudio, **[RStudio Cheatsheets](https://www.rstudio.com/resources/cheatsheets/)**
 

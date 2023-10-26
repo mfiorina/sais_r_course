@@ -2,7 +2,7 @@
 title: "SAIS R Course"
 subtitle: "Session 3"
 author: "Marc-Andrea Fiorina"
-date: "2022/03/29 (updated: `r Sys.Date()`)"
+date: "2023/10/26 (updated: `r Sys.Date()`)"
 output:
   xaringan::moon_reader:
     seal: false
@@ -41,7 +41,7 @@ class: center, middle
 
 ## Session 3
 
-### April 13, 2023
+### November 9, 2023
 
 ---
 
