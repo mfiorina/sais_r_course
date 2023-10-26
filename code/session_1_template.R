@@ -53,9 +53,13 @@
   
 # This is session 1 so we're going to import the data from Dropbox:
   
-  usethis::use_zip(
-      "https://www.dropbox.com/scl/fo/vnxjbqyq1g9z368coh1vq/h?rlkey=zc66o2ll7613b5e9ipp915ynk&dl=1"
-  )
+  if(!(file.exists("data/final/wvs_values_norms_data.csv"))) { # Checks whether the data has been
+                                                               # downloaded already
+      usethis::use_zip(
+          "https://www.dropbox.com/scl/fo/vnxjbqyq1g9z368coh1vq/h?rlkey=zc66o2ll7613b5e9ipp915ynk&dl=1"
+      )
+      
+  }
  
   norms_values_data <- data.table::fread( # Other options are base R's read.csv() and data.table::fread()
       "data/final/wvs_values_norms_data.csv", na.strings = ""

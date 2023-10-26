@@ -50,6 +50,14 @@
   pacman::p_load(tidyverse, data.table, janitor, stargazer, huxtable, gt, paletteer)
   
   ## 2. Import Data ----
+  
+  if(!(file.exists("data/final/wvs_values_norms_data.csv"))) { # Checks whether the data has been
+                                                               # downloaded already
+      usethis::use_zip(
+          "https://www.dropbox.com/scl/fo/vnxjbqyq1g9z368coh1vq/h?rlkey=zc66o2ll7613b5e9ipp915ynk&dl=1"
+      )
+      
+  }
  
   norms_values_data <- data.table::fread( # Other options are base R's read.csv() and readr::read_csv(), but
                                           # data.table::fread() is considered to be the fastest

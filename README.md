@@ -8,7 +8,7 @@ This repository will store the resources needed for the "Programming for Profess
 
 Click on the links below to get access to:
 
-- The data [Dropbox folder](https://www.dropbox.com/sh/hx6r5hcqvndorgu/AAA2LbKrtMXmJSaPUsMpN2_2a?dl=0)
+- The data [Dropbox folder](https://www.dropbox.com/scl/fo/6m5hzlrc82i04oi0qoam7/h?rlkey=7t9p4bfg90gvoybibb9jf7veq&dl=0)
 
 - The syllabus ([.html](https://mfiorina.github.io/sais_r_course/syllabus/r_course_syllabus.html) or [.pdf](https://mfiorina.github.io/sais_r_course/syllabus/r_course_syllabus.pdf))
 
