@@ -47,6 +47,7 @@
 # R
 !/**/*.R
 !/**/*.Rmd
+!/**/*.Rproj
 
 # LaTeX
 !/**/*.tex
@@ -82,6 +83,10 @@
 !/**/*.pdf
 !/**/*.html
 !/**/*.png
+
+# Marc-Andrea Fiorina, 10/26/2023 -- Adding .zip files so that students can use usethis::use_course()
+
+!/**/*.zip
 
 #######################
 # Include some additional file formats in any output folder. You might have

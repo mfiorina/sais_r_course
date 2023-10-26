@@ -1,17 +1,19 @@
 # Programming for Professional Research Using R
 
-## Johns Hopkins School of Advanced International Studies (SAIS) -- Professional Skills Course
+## Johns Hopkins School of Advanced International Studies (SAIS) — Professional Skills Course
 
 ## Marc-Andrea Fiorina
 
 This repository will store the resources needed for the "Programming for Professional Research Using R" professional skills course.
 
-Links to:
+Click on the links below to get access to:
 
-- [Spring 2022 Sessions](https://mfiorina.github.io/sais_r_course/spring_2022/)
+- The data [Dropbox folder](https://www.dropbox.com/sh/hx6r5hcqvndorgu/AAA2LbKrtMXmJSaPUsMpN2_2a?dl=0)
 
-- [Fall 2022 Sessions](https://mfiorina.github.io/sais_r_course/fall_2022/)
+- The syllabus ([.html](https://mfiorina.github.io/sais_r_course/syllabus/r_course_syllabus.html) or [.pdf](https://mfiorina.github.io/sais_r_course/syllabus/r_course_syllabus.pdf))
 
-- [Spring 2023 Sessions](https://mfiorina.github.io/sais_r_course/spring_2023/)
+- Session 1 slides ([.html](https://mfiorina.github.io/sais_r_course/slides/session_1/session_1.html))
 
+- Session 2 slides ([.html](https://mfiorina.github.io/sais_r_course/slides/session_2/session_2.html))
 
+- Session 3 slides ([.html](https://mfiorina.github.io/sais_r_course/slides/session_3/session_3.html))
