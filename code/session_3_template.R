@@ -634,7 +634,7 @@
   
 # You can then save to LateX using the writeLines() function
   
-  writeLines(parent_child_sg, paste0(output_filepath, "regression_table_sg.tex"))
+  writeLines(parent_child_sg, "output/regression_table_sg.tex")
   
 # You can then either import the .tex file into a software like Overleaf, or use the
 # pdflatex() function from the tinytex package to export to PDF.
@@ -677,19 +677,19 @@
   
   huxtable::quick_latex(
       
-      parent_child_hux, file = paste0(output_filepath, "regression_table.tex")
+      parent_child_hux, file = "output/regression_table.tex"
       
   )
   
   quick_pdf(
       
-      parent_child_hux, file = paste0(output_filepath, "regression_table.pdf")
+      parent_child_hux, file = "output/regression_table.pdf"
       
   )
   
   quick_html(
       
-      parent_child_hux, file = paste0(output_filepath, "regression_table.html")
+      parent_child_hux, file = "output/regression_table.html"
       
   )
   
@@ -859,7 +859,7 @@
       
       politics_religion_gt_table,
       
-      paste0(output_filepath, "politics_religion_gt.png")
+      "output/politics_religion_gt.png"
       
   )
 
@@ -1106,7 +1106,7 @@
   
   ggsave(
       
-      paste0(output_filepath, "politics_religion_density.png"),
+      "output/politics_religion_density.png",
       
       politics_religion_density_plot2
       
@@ -1114,7 +1114,7 @@
   
   ggsave(
       
-      paste0(output_filepath, "politics_religion_bar.png"),
+      "output/politics_religion_bar.png",
       
       politics_religion_bar_chart
       
@@ -1122,7 +1122,7 @@
   
   ggsave(
       
-      paste0(output_filepath, "politics_religion_scatter.png"),
+      "output/politics_religion_scatter.png",
       
       politics_religion_scatter_plot
       
@@ -1130,7 +1130,7 @@
   
   ggsave(
       
-      paste0(output_filepath, "politics_religion_scatter2.png"),
+      "output/politics_religion_scatter2.png",
       
       politics_religion_scatter_plot2
       
