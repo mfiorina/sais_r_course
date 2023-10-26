@@ -83,6 +83,10 @@
 !/**/*.html
 !/**/*.png
 
+# Marc-Andrea Fiorina, 10/26/2023 -- Adding .zip files so that students can use use this::use_course()
+
+!/**/*.zip
+
 #######################
 # Include some additional file formats in any output folder. You might have
 # to change the name of the Output folder to whatever it is called in your
