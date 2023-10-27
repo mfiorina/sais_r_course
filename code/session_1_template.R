@@ -20,7 +20,7 @@
     # covering the basics of Tidyverse use in R.
 
     # tidyr, “Pivoting” (https://tidyr.tidyverse.org/articles/pivot.html). Vignette explaining how
-    # to reshape datasets using pivot_longer and pivot_wider.
+    # to reshape datasets using pivot_longer and pivot_longr.
 
     # Hadley Wickham, “dplyr 1.0.0: working across columns”
     # (https://www.tidyverse.org/blog/2020/04/dplyr-1-0-0-colwise/). Explains the basics for
@@ -40,12 +40,12 @@
 
   ## 1. Setup ----
   
-    ### Packages
+    ### Packages Random
   
 # NOTE -- Unlike using library(), the 'pacman::p_load()' function installs the package if it is
 # already not present in the user's R environment.
   
-  if(!require(pacman)) install.packages("pacman") 
+  if(!require(pacman)) install.packages("pacman")
   
   pacman::p_load(tidyverse, data.table, janitor, usethis)
   
@@ -166,7 +166,7 @@
 # or look at each country's 'average' enthusiasm, it'll be easier with a 'long' dataset than a
 # 'wide' one.
   
-  european_country_data_wide <- european_country_data %>%
+  european_country_data_long <- european_country_data %>%
       tidyr::pivot_longer(
           cols      = matches("^Q0[1-6]"), # Variables whose data we want to be in a single,
                                            # 'long' variable
@@ -184,11 +184,11 @@
   
 # Check that it worked
   
-  european_country_data_wide %>% janitor::tabyl(topic) # It did!
+  european_country_data_long %>% janitor::tabyl(topic) # It did!
   
 # Now for example I can look at average 'enthusiasm' by country
   
-  average_country_enthusiasm <- european_country_data_wide %>%
+  average_country_enthusiasm <- european_country_data_long %>%
       dplyr::group_by(B_COUNTRY_ALPHA) %>%
       dplyr::summarize(
           average_score = mean(score, na.rm = TRUE)
