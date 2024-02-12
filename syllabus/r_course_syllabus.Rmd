@@ -22,12 +22,12 @@ knitr::include_graphics(
 
 <center>
 ### Professional Skills Course
-### Syllabus -- Fall 2023
+### Syllabus — Spring 2024
 
 # Programming for Professional Research Using R
 
 ## Marc-Andrea Fiorina
-Contact: mfiorina@worldbank.org
+Contact: marcandrea.fiorina@gmail.com
 </center>
 
 ---
@@ -35,11 +35,12 @@ Contact: mfiorina@worldbank.org
 ## Schedule
 <br>
 <center>
-| Weekday  | Date             | Room           | Start Time | End Time |
-|:--------:|:----------------:|:--------------:|:----------:|:--------:|
-| Thursday | October 26, 2023 | 555 Penn 659   | 6:00pm     | 8:00pm   |
-| Thursday | November 2, 2023 | 555 Penn 659   | 6:00pm     | 8:00pm   |
-| Thursday | November 9, 2023 | 555 Penn 659   | 6:00pm     | 8:00pm   |
+| Weekday   | Date              | Room           | Start Time | End Time |
+|:---------:|:-----------------:|:--------------:|:----------:|:--------:|
+| Wednesday | February 14, 2024 | 555 Penn, B226 | 6:00pm     | 8:00pm   |
+| Wednesday | February 21, 2024 | 555 Penn, B226 | 6:00pm     | 8:00pm   |
+| Wednesday | February 28, 2024 | 555 Penn, B226 | 6:00pm     | 8:00pm   |
+| Wednesday | March 6, 2024     | 555 Penn, B226 | 6:00pm     | 8:00pm   |
 </center>
 
 ---
@@ -48,7 +49,7 @@ Contact: mfiorina@worldbank.org
 
 Entry-level research positions in universities, government offices, think tanks, and multilateral institutions are increasingly expected to perform basic quantitative tasks using statistical software such as Stata, R, or Python. As data work has become near-ubiquitous in the policy world, so have basic tasks like aggregating, analyzing, summarizing, and visualizing data.
 
-This course approaches the use of a statistical software -- R -- from the perspective of a research assistant. It will introduce you to the methods needed for quantitative work in such a position. This course will also aim to provide you with the resources to continue developing your knowledge and experience of R beyond its duration.
+This course approaches the use of a statistical software — R — from the perspective of a research assistant. It will introduce you to the methods needed for quantitative work in such a position. This course will also aim to provide you with the resources to continue developing your knowledge and experience of R beyond its duration.
 
 ---
 
@@ -78,14 +79,15 @@ Students will also be taught how to clean raw data by:
 
 <br>
 <center>
-| Session                                      | Description                                                                              |
-|----------------------------------------------|------------------------------------------------------------------------------------------|
-| **I -- Learning R through the Tidyverse** | - Basic R Use -- Introduction to R and RStudio, How to import/export data<br>- Using Basic Tidyverse Functions -- how to subset, mutate, summarize, and reshape data<br>- Using R in a Collaborative Setting -- Introduction to downloading and publishing data using GitHub |
-| **II -- Cleaning and Constructing Data Using R** | - Raw Data Cleaning -- How to identify and fix data errors prior to its use<br>- Data Construction -- How to build and reshape datasets for analysis |
-| **III -- Producing Research Output Using R** | - Exporting Summary/Regression Tables -- How to produce (i) regression tables and (ii) descriptive summary tables for academic or policy audiences<br>- Introduction to R Data Visualization -- How to produce beautiful and informative visualizations: scatter plots, density plots, and more |
+| Session | Description |
+|---------|-------------|
+| **I — Introduction to R** | - Introduction to Coding — learn how to think as a coder, how to identify the basic components of data analysis<br>- Introduction to the RStudio Interface — learn how to set up your environment to use R and RStudio<br>- Troubleshooting R — How to identify and address basic errors in your R setup |
+| **II — Learning R through the Tidyverse** | - Using Basic Tidyverse Functions — how to subset, mutate, summarize, and reshape data<br>- Iterative and Function-Based Coding — learn the basics of iterative coding in R using `purrr::map()`<br>- Using R in a Collaborative Setting — Introduction to downloading and publishing data using GitHub |
+| **III — Cleaning and Constructing Data Using R** | - Raw Data Cleaning — How to identify and fix data errors prior to its use<br>- Data Construction — How to build and reshape datasets for analysis |
+| **IV — Producing Research Output Using R** | - Exporting Summary/Regression Tables — How to produce (i) regression tables and (ii) descriptive summary tables for academic or policy audiences<br>- Introduction to R Data Visualization — How to produce beautiful and informative visualizations: scatter plots, density plots, and more |
 </center>
 
-**Note** -- The course slides, syllabus, and other resources will be shared at the following link: https://mfiorina.github.io/sais_r_course/.
+**Note** — The course slides, syllabus, and other resources will be shared at the following link: https://mfiorina.github.io/sais_r_course/.
 
 ---
 
@@ -102,10 +104,10 @@ The last two sessions will begin with multiple-choice questionnaires on the topi
 As there will be no time for this in class, **YOU NEED TO DO THE FOLLOWING BEFORE THE FIRST SESSION:**
 
 - Download R at this link: https://cran.r-project.org/
-  - Windows users, click on 'Download R for Windows' and then download the 'base' version. The file should be called `R-4.2.3-win.exe`.
+  - Windows users, click on 'Download R for Windows' and then download the 'base' version. The file should be called `R-4.3.2-win.exe`.
   - Mac users, click on 'Download R for MacOS' and then download the file called:
-      - `R-4.2.3-arm64.pkg` if you have a more recent MacBook with an M1 chip.
-      - `R-4.2.3.pkg` if you have an older MacBook with an Intel chip or run an older iOs.
+      - `R-4.3.2-arm64.pkg` if you have a more recent MacBook with an M1 chip.
+      - `R-4.3.2.pkg` if you have an older MacBook with an Intel chip or run an older iOs.
   
 - Download RStudio at this link: https://www.rstudio.com/products/rstudio/. Download the 'RStudio Desktop: Open Source Edition' version.
 
@@ -127,7 +129,7 @@ usethis::use_course(
 
 <br><br>
 
-**Note** -- Readings and resources below are optional and are provided for context and use after the course is finished. The session slides will cover everything needed for the course.
+**Note** — Readings and resources below are optional and are provided for context and use after the course is finished. The session slides will cover everything needed for the course.
 
 <br>
 
@@ -143,9 +145,9 @@ usethis::use_course(
 
 <br>
 
-### Session 1 -- Learning R through the Tidyverse
+### Session 1 — Learning R through the Tidyverse
 
-- For those who are fully new to R, I strongly recommend: Thomas Mock, "A Gentle Introduction to Tidy Statistics in R" -- [blog post](https://themockup.blog/posts/2018-12-10-a-gentle-guide-to-tidy-statistics-in-r/) and [video](https://www.rstudio.com/resources/webinars/a-gentle-introduction-to-tidy-statistics-in-r/). We won't have much time to review the basics of R programming during the first session.
+- For those who are fully new to R, I strongly recommend: Thomas Mock, "A Gentle Introduction to Tidy Statistics in R" — [blog post](https://themockup.blog/posts/2018-12-10-a-gentle-guide-to-tidy-statistics-in-r/) and [video](https://www.rstudio.com/resources/webinars/a-gentle-introduction-to-tidy-statistics-in-r/). We won't have much time to review the basics of R programming during the first session.
 
 - Dominic Royé, ["A very short introduction to Tidyverse"](https://dominicroye.github.io/en/2020/a-very-short-introduction-to-tidyverse/). Blog post covering the basics of Tidyverse use in R.
 
@@ -155,15 +157,15 @@ usethis::use_course(
 
 <br>
 
-### Session 2 -- Cleaning and Constructing Data Using R
+### Session 2 — Cleaning and Constructing Data Using R
 
 - DIME, ["Data Cleaning"](https://dimewiki.worldbank.org/Data_Cleaning). Instructions on how to clean raw household data for use in a development setting.
 
-- Wickham and Grolemund, [*R for Data Science* Chapter 12 -- Tidy Data](https://r4ds.had.co.nz/tidy-data.html). How to structure ("tidy") your dataset for flexible use in data analysis.
+- Wickham and Grolemund, [*R for Data Science* Chapter 12 — Tidy Data](https://r4ds.had.co.nz/tidy-data.html). How to structure ("tidy") your dataset for flexible use in data analysis.
 
 <br>
 
-### Session 3 -- Producing Research Output Using R
+### Session 3 — Producing Research Output Using R
 
 <ins>Tables</ins>
 
@@ -180,14 +182,14 @@ usethis::use_course(
 ### Further Resources
 
 - We won't have time to explore more advanced data manipulation techniques. Here are some resources for those who are interested in learning on their own:
-  - Iterative coding (using loops for repetitive code) -- `purrr`'s `map` function is your friend. I recommend Thomas Mock, ["Functional programming in R with Purrr"](https://themockup.blog/posts/2018-12-11-functional-progamming-in-r-with-purrr/) to get you started.
-  - User-made functions in R -- At some point, it will become time-effective to create your own functions to apply to your work. [Hadley Wickham, *Advanced R* Chapter 6 -- Functions](https://adv-r.hadley.nz/functions.html).
+  - Iterative coding (using loops for repetitive code) — `purrr`'s `map` function is your friend. I recommend Thomas Mock, ["Functional programming in R with Purrr"](https://themockup.blog/posts/2018-12-11-functional-progamming-in-r-with-purrr/) to get you started.
+  - User-made functions in R — At some point, it will become time-effective to create your own functions to apply to your work. [Hadley Wickham, *Advanced R* Chapter 6 — Functions](https://adv-r.hadley.nz/functions.html).
   
 <br>
   
 - For those interested in learning more about publishing your work using RMarkdown:
   - RStudio, ["Introduction to RMarkdown"](https://rmarkdown.rstudio.com/lesson-1.html). Summarizes the uses and utility of the RMarkdown framework.
-  - Yihui Xie, "xaringan Presentations" -- [book chapter](https://bookdown.org/yihui/rmarkdown/xaringan.html) and [presentation](https://slides.yihui.org/xaringan/). Introduction to `xaringan`, a package that allows you to create slide decks using R. Also explore the [`xaringanExtra` package](https://pkg.garrickadenbuie.com/xaringanExtra/#/).
+  - Yihui Xie, "xaringan Presentations" — [book chapter](https://bookdown.org/yihui/rmarkdown/xaringan.html) and [presentation](https://slides.yihui.org/xaringan/). Introduction to `xaringan`, a package that allows you to create slide decks using R. Also explore the [`xaringanExtra` package](https://pkg.garrickadenbuie.com/xaringanExtra/#/).
   - With RMarkdown, create books using [`bookdown`](https://bookdown.org/) or a blog using [`blogdown`](https://bookdown.org/yihui/blogdown/)
   
 <br>
@@ -206,7 +208,7 @@ usethis::use_course(
   
 <br>
   
-- For those interested in conducting data work in the development world: Kristoffer Bjarkefur, Luiza Cardoso de Andrade, Benjamin Daniels, and Maria Ruth Jones, [*Development Research in Practice -- The DIME Analytics Data Handbook*](https://worldbank.github.io/dime-data-handbook/). A comprehensive account of tools and instruments to conduct quantitative development research.
+- For those interested in conducting data work in the development world: Kristoffer Bjarkefur, Luiza Cardoso de Andrade, Benjamin Daniels, and Maria Ruth Jones, [*Development Research in Practice — The DIME Analytics Data Handbook*](https://worldbank.github.io/dime-data-handbook/). A comprehensive account of tools and instruments to conduct quantitative development research.
 
 - For those looking for more hands-on, real-world data work: Ben Baldwin, ["A beginner's guide to nflfastR"](https://www.nflfastr.com/articles/beginners_guide.html). How to download and explore NFL play-by-play data. This is how I learnt how to use R. Further tutorials using this data can be found at the ["Open Source Football" blog](https://www.opensourcefootball.com/).
 
@@ -214,7 +216,7 @@ usethis::use_course(
 
 ## Instructor Biography
 
-My name is Marc-Andrea Fiorina (MA -- SAIS Bologna 2018, DC 2019), and I am a research analyst with the Development Impact Evaluation unit (DIME) at the World Bank. Prior to studying at SAIS, I received my BA (Hons) in Philosophy, Politics, and Economics from the University of Oxford.
+My name is Marc-Andrea Fiorina (MA — SAIS Bologna 2018, DC 2019), and I am a research analyst with the Development Impact Evaluation unit (DIME) at the World Bank. Prior to studying at SAIS, I received my BA (Hons) in Philosophy, Politics, and Economics from the University of Oxford.
 
 I started at DIME as an intern in the Spring 2019 Semester and worked as a research assistant there from October 2019 to August 2021. I now work on a project that analyzes the gendered impacts of providing cash-for-work programs to women in low- and middle-income countries.
 
