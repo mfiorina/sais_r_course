@@ -1,4 +1,5 @@
 
+
 .pull-left {
   float: left;
   padding-left: 4%;
@@ -11,8 +12,86 @@
   width: 40%;
 }
 
-.timeline-position {
-  
-  padding-left : 11.5%;
-  padding-right: 0.5%;
+.pull-left-25 {
+  display: inline-block;
+  vertical-align: middle;
+  padding-right: 4%;
+  width: 25%;
+}
+
+.pull-right-25 {
+  display: inline-block;
+  vertical-align: middle;
+  padding-left: 4%;
+  width: 65%;
+}
+
+.pull-left-30 {
+  display: inline-block;
+  vertical-align: middle;
+  padding-right: 4%;
+  width: 30%;
+}
+
+.pull-right-30 {
+  display: inline-block;
+  vertical-align: middle;
+  padding-left: 4%;
+  width: 60%;
+}
+
+.pull-left-35 {
+  display: inline-block;
+  vertical-align: middle;
+  padding-right: 4%;
+  width: 35%;
+}
+
+.pull-right-35 {
+  display: inline-block;
+  vertical-align: middle;
+  padding-left: 4%;
+  width: 55%;
+}
+
+.pull-left-40 {
+  display: inline-block;
+  vertical-align: middle;
+  padding-right: 4%;
+  width: 40%;
+}
+
+.pull-right-40 {
+  display: inline-block;
+  vertical-align: middle;
+  padding-left: 4%;
+  width: 50%;
+}
+
+.pull-left-45 {
+  display: inline-block;
+  vertical-align: middle;
+  padding-right: 4%;
+  width: 45%;
+}
+
+.pull-right-45 {
+  display: inline-block;
+  vertical-align: middle;
+  padding-left: 4%;
+  width: 45%;
+}
+
+.pull-left-50 {
+  display: inline-block;
+  vertical-align: middle;
+  padding-right: 4%;
+  width: 50%;
+}
+
+.pull-right-50 {
+  display: inline-block;
+  vertical-align: middle;
+  padding-left: 4%;
+  width: 40%;
 }

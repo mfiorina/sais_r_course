@@ -8,6 +8,7 @@
     <link href="libs/panelset/panelset.css" rel="stylesheet" />
     <script src="libs/panelset/panelset.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="hygge.css" type="text/css" />
     <link rel="stylesheet" href="custom_css.css" type="text/css" />
   </head>
   <body>
@@ -26,28 +27,7 @@ class: center, middle
 
 ## Session 1
 
-### October 26, 2023
-
----
-
-class: middle
-
-## Setting Up
-
-- Open RStudio.
-- Type in the following lines, &lt;font color = "red"&gt;&lt;b&gt;replacing "YOURFILEPATHHERE" with a file path where these files will be saved&lt;/b&gt;&lt;/font&gt;.
-    - For MacBook users, this could be "/Users/marc-andreafiorina/Desktop/"
-    - For Windows users, this could be "C:/Users/marc-andreafiorina/Desktop/"
-
-
-```r
-install.packages("usethis")
-library(usethis)
-usethis::use_course(
-    "https://github.com/mfiorina/sais_r_course/archive/main.zip",
-    destdir = "YOURFILEPATHHERE"
-)
-```
+### February 14, 2024
 
 ---
 
@@ -124,14 +104,106 @@ class: middle
 ## Today
 
 - Learn how to:
-  - Import data in an efficient and reproducible manner
-  - Filter, mutate, group, and summarize data using Tidyverse functions
-  - Reshape data using Tidyverse functions
-      
+  - Think as a coder
+  - Identify the basic components of data analysis
+  - Set up your environment to use R and RStudio
+  - Identify and address basic errors in your R setup
+  
 - Be introduced to:
-  - Code and data collaboration -- GitHub and data project reproducibility
+  - The R coding language
+  - The building blocks of coding in R: scalars, vectors, lists, and data frames
 
-- Practice the above!
+---
+
+class: middle
+
+## Think As A Coder
+
+### Recipe Analogy
+
+.content-box-red[
+- Your data are your ingredients
+- Your script is your recipe
+- Your output is your... cake? Whatever you're making
+]
+
+.content-box-blue[
+What this means:
+- **Make sure you have all of the ingredients you need**
+- **Follow every step of the recipe — you can't skip any steps!**
+- If you mess up somewhere, you have to start from scratch to make sure that you get the correct outcome.
+]
+
+---
+
+class: middle
+
+## Identify the Basic Components of Data Analysis
+
+.pull-left[
+.content-box-red[
+&lt;b&gt;Three main components to your data analysis:&lt;/b&gt;
+- Data
+- Code
+- Outputs
+]
+]
+
+.pull-right[
+.content-box-blue[
+&lt;b&gt;Questions to ask:&lt;/b&gt;
+- Where is the file stored?
+- In which format is the file?
+- How easy is it for you/other people to access it?
+- Is it intuitive for you to navigate to the file?
+]
+]
+
+---
+
+## Your RStudio Environment
+
+&lt;img src="pics/rstudio.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Setting Up Your RStudio Environment
+
+.panelset[
+
+.panel[.panel-name[Setting Up Your Data Structure]
+
+&lt;img src="pics/folder.png" width="55%" style="display: block; margin: auto;" /&gt;
+
+.content-box-green[
+- Code
+- Data
+  - Raw Data
+  - Intermediate Data
+- Outputs
+- (Optional) Documentation
+- (Optional) Presentations/Slides
+]
+
+]
+
+.panel[.panel-name[Setting Up Your Script]
+
+Defining your code's purpose — What are its inputs? What are its outputs?
+
+&lt;img src="pics/script1.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+Set up your packages — Which user-created functions do you plan to use?
+
+&lt;img src="pics/script2.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+Import your data — Which data frames do you need to fulfill the script's purpose?
+
+&lt;img src="pics/script3.png" width="40%" style="display: block; margin: auto;" /&gt;
+
+]
+
+]
 
 ---
 
@@ -139,17 +211,22 @@ class: middle
 
 .panelset[
 
-.panel[.panel-name[RStudio Layout]
+.panel[.panel-name[Scalars]
 
-- You write your code in a **script**
+This is a scalar:
 
-- When you run the code, it runs in the **console**
 
-- The objects that you use/create (datasets, vectors, values) appear in your **environment**
+```r
+a &lt;- 2
+```
+
+It's an object (`a`) with a single value (`2`). Notice that we assign the value `2` to `a` using an arrow `&lt;-`.
 
 ]
 
-.panel[.panel-name[Creating Vectors]
+.panel[.panel-name[Vectors]
+
+These are vectors:
 
 
 ```r
@@ -181,6 +258,8 @@ vector
 ## [1] 2.0 2.5 3.0
 ```
 
+Vectors take multiple values. Notice that vectors have a specific **order**: `c(1, 2)` is not the same as `c(2, 1)`.
+
 ]
 
 .panel[.panel-name[Selecting Vector Elements]
@@ -210,6 +289,62 @@ x[x &lt; 0]             # Elements that are less than zero
 
 x[x %in% c(1, 2, 5)] # Elements in the set 1, 2, 5
 ```
+
+]
+  
+]
+
+---
+
+
+
+## R Basics
+
+.panelset[
+
+.panel[.panel-name[Lists]
+
+This is a list:
+
+
+```r
+y &lt;- list("a", 1, "b")
+```
+
+Lists are different from vectors in one key manner: **they can take objects of different classes**. Vectors can only take objects of the same class.
+
+]
+
+.panel[.panel-name[Some Classes]
+
+Here are some classes in R:
+
+
+```r
+a &lt;- "a"    # Character
+b &lt;- 1      # Integer
+c &lt;- 1.2    # Numeric
+d &lt;- 1 + 2i # Complex
+e &lt;- TRUE   # Logical
+```
+
+]
+
+.panel[.panel-name[Data Frames]
+
+This is a data frame:
+
+
+```r
+df &lt;- data.frame(
+    first_name = c("Mark", "Mary", "July"),
+    last_name  = c("Smith", "John", "Sanchez"),
+    age        = c(21, 34, 55)
+)
+```
+
+At their core, data frames are just a group of named vectors of the same length.
+In practice, we visualize data frames as **tables** where each vector is a **column**, or variable, and each group of nth elements of the vectors is a **row**, or observation.
 
 ]
   
@@ -305,289 +440,18 @@ norms_values_data &lt;- data.table::fread(
 
 ---
 
-class: center, middle
-
-# Data 'Wrangling'
-
----
-
-## Tidyverse Introduction
-
-.panelset[
-
-.panel[.panel-name[Base R Layout]
-
-
-```r
-names(mtcars)
-```
-
-```
-##  [1] "mpg"  "cyl"  "disp" "hp"   "drat" "wt"   "qsec" "vs"   "am"   "gear"
-## [11] "carb"
-```
-
-
-```r
-str_replace(str_to_upper(names(mtcars)), "MPG", "HELLO")
-```
-
-```
-##  [1] "HELLO" "CYL"   "DISP"  "HP"    "DRAT"  "WT"    "QSEC"  "VS"    "AM"   
-## [10] "GEAR"  "CARB"
-```
-
-]
-
-.panel[.panel-name[Tidyverse Layout]
-
-Tidyverse functions introduce a 'cleaner' method to write code out, using what is called the 'pipe operator': **`%&gt;%`**. It's almost like writing a recipe, step by step.
-
-
-```r
-names(mtcars)
-```
-
-```
-##  [1] "mpg"  "cyl"  "disp" "hp"   "drat" "wt"   "qsec" "vs"   "am"   "gear"
-## [11] "carb"
-```
-
-
-```r
-mtcars %&gt;%
-    names() %&gt;%
-    str_to_upper() %&gt;%
-    str_replace("MPG", "HELLO")
-```
-
-```
-##  [1] "HELLO" "CYL"   "DISP"  "HP"    "DRAT"  "WT"    "QSEC"  "VS"    "AM"   
-## [10] "GEAR"  "CARB"
-```
-
-]
-
-]
-
----
-
-.panelset[
-
-.panel[.panel-name[mutate()]
-
-
-```r
-mutate_example &lt;- mtcars %&gt;%
-    mutate(
-        heavy = case_when(
-            wt &gt; 3 ~ "Yes",
-            TRUE   ~ "No"
-        )
-    ) %&gt;%
-    select(wt, heavy)
-
-mutate_example %&gt;% head()
-```
-
-```
-##                      wt heavy
-## Mazda RX4         2.620    No
-## Mazda RX4 Wag     2.875    No
-## Datsun 710        2.320    No
-## Hornet 4 Drive    3.215   Yes
-## Hornet Sportabout 3.440   Yes
-## Valiant           3.460   Yes
-```
-
-]
-
-.panel[.panel-name[filter()]
-
-
-```r
-filter_example &lt;- mtcars %&gt;%
-    filter(wt &gt; 3)
-
-filter_example %&gt;% head()
-```
-
-```
-##                    mpg cyl  disp  hp drat    wt  qsec vs am gear carb
-## Hornet 4 Drive    21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1
-## Hornet Sportabout 18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2
-## Valiant           18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1
-## Duster 360        14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4
-## Merc 240D         24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2
-## Merc 230          22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2
-```
-
-]
-
-.panel[.panel-name[select()]
-
-
-```r
-select_example &lt;- mtcars %&gt;%
-    select(
-        matches("mpg|carb")
-    )
-select_example %&gt;% head()
-```
-
-```
-##                    mpg carb
-## Mazda RX4         21.0    4
-## Mazda RX4 Wag     21.0    4
-## Datsun 710        22.8    1
-## Hornet 4 Drive    21.4    1
-## Hornet Sportabout 18.7    2
-## Valiant           18.1    1
-```
-
-]
-
-]
-
----
-
-.panelset[
-
-.panel[.panel-name[group_by() and summarize()]
-
-
-```r
-group_by_summarize_example &lt;- mtcars %&gt;%
-    group_by(cyl) %&gt;%
-    summarize(
-        mpg = mean(mpg, na.rm = TRUE)
-    )
-
-group_by_summarize_example
-```
-
-```
-## # A tibble: 3 × 2
-##     cyl   mpg
-##   &lt;dbl&gt; &lt;dbl&gt;
-## 1     4  26.7
-## 2     6  19.7
-## 3     8  15.1
-```
-
-]
-
-.panel[.panel-name[pivot_longer()]
-
-
-```r
-relig_income[1:6] %&gt;% head(n = 2)
-```
-
-```
-## # A tibble: 2 × 6
-##   religion `&lt;$10k` `$10-20k` `$20-30k` `$30-40k` `$40-50k`
-##   &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
-## 1 Agnostic      27        34        60        81        76
-## 2 Atheist       12        27        37        52        35
-```
-
-```r
-relig_income_long &lt;- relig_income %&gt;%
-    pivot_longer(
-        cols      = !religion, # Everything but religion
-        names_to  = "levels",
-        values_to = "num"
-    )
-
-relig_income_long %&gt;% head(n = 4)
-```
-
-```
-## # A tibble: 4 × 3
-##   religion levels    num
-##   &lt;chr&gt;    &lt;chr&gt;   &lt;dbl&gt;
-## 1 Agnostic &lt;$10k      27
-## 2 Agnostic $10-20k    34
-## 3 Agnostic $20-30k    60
-## 4 Agnostic $30-40k    81
-```
-
-]
-
-.panel[.panel-name[pivot_wider()]
-
-
-```r
-fish_encounters %&gt;% head(n = 4)
-```
-
-```
-## # A tibble: 4 × 3
-##   fish  station  seen
-##   &lt;fct&gt; &lt;fct&gt;   &lt;int&gt;
-## 1 4842  Release     1
-## 2 4842  I80_1       1
-## 3 4842  Lisbon      1
-## 4 4842  Rstr        1
-```
-
-```r
-fish_encounters_wide &lt;- fish_encounters %&gt;%
-    pivot_wider(
-        names_from  = station,
-        values_from = seen
-    )
-
-fish_encounters_wide[1:6] %&gt;% head(n = 2)
-```
-
-```
-## # A tibble: 2 × 6
-##   fish  Release I80_1 Lisbon  Rstr Base_TD
-##   &lt;fct&gt;   &lt;int&gt; &lt;int&gt;  &lt;int&gt; &lt;int&gt;   &lt;int&gt;
-## 1 4842        1     1      1     1       1
-## 2 4843        1     1      1     1       1
-```
-
-]
-
-]
+## Avoiding Basic Issues in RStudio
+
+- Package not loading
+- Data not loaded
+- Data frame not found
+- Variable not found
 
 ---
 
 class: center, middle
 
-# Code and Data Collaboration
-
-## Important Points
-
----
-
-class: middle
-
-## Professional settings are collaborative settings
-
-Most R courses teach you to code in isolation. But **professional use of R often happens within teams of researchers**.
-
-Reproducibility and shareability of your code are key to ensure:
-- Others can use and understand your work
-- Accountability
-
----
-
-## The ultimate collaborative tool: GitHub
-
-GitHub is the preferred code storing platform for data teams because of the following attributes:
-- **Easy sharing** of scripts between team members
-- **Tracked changes** -- every changed line of code is attributed to a specific person
-- **'Commit' structure** -- allows you to see how your changes affect other people's work on the same scripts
-
-&lt;img src="pics/github_example.png" width="75%" style="display: block; margin: auto;" /&gt;
-
----
-
-## Practical Exercise -- Using the World Values Survey Dataset
+## Practical Exercise — Using the World Values Survey Dataset
 
 ---
 &lt;font size='+3'&gt;&lt;b&gt;World Values Survey&lt;/b&gt;&lt;/font&gt;
@@ -619,24 +483,31 @@ GitHub is the preferred code storing platform for data teams because of the foll
 
 ---
 
-class: middle
+### Today's practical component
+
+1— Download the World Values Survey (Wave 7) at this link: [https://www.worldvaluessurvey.org/WVSDocumentationWV7.jsp](https://www.worldvaluessurvey.org/WVSDocumentationWV7.jsp)
+
+2— Set up your data analysis folder. Make sure that it has the following components:
+  - Data
+      - Raw
+      - Intermediate
+  - Code
+  - Outputs
+  - Documentation
+    
+3— Place the data and documentation files that you find appropriate for your analysis in the corresponding folders.
+
+4— Open RStudio and click on "New Project" in the "File" dropdown menu. Navigate to your data folder and select it.
+
+---
 
 ### Today's practical component
 
-1. Successfully run the code in the `session_1_template.R` script
-
-2. Create your own script and do one or more of the following:
-  
-    - Find mean values for 'importance in life' variables (Q1-6) for countries in another region than Europe
-  
-    - Calculate average 'enthusiasm' for these life subjects in countries in another region than Europe
-  
-    - Perform the same analysis, either on European countries or other countries, for another group of indicators in the dataset:
-        - Important child qualities: Q7-18
-        - Neighbors: Q19-26
-        - Statements to agree with: Q27-41
+5— Set up your R Script. It should have the following components:
+  - Package setup. For now, have the script load the `dplyr`, `data.table`, and `janitor` packages.
+  - Data import. Import your data into the script using `read.csv()` or `fread()`. Remember to give your data frame an intuitive name!
     
-**NOTE** You should refer to documentation for the dataset, which can be found in `Dropbox/SAIS R Course/documentation/`, for details on the variables and their given values.
+6— Test your R Script. Type and run the following line in your code: `[[DATASETNAME]] %&gt;% head()`. If this works without issue, you're free to go!
 
 ---
 

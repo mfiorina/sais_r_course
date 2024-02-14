@@ -11,30 +11,6 @@
   width: 40%;
 }
 
-.pull-left-wide {
-  float: left;
-  padding-left: 0%;
-  width: 50%;
-}
-
-.pull-right-wide {
-  float: right;
-  padding-right: 0%;
-  width: 50%;
-}
-
-.pull-left-short {
-  float: left;
-  padding-left: 0%;
-  width: 37%;
-}
-
-.pull-right-long {
-  float: right;
-  padding-right: 4%;
-  width: 55%;
-}
-
 .timeline-position {
   
   padding-left : 11.5%;
