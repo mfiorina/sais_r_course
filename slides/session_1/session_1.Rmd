@@ -70,7 +70,7 @@ class: center, middle
 
 - If you don't practice it, you'll forget it
 
-- Solution -- **Find ways to use R in your life, either personally or professionally**
+- Solution — **Find ways to use R in your life, either personally or professionally**
 
 ]
 
@@ -90,7 +90,7 @@ class: center, middle
 <br>
 - Many entry-level research jobs in policy, economic, development, or political science institutions now expect quantitative work using Stata, R, or Python
 
-- Coding skills make you more valuable in any position -- data adds value to nearly every kind of research!
+- Coding skills make you more valuable in any position — data adds value to nearly every kind of research!
 
 ]
 
@@ -465,9 +465,9 @@ Better solution:
 # Set User (this allows us to use fixed file paths but to adapt them
 # for multiple possible users)
   
-      # 1 -- Marc-Andrea Fiorina
+      # 1 — Marc-Andrea Fiorina
   
-      # 2 -- Enter here if needed
+      # 2 — Enter here if needed
   
 user <- 1
   
