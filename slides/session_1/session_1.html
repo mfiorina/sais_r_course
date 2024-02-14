@@ -209,48 +209,6 @@ Import your data — Which data frames do you need to fulfill the script's purpo
 
 ## R Basics
 
-NOTE — R works in a manner that allows to write a specific function over multiple lines. This is called a **code chunk**.
-
-This:
-
-```r
-a &lt;- mean(c(seq(1, 4, by = 0.5)))
-
-a
-```
-
-```
-## [1] 2.5
-```
-
-Is the same as this:
-
-```r
-a &lt;- mean(
-    c(
-        seq(1, 4, by = 0.5)
-    )
-)
-
-a
-```
-
-```
-## [1] 2.5
-```
-
----
-
-## R Basics
-
-You can click anywhere in the code chunk and click "run" or Cmd+Enter (Mac)/Ctrl+Enter (Windows), and the whole chunk will run.
-
-KEY — If you only select a portion of the code chunk and run that, then R will identify the chunk as unfinished and refuse to let you do anything else until you've "completed" it.
-
----
-## R Basics
-
-
 .panelset[
 
 .panel[.panel-name[Scalars]
@@ -389,6 +347,48 @@ In practice, we visualize data frames as **tables** where each vector is a **col
 ]
   
 ]
+
+---
+
+## R Basics
+
+NOTE — R works in a manner that allows to write a specific function over multiple lines. This is called a **code chunk**.
+
+This:
+
+```r
+a &lt;- mean(c(seq(1, 4, by = 0.5)))
+
+a
+```
+
+```
+## [1] 2.5
+```
+
+Is the same as this:
+
+```r
+a &lt;- mean(
+    c(
+        seq(1, 4, by = 0.5)
+    )
+)
+
+a
+```
+
+```
+## [1] 2.5
+```
+
+---
+
+## R Basics
+
+You can click anywhere in the code chunk and click "run" or Cmd+Enter (Mac)/Ctrl+Enter (Windows), and the whole chunk will run.
+
+KEY — If you only select a portion of the code chunk and run that, then R will identify the chunk as unfinished and refuse to let you do anything else until you've "completed" it.
 
 ---
 
@@ -631,12 +631,6 @@ class: center, middle
 Syllabus: **https://mfiorina.github.io/sais_r_course/syllabus/r_course_syllabus.html**
 
 Thomas Mock, “A Gentle Introduction to Tidy Statistics in R” (**[blog post](https://themockup.blog/posts/2018-12-10-a-gentle-guide-to-tidy-statistics-in-r/)** and **[video](https://www.rstudio.com/resources/webinars/a-gentle-introduction-to-tidy-statistics-in-r/)**)
-
-Dominic Royé, **[“A very short introduction to Tidyverse”](https://dominicroye.github.io/en/2020/a-very-short-introduction-to-tidyverse/)**
-
-tidyr, **[“Pivoting”](https://tidyr.tidyverse.org/articles/pivot.html)**
-
-Hadley Wickham, **[“dplyr 1.0.0: working across columns”](https://www.tidyverse.org/blog/2020/04/dplyr-1-0-0-colwise/)**
 
 Hadley Wickham &amp; Garrett Grolemund, **[R for Data Science](https://r4ds.had.co.nz/)**
 
