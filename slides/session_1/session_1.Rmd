@@ -335,8 +335,6 @@ x[x %in% c(1, 2, 5)] # Elements in the set 1, 2, 5
 
 ---
 
-
-
 ## R Basics
 
 .panelset[
@@ -387,6 +385,39 @@ In practice, we visualize data frames as **tables** where each vector is a **col
 ]
   
 ]
+
+---
+
+## R Basics
+
+NOTE — R works in a manner that allows to write a specific function over multiple lines. This is called a **code chunk**.
+
+This:
+```{r}
+a <- mean(c(seq(1, 4, by = 0.5)))
+
+a
+```
+
+Is the same as this:
+```{r}
+a <- mean(
+    c(
+        seq(1, 4, by = 0.5)
+    )
+)
+
+a
+
+```
+
+---
+
+## R Basics
+
+You can click anywhere in the code chunk and click "run" or Cmd+Enter (Mac)/Ctrl+Enter (Windows), and the whole chunk will run.
+
+KEY — If you only select a portion of the code chunk and run that, then R will identify the chunk as unfinished and refuse to let you do anything else until you've "completed" it.
 
 ---
 
@@ -478,12 +509,108 @@ norms_values_data <- data.table::fread(
 
 ---
 
-## Avoiding Basic Issues in RStudio
+## Basic Issues in RStudio
+### Data Not Loading
 
-- Package not loading
-- Data not loaded
-- Data frame not found
-- Variable not found
+```{r, echo = FALSE, out.width = "90%", fig.align = "center"}
+
+knitr::include_graphics(
+    "pics/data_not_loading1.png"
+)
+```
+
+
+```{r, echo = FALSE, out.width = "90%", fig.align = "center"}
+
+knitr::include_graphics(
+    "pics/data_not_loading2.png"
+)
+```
+
+---
+
+## Basic Issues in RStudio
+### Data Not Loading
+
+Check:
+- Working directory — `getwd()` or check the top of the RStudio console.
+- File path — are there any typos? Is your file where you expect it to be?
+
+Solutions:
+- If you were provided with an `.Rproj` file alongside your script, make sure that you opened the project.
+- Modify the working directory using `setwd()` or correct the file path if need be!
+
+---
+
+## Basic Issues in RStudio
+### Function Not Found
+
+```{r, echo = FALSE, out.width = "100%", fig.align = "center"}
+
+knitr::include_graphics(
+    "pics/function_not_found.png"
+)
+```
+
+---
+
+## Basic Issues in RStudio
+### Function Not Found
+
+Check:
+- From which package the function comes. You can do this using `??FUNCTION NAME` (e.g. `??tabyl`) or through a Google search.
+- That the package is (1) installed in your environment and (2) loaded. Having the package installed isn't sufficient!
+
+Solutions:
+- If the package isn't installed, use `install.packages("tabyl")`. If the package isn't loaded, use `library(tabyl)` or `pacman::p_load(tabyl)`.
+
+---
+
+## Basic Issues in RStudio
+### Code Not Running
+
+```{r, echo = FALSE, out.width = "100%", fig.align = "center"}
+
+knitr::include_graphics(
+    "pics/code_not_running.png"
+)
+```
+
+---
+
+## Basic Issues in RStudio
+### Code Not Running
+
+Check:
+- That you didn't miss a parenthesis (`)`) or bracket (`}`) in your code! This is the most common reason.
+- If you missed it, the console will show a `+` at the start of the console line instead of the expected `>`.
+
+Solutions:
+- Type gibberish and/or the missing parenthesis/bracket until the `>` reappears. More likely, you'll have to rerun the code chunk to make sure it works!
+
+---
+
+## Basic Issues in RStudio
+### Object Not Found
+
+```{r, echo = FALSE, out.width = "100%", fig.align = "center"}
+
+knitr::include_graphics(
+    "pics/object_not_found.png"
+)
+```
+
+---
+
+## Basic Issues in RStudio
+### Object Not Found
+
+Check:
+- Whether the object exists in your environment. More likely than not, you either misspelt the name of the object, or you skipped the code that creates it (remember that a script is like a recipe and steps can't be skipped!).
+
+Solutions:
+- Backtrack in your code and run the chunk that creates the object.
+- If a typo is at fault, correct the typo.
 
 ---
 
@@ -554,12 +681,6 @@ class: center, middle
 Syllabus: **https://mfiorina.github.io/sais_r_course/syllabus/r_course_syllabus.html**
 
 Thomas Mock, “A Gentle Introduction to Tidy Statistics in R” (**[blog post](https://themockup.blog/posts/2018-12-10-a-gentle-guide-to-tidy-statistics-in-r/)** and **[video](https://www.rstudio.com/resources/webinars/a-gentle-introduction-to-tidy-statistics-in-r/)**)
-
-Dominic Royé, **[“A very short introduction to Tidyverse”](https://dominicroye.github.io/en/2020/a-very-short-introduction-to-tidyverse/)**
-
-tidyr, **[“Pivoting”](https://tidyr.tidyverse.org/articles/pivot.html)**
-
-Hadley Wickham, **[“dplyr 1.0.0: working across columns”](https://www.tidyverse.org/blog/2020/04/dplyr-1-0-0-colwise/)**
 
 Hadley Wickham & Garrett Grolemund, **[R for Data Science](https://r4ds.had.co.nz/)**
 

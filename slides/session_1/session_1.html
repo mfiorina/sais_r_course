@@ -209,6 +209,48 @@ Import your data — Which data frames do you need to fulfill the script's purpo
 
 ## R Basics
 
+NOTE — R works in a manner that allows to write a specific function over multiple lines. This is called a **code chunk**.
+
+This:
+
+```r
+a &lt;- mean(c(seq(1, 4, by = 0.5)))
+
+a
+```
+
+```
+## [1] 2.5
+```
+
+Is the same as this:
+
+```r
+a &lt;- mean(
+    c(
+        seq(1, 4, by = 0.5)
+    )
+)
+
+a
+```
+
+```
+## [1] 2.5
+```
+
+---
+
+## R Basics
+
+You can click anywhere in the code chunk and click "run" or Cmd+Enter (Mac)/Ctrl+Enter (Windows), and the whole chunk will run.
+
+KEY — If you only select a portion of the code chunk and run that, then R will identify the chunk as unfinished and refuse to let you do anything else until you've "completed" it.
+
+---
+## R Basics
+
+
 .panelset[
 
 .panel[.panel-name[Scalars]
@@ -296,8 +338,6 @@ x[x %in% c(1, 2, 5)] # Elements in the set 1, 2, 5
 
 ---
 
-
-
 ## R Basics
 
 .panelset[
@@ -362,6 +402,8 @@ class: center, middle
 
 .panel[.panel-name[Installing Packages]
 
+Packages are groups of user-created functions that help us accomplish tasks that would be harder/impossible using base R functions.
+
 ### Easy
 
 
@@ -383,6 +425,8 @@ pacman::p_load(tidyverse)
 ]
 
 .panel[.panel-name[Setting up File Paths]
+
+File paths help R identify where the files you want to use are located.
 
 You want your code to be **reproducible** and **easy to use by other people**
 
@@ -440,12 +484,83 @@ norms_values_data &lt;- data.table::fread(
 
 ---
 
-## Avoiding Basic Issues in RStudio
+## Basic Issues in RStudio
+### Data Not Loading
 
-- Package not loading
-- Data not loaded
-- Data frame not found
-- Variable not found
+&lt;img src="pics/data_not_loading1.png" width="90%" style="display: block; margin: auto;" /&gt;
+
+
+&lt;img src="pics/data_not_loading2.png" width="90%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Basic Issues in RStudio
+### Data Not Loading
+
+Check:
+- Working directory — `getwd()` or check the top of the RStudio console.
+- File path — are there any typos? Is your file where you expect it to be?
+
+Solutions:
+- If you were provided with an `.Rproj` file alongside your script, make sure that you opened the project.
+- Modify the working directory using `setwd()` or correct the file path if need be!
+
+---
+
+## Basic Issues in RStudio
+### Function Not Found
+
+&lt;img src="pics/function_not_found.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Basic Issues in RStudio
+### Function Not Found
+
+Check:
+- From which package the function comes. You can do this using `??FUNCTION NAME` (e.g. `??tabyl`) or through a Google search.
+- That the package is (1) installed in your environment and (2) loaded. Having the package installed isn't sufficient!
+
+Solutions:
+- If the package isn't installed, use `install.packages("tabyl")`. If the package isn't loaded, use `library(tabyl)` or `pacman::p_load(tabyl)`.
+
+---
+
+## Basic Issues in RStudio
+### Code Not Running
+
+&lt;img src="pics/code_not_running.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Basic Issues in RStudio
+### Code Not Running
+
+Check:
+- That you didn't miss a parenthesis (`)`) or bracket (`}`) in your code! This is the most common reason.
+- If you missed it, the console will show a `+` at the start of the console line instead of the expected `&gt;`.
+
+Solutions:
+- Type gibberish and/or the missing parenthesis/bracket until the `&gt;` reappears. More likely, you'll have to rerun the code chunk to make sure it works!
+
+---
+
+## Basic Issues in RStudio
+### Object Not Found
+
+&lt;img src="pics/object_not_found.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Basic Issues in RStudio
+### Object Not Found
+
+Check:
+- Whether the object exists in your environment. More likely than not, you either misspelt the name of the object, or you skipped the code that creates it (remember that a script is like a recipe and steps can't be skipped!).
+
+Solutions:
+- Backtrack in your code and run the chunk that creates the object.
+- If a typo is at fault, correct the typo.
 
 ---
 
