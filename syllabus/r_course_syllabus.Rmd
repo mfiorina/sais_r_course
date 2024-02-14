@@ -145,9 +145,11 @@ usethis::use_course(
 
 <br>
 
-### Session 1 — Learning R through the Tidyverse
+### Session 1 — Introduction to R
 
 - For those who are fully new to R, I strongly recommend: Thomas Mock, "A Gentle Introduction to Tidy Statistics in R" — [blog post](https://themockup.blog/posts/2018-12-10-a-gentle-guide-to-tidy-statistics-in-r/) and [video](https://www.rstudio.com/resources/webinars/a-gentle-introduction-to-tidy-statistics-in-r/). We won't have much time to review the basics of R programming during the first session.
+
+### Session 2 — Learning R through the Tidyverse
 
 - Dominic Royé, ["A very short introduction to Tidyverse"](https://dominicroye.github.io/en/2020/a-very-short-introduction-to-tidyverse/). Blog post covering the basics of Tidyverse use in R.
 
@@ -157,7 +159,7 @@ usethis::use_course(
 
 <br>
 
-### Session 2 — Cleaning and Constructing Data Using R
+### Session 3 — Cleaning and Constructing Data Using R
 
 - DIME, ["Data Cleaning"](https://dimewiki.worldbank.org/Data_Cleaning). Instructions on how to clean raw household data for use in a development setting.
 
@@ -165,7 +167,7 @@ usethis::use_course(
 
 <br>
 
-### Session 3 — Producing Research Output Using R
+### Session 4 — Producing Research Output Using R
 
 <ins>Tables</ins>
 
