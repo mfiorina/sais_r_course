@@ -161,7 +161,7 @@ class: middle
 
 .content-box-blue[
 What this means:
-- **Make sure you have all of the ingredients you need**
+- **Make sure you have all of the ingredients you need.**
 - **Follow every step of the recipe — you can't skip any steps!**
 - If you mess up somewhere, you have to start from scratch to make sure that you get the correct outcome.
 ]
@@ -383,7 +383,30 @@ At their core, data frames are just a group of named vectors of the same length.
 In practice, we visualize data frames as **tables** where each vector is a **column**, or variable, and each group of nth elements of the vectors is a **row**, or observation.
 
 ]
-  
+
+.panel[.panel-name[Assignment vs. Printing]
+
+KEY — We can classify the code we write in our script into two general categories:
+
+1. Assignment code. We are **assigning** a value to an object:
+```{r}
+a <- 2
+```
+
+2. Printing code. We are **printing** an object's value:
+```{r}
+a
+```
+
+
+```{r}
+print(a)
+```
+
+**Only 2. results in something appearing in your console. When you assign a value to an object, nothing prints in the console.**
+
+]
+
 ]
 
 ---

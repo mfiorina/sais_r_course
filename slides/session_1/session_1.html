@@ -53,7 +53,7 @@ class: center, middle
 
 - If you don't practice it, you'll forget it
 
-- Solution -- **Find ways to use R in your life, either personally or professionally**
+- Solution — **Find ways to use R in your life, either personally or professionally**
 
 ]
 
@@ -73,7 +73,7 @@ class: center, middle
 &lt;br&gt;
 - Many entry-level research jobs in policy, economic, development, or political science institutions now expect quantitative work using Stata, R, or Python
 
-- Coding skills make you more valuable in any position -- data adds value to nearly every kind of research!
+- Coding skills make you more valuable in any position — data adds value to nearly every kind of research!
 
 ]
 
@@ -129,7 +129,7 @@ class: middle
 
 .content-box-blue[
 What this means:
-- **Make sure you have all of the ingredients you need**
+- **Make sure you have all of the ingredients you need.**
 - **Follow every step of the recipe — you can't skip any steps!**
 - If you mess up somewhere, you have to start from scratch to make sure that you get the correct outcome.
 ]
@@ -345,7 +345,41 @@ At their core, data frames are just a group of named vectors of the same length.
 In practice, we visualize data frames as **tables** where each vector is a **column**, or variable, and each group of nth elements of the vectors is a **row**, or observation.
 
 ]
-  
+
+.panel[.panel-name[Assignment vs. Printing]
+
+KEY — We can classify the code we write in our script into two general categories:
+
+1. Assignment code. We are **assigning** a value to an object:
+
+```r
+a &lt;- 2
+```
+
+2. Printing code. We are **printing** an object's value:
+
+```r
+a
+```
+
+```
+## [1] 2
+```
+
+
+
+```r
+print(a)
+```
+
+```
+## [1] 2
+```
+
+**Only 2. results in something appearing in your console. When you assign a value to an object, nothing prints in the console.**
+
+]
+
 ]
 
 ---
@@ -439,9 +473,9 @@ Better solution:
 # Set User (this allows us to use fixed file paths but to adapt them
 # for multiple possible users)
   
-      # 1 -- Marc-Andrea Fiorina
+      # 1 — Marc-Andrea Fiorina
   
-      # 2 -- Enter here if needed
+      # 2 — Enter here if needed
   
 user &lt;- 1
   
