@@ -1,12 +1,12 @@
 ---
-title: "SAIS R Course — Session 1"
+title: "SAIS R Course — Session 2"
 subtitle: "Session 2"
 author: "Marc-Andrea Fiorina"
 date: "2022/10/26 (updated: `r Sys.Date()`)"
 output:
   xaringan::moon_reader:
     seal: false
-    css: ["xaringan-themer.css", "custom_css.css"]
+    css: ["xaringan-themer.css", "hygge.css", "custom_css.css"]
     lib_dir: libs
     nature:
       highlightStyle: github
@@ -30,7 +30,8 @@ style_duo_accent(
   text_bold_color = NULL,
   header_font_google = google_font("Atkinson Hyperlegible"),
   text_font_google   = google_font("Atkinson Hyperlegible"),
-  code_font_google   = google_font("Fira Mono")
+  code_font_google   = google_font("Fira Code"),
+  code_font_size     = "0.8rem"
 )
 ```
 
@@ -70,95 +71,11 @@ usethis::use_course(
 
 ---
 
-## Introduction
-
-.panelset[
-
-.panel[.panel-name[Purpose]
-
-### Purpose of this course: Put you on the right track to use R for professional research.
-
-- **The vast majority** of research assistant/analyst (RA) work consists of cleaning and constructing datasets for analysis
-
-- **Entry-level RA positions rarely require complex econometric/regression skills**
-
-]
-
-.panel[.panel-name[Learning R]
-
-### You should think of learning R like learning a language.
-
-- Taking a six-hour course won't make you proficient in it
-
-- If you don't practice it, you'll forget it
-
-- Solution -- **Find ways to use R in your life, either personally or professionally**
-
-]
-
-]
-
----
-
-## Why R?
-
-.panelset[
-
-.panel[.panel-name[Jobs]
-
-<br>
-<br>
-<br>
-<br>
-- Many entry-level research jobs in policy, economic, development, or political science institutions now expect quantitative work using Stata, R, or Python
-
-- Coding skills make you more valuable in any position -- data adds value to nearly every kind of research!
-
-]
-
-.panel[.panel-name[Beautiful Tables]
-
-```{r, echo = FALSE, out.width = "100%", fig.align = "center"}
-
-knitr::include_graphics(
-    "pics/table_example.png"
-)
-```
-
-]
-
-.panel[.panel-name[Beautiful Graphs]
-
-```{r, echo = FALSE, out.width = "85%", fig.align = "center"}
-
-knitr::include_graphics(
-    "pics/plot_example.png"
-)
-```
-
-]
-
-.panel[.panel-name[Beautiful Maps]
-
-```{r, echo = FALSE, out.width = "75%", fig.align = "center"}
-
-knitr::include_graphics(
-    "pics/map_example.png"
-)
-```
-
-]
-
-]
-
----
-
 class: middle
 
 ## Today
 
 - Learn how to:
-  - Import data in an efficient and reproducible manner
   - Filter, mutate, group, and summarize data using Tidyverse functions
   - Reshape data using Tidyverse functions
       
@@ -169,162 +86,13 @@ class: middle
 
 ---
 
-## R Basics
-
-.panelset[
-
-.panel[.panel-name[RStudio Layout]
-
-- You write your code in a **script**
-
-- When you run the code, it runs in the **console**
-
-- The objects that you use/create (datasets, vectors, values) appear in your **environment**
-
-]
-
-.panel[.panel-name[Creating Vectors]
-
-```{r}
-vector <- c(1, 2, 5)
-vector
-```
-
-```{r}
-vector <- 2:6
-vector
-```
-
-```{r}
-vector <- seq(2, 3, by = 0.5)
-vector
-```
-
-]
-
-.panel[.panel-name[Selecting Vector Elements]
-
-```{r eval = FALSE}
-## By Position
-
-x[4]       # Fourth element
-
-x[-4]      # Everything but the fourth element
-
-x[2:4]     # Elements two to four
-
-x[-(2:4)]  # Everything but elements two to four
-
-x[c(1, 5)] # Elements one and five
-```
-
-```{r eval = FALSE}
-# By Value
-
-x[x == 10]           # Elements which are equal to 10
-
-x[x < 0]             # Elements that are less than zero
-
-x[x %in% c(1, 2, 5)] # Elements in the set 1, 2, 5
-```
-
-]
-  
-]
-
----
-
-class: center, middle
-
-# Coding Set Up
-
----
-
-.panelset[
-
-.panel[.panel-name[Installing Packages]
-
-### Easy
-
-```{r eval = FALSE}
-install.packages("tidyverse")
-library(tidyverse)
-```
-
-### Better
-
-The `pacman` package installs packages if they aren't installed yet, loads them otherwise
-
-```{r eval = FALSE}
-if(!require(pacman)) install.packages("pacman")
-pacman::p_load(tidyverse)
-```
-
-]
-
-.panel[.panel-name[Setting up File Paths]
-
-You want your code to be **reproducible** and **easy to use by other people**
-
-Simple solution: Create an `.rproj` file that people can open to access your R environment
-
-Better solution:
-
-```{r eval = FALSE}
-# Set User (this allows us to use fixed file paths but to adapt them
-# for multiple possible users)
-  
-      # 1 -- Marc-Andrea Fiorina
-  
-      # 2 -- Enter here if needed
-  
-user <- 1
-  
-if(user == 1) {
-    # Absolute file path
-    main_filepath <- "/Users/marc-andreafiorina/Dropbox/SAIS R Course/"
-}
-
-# Notice the relative file paths
-
-data_filepath <- paste0(main_filepath, "data/")
-```
-
-]
-
-]
-
----
-
-class: center, middle
-
-# Importing Data
-
----
-
-class: middle
-
-Easiest file type to import into R is a .csv file. But you can also import .xlsx, .dta (Stata), etc.
-
-- Easy `->` `read.csv()`
-- Harder (faster) `->` `data.table::fread()`
-
-```{r eval = FALSE}
-norms_values_data <- data.table::fread(
-    "raw/wvs_values_norms_data.csv",
-    na.strings = ""
-)
-```
-
----
-
 class: center, middle
 
 # Data 'Wrangling'
 
 ---
 
-## Tidyverse Introduction
+### Tidyverse Introduction
 
 .panelset[
 
@@ -360,6 +128,8 @@ mtcars %>%
 ]
 
 ---
+
+### Basic Wrangling Functions
 
 .panelset[
 
@@ -407,6 +177,8 @@ select_example %>% head()
 
 ---
 
+### Basic Wrangling Functions
+
 .panelset[
 
 .panel[.panel-name[group_by() and summarize()]
@@ -427,15 +199,13 @@ group_by_summarize_example
 
 ```{r}
 relig_income[1:6] %>% head(n = 2)
-
 relig_income_long <- relig_income %>%
     pivot_longer(
         cols      = !religion, # Everything but religion
         names_to  = "levels",
         values_to = "num"
     )
-
-relig_income_long %>% head(n = 4)
+relig_income_long %>% head(n = 2)
 ```
 
 ]
@@ -443,20 +213,135 @@ relig_income_long %>% head(n = 4)
 .panel[.panel-name[pivot_wider()]
 
 ```{r}
-fish_encounters %>% head(n = 4)
-
+fish_encounters %>% head(n = 2)
 fish_encounters_wide <- fish_encounters %>%
     pivot_wider(
         names_from  = station,
         values_from = seen
     )
-
 fish_encounters_wide[1:6] %>% head(n = 2)
 ```
 
 ]
 
 ]
+
+---
+
+### Functions in R
+
+What is a function?
+
+```{r}
+z_score <- function(vector) {
+    (vector - mean(vector)) / sd(vector)
+}
+z_score(seq(0, 10))
+```
+
+A function allows you to efficiently save an operation you may have to use repeatedly, and to run it while only having to modify its inputs, or **arguments**.
+
+```{r}
+# I want to find the z score of the following vectors: c(1, 3, 5) and
+# seq(20, 40). I could do the following:
+(c(1, 3, 5) - mean(c(1, 3, 5))) / sd(c(1, 3, 5))
+(seq(10, 20) - mean(seq(10, 20))) / sd(seq(10, 20))
+```
+
+---
+
+### Functions in R
+
+```{r}
+# Easier is this:
+z_score(c(1, 3, 5))
+z_score(seq(10, 20))
+```
+
+---
+
+### Iterative Functions in R
+
+What if I want to apply the same function to multiple objects?
+
+What if I wanted to apply the `z_score()` function to 30 variables in my dataset? Rewriting it would be inefficient...
+
+The solution: the function `map()` from the package `purrr`.
+
+```{r}
+library(purrr)
+purrr::map(
+    .x = list(
+        c(1, 3, 5), seq(10, 20)
+    ),
+    .f = z_score
+)
+```
+
+---
+
+### Iterative Functions in R
+
+Notice that the previous chunk's output is a list. If you want to output a different class of object, `purrr` has the functions `map_chr()`, `map_dbl()`, and `map_df()` amongst others.
+
+`map()` has a shorthand to simplify its use: instead of writing the function out, you can replace `function() {}` with `~` and the function's argument with `.x`.
+
+.pull-left[
+```{r, warning = FALSE}
+map_chr(
+    c(1, 3, 5),
+    function(x) {
+        x + 10
+    }
+)
+```
+]
+.pull-right[
+```{r, warning = FALSE}
+map_chr(
+    c(1, 3, 5),
+    ~ .x + 10
+)
+```
+]
+
+---
+
+### Iterative Functions in R
+
+We can also apply `map()` to a data frame. If we do so, `map()` will apply the same function to every component of the data frame, i.e. its **columns**. In practice, this is equivalent to applying `map()` to a list of vectors.
+
+```{r, warning = FALSE}
+library(palmerpenguins) # A fun practice dataset about penguins!
+# I want to know the class of every variable in the palmerpenguins data frame.
+data(package = 'palmerpenguins')
+
+# Let's take a glimpse at the dataset:
+penguins %>% head(n = 2)
+
+penguins %>% map_chr(~ class(.x))
+```
+
+---
+
+### Iterative Functions in R
+
+Beyond the scope of this class: sometimes we want to iterate functions that have more than one argument.
+
+To do so, `purrr` provides the following functions: `map2()` (two arguments) and `pmap()` (unlimited arguments)
+
+```{r, warning = FALSE}
+
+animals <- c("tiger", "elephant", "giraffe")
+colors <- c("red", "orange", "blue")
+
+map2( # paste0() concatenates its arguments into a single string
+    animals, colors, ~ paste0("The ", .x, " is ", .y, ".")
+)
+
+```
+
+For more on iterative functions, I strongly recommend [this blog post by Rebecca Barter](https://www.rebeccabarter.com/blog/2019-08-19_purrr).
 
 ---
 
@@ -484,8 +369,8 @@ Reproducibility and shareability of your code are key to ensure:
 
 GitHub is the preferred code storing platform for data teams because of the following attributes:
 - **Easy sharing** of scripts between team members
-- **Tracked changes** -- every changed line of code is attributed to a specific person
-- **'Commit' structure** -- allows you to see how your changes affect other people's work on the same scripts
+- **Tracked changes** — every changed line of code is attributed to a specific person
+- **'Commit' structure** — allows you to see how your changes affect other people's work on the same scripts
 
 ```{r, echo = FALSE, out.width = "75%", fig.align = "center"}
 
@@ -496,9 +381,12 @@ knitr::include_graphics(
 
 ---
 
-## Practical Exercise -- Using the World Values Survey Dataset
+class: center, middle
+
+## Practical Exercise — Using the World Values Survey Dataset
 
 ---
+
 <font size='+3'><b>World Values Survey</b></font>
 
 <font size='+2'><b>Background</b></font>
@@ -544,8 +432,10 @@ class: middle
         - Important child qualities: Q7-18
         - Neighbors: Q19-26
         - Statements to agree with: Q27-41
+        
+3. Attempt the bonus section on `map()` if you're done!
     
-**NOTE** You should refer to documentation for the dataset, which can be found in `Dropbox/SAIS R Course/documentation/`, for details on the variables and their given values.
+**NOTE** — You should refer to documentation for the dataset, which can be found in `Dropbox/SAIS R Course/documentation/`, for details on the variables and their given values.
 
 ---
 
@@ -558,6 +448,8 @@ Thomas Mock, “A Gentle Introduction to Tidy Statistics in R” (**[blog post](
 Dominic Royé, **[“A very short introduction to Tidyverse”](https://dominicroye.github.io/en/2020/a-very-short-introduction-to-tidyverse/)**
 
 tidyr, **[“Pivoting”](https://tidyr.tidyverse.org/articles/pivot.html)**
+
+Rebecca Barter, **["Learn to purrr"](https://www.rebeccabarter.com/blog/2019-08-19_purrr)**
 
 Hadley Wickham, **[“dplyr 1.0.0: working across columns”](https://www.tidyverse.org/blog/2020/04/dplyr-1-0-0-colwise/)**
 

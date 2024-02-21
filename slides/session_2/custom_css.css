@@ -1,14 +1,14 @@
 
 .pull-left {
   float: left;
-  padding-left: 4%;
-  width: 40%;
+  padding-left: 2%;
+  width: 45%;
 }
 
 .pull-right {
   float: right;
-  padding-right: 4%;
-  width: 40%;
+  padding-right: 2%;
+  width: 45%;
 }
 
 .timeline-position {

@@ -157,6 +157,8 @@ usethis::use_course(
 
 - Hadley Wickham, ["dplyr 1.0.0: working across columns"](https://www.tidyverse.org/blog/2020/04/dplyr-1-0-0-colwise/). Explains the basics for flexible column-wise operations using `across` in R.
 
+- Rebecca Barter, ["Learn to purrr"](https://www.rebeccabarter.com/blog/2019-08-19_purrr). Blog post covering the basics of using iterative functions with the `purrr` package in R.
+
 <br>
 
 ### Session 3 — Cleaning and Constructing Data Using R

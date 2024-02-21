@@ -20,7 +20,7 @@
  * ------------------------------------------------------- */
 @import url(https://fonts.googleapis.com/css?family=Atkinson+Hyperlegible&display=swap);
 @import url(https://fonts.googleapis.com/css?family=Atkinson+Hyperlegible&display=swap);
-@import url(https://fonts.googleapis.com/css?family=Fira+Mono&display=swap);
+@import url(https://fonts.googleapis.com/css?family=Fira+Code&display=swap);
 
 
 :root {
@@ -32,11 +32,11 @@
   --header-font-family: 'Atkinson Hyperlegible';
   --header-font-is-google: 1;
   --header-font-family-fallback: Georgia, serif;
-  --code-font-family: 'Fira Mono';
+  --code-font-family: 'Fira Code';
   --code-font-is-google: 1;
   --base-font-size: 20px;
   --text-font-size: 1rem;
-  --code-font-size: 0.9rem;
+  --code-font-size: 0.8rem;
   --code-inline-font-size: 1em;
   --header-h1-font-size: 2.75rem;
   --header-h2-font-size: 2.25rem;

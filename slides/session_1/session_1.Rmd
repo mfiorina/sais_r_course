@@ -30,7 +30,7 @@ style_duo_accent(
   text_bold_color = NULL,
   header_font_google = google_font("Atkinson Hyperlegible"),
   text_font_google   = google_font("Atkinson Hyperlegible"),
-  code_font_google   = google_font("Fira Mono")
+  code_font_google   = google_font("Fira Code")
 )
 ```
 

@@ -47,7 +47,7 @@
   
   if(!require(pacman)) install.packages("pacman") 
   
-  pacman::p_load(tidyverse, data.table, janitor, stargazer, huxtable, gt, paletteer)
+  pacman::p_load(dplyr, tidyr, ggplot2, purrr, data.table, janitor, usethis, stargazer, huxtable, gt, paletteer)
   
   ## 2. Import Data ----
   
@@ -200,6 +200,29 @@
   # check what we created:
   
   average_country_enthusiasm %>% head()
+  
+    ### Step 6 — BONUS — Using purrr::map() ----
+  
+  # We want to figure out the class of every variable in the european_country_data data frame.
+  # To do this, we use the map() function.
+  
+  european_country_data %>%
+      purrr::map_df(
+          ~ data.frame(class = class(.x))
+      )
+  
+  # This is nice, but now I'd like to see the names of the variable too... map() has an option for this!
+  # You specify the argument .id and set it equal to the name of the variable you want to create.
+  
+  european_country_data %>%
+      purrr::map_df(
+          ~ data.frame(class = class(.x)),
+          .id = "variable"
+      )
+  
+  # Challenge — We want to figure out how many distinct values each variable has. We can do this
+  # using the dplyr::n_distinct() function. Add a new "n_distinct" column to the data frame created
+  # within the map_df() call above.
   
   ## 4. SESSION 2 -- Data Cleaning/Tidy Data ----
   
