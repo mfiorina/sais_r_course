@@ -184,18 +184,20 @@ From the [DIME World Bank wiki](https://dimewiki.worldbank.org/Data_Cleaning):
 
 ---
 
+class: middle
+
 ### What to look out for
 
 Without data cleaning, you might end up with analysis that is either biased or fully inaccurate.
 
 Thinks that RAs usually have to check for:
 
-- **Uniquely and fully identified dataset** -- no duplicates, no missing IDs. Each row should have a unique identifier.
+- **Uniquely and fully identified dataset** — no duplicates, no missing IDs. Each row should have a unique identifier.
 
 - **Survey codes and missing values**
     - Most survey software will make you have to code categorical answers numerically -> e.g. "yes" is 1, "no" is 0.
     - In that framework, other possible answers that we don't want to analyze (e.g. "I don't know") also need to be coded numerically. But we can't keep them that way because they'll bias mean/sum aggregations.
-    - SOLUTION -- convert to missing, i.e. NA
+    - SOLUTION — convert to missing, i.e. NA
     
 ---
 
@@ -205,11 +207,11 @@ Without data cleaning, you might end up with analysis that is either biased or f
 
 Thinks that RAs usually have to check for:
 
-- **Illogical values** -- questionnaires should follow a specific logic but good to check that there hasn't been a breakdown. e.g. a fully empty column that should have answers, or responses that don't make sense (e.g. 2 year old child with a full-time job).
+- **Illogical values** — questionnaires should follow a specific logic but good to check that there hasn't been a breakdown. e.g. a fully empty column that should have answers, or responses that don't make sense (e.g. 2 year old child with a full-time job).
 
-- **Multiple choice answers** -- most survey softwares store multiple-choice answers in the same value (e.g. "1 2 3 4"), which makes them hard to use in data work. Good practice to "split" out the answers into individual variables.
+- **Multiple choice answers** — most survey softwares store multiple-choice answers in the same value (e.g. "1 2 3 4"), which makes them hard to use in data work. Good practice to "split" out the answers into individual variables.
 
-- **Labels** -- cleaning is also the stage at which variables are given descriptive labels, usually in a codebook.
+- **Labels** — cleaning is also the stage at which variables are given descriptive labels, usually in a codebook.
 
 ---
 
@@ -291,13 +293,13 @@ table4b  # population
 
 These are all useable versions of the same data. Only one of them, however, is 'tidy'.
 
-What makes a dataset 'tidy'? From Hadley Wickham & Garrett Grolemund, [*R for Data Science* Chapter 12 -- Tidy Data](https://r4ds.had.co.nz/tidy-data.html):
+What makes a dataset 'tidy'? From Hadley Wickham & Garrett Grolemund, [*R for Data Science* Chapter 12 — Tidy Data](https://r4ds.had.co.nz/tidy-data.html):
 
 1. Each **variable** must have **its own column**.
 2. Each **observation** must have **its own row**.
 3. Each **value** must have **its own cell**.
 
-Easier to thing about when these conditions are *not* met:
+Easier to think about when these conditions are *not* met:
 
 - When one variable is spread across multiple columns.
 
@@ -308,7 +310,7 @@ Easier to thing about when these conditions are *not* met:
 
 class: center, middle
 
-## Practical Exercise -- Using the World Values Survey Dataset
+## Practical Exercise — Using the World Values Survey Dataset
 
 ---
 <font size='+3'><b>World Values Survey</b></font>
@@ -342,7 +344,7 @@ class: center, middle
 
 ### Today's practical component
 
-1. Successfully run the code in the `session_2_template.R` script
+1. Successfully run the code in the `session_3_template.R` script
 
 2. Attempt the challenge at the bottom of the script: find the 5 most popular answers that people gave about what is important to teach their children.
 
@@ -368,9 +370,11 @@ Syllabus: **https://mfiorina.github.io/sais_r_course/syllabus/r_course_syllabus.
 
 Session 1: **https://mfiorina.github.io/sais_r_course/session_1/session_1.html**
 
+Session 2: **https://mfiorina.github.io/sais_r_course/session_2/session_2.html**
+
 DIME World Bank Wiki, **[https://dimewiki.worldbank.org/Data_Cleaning](https://dimewiki.worldbank.org/Data_Cleaning)**
 
-Hadley Wickham & Garrett Grolemund, **[R for Data Science Chapter 12 -- Tidy data](https://r4ds.had.co.nz/tidy-data.html)**
+Hadley Wickham & Garrett Grolemund, **[R for Data Science Chapter 12 — Tidy data](https://r4ds.had.co.nz/tidy-data.html)**
 
 RStudio, **[RStudio Cheatsheets](https://www.rstudio.com/resources/cheatsheets/)**
 
