@@ -215,11 +215,13 @@ Thinks that RAs usually have to check for:
 
 ---
 
+class: middle
+
 ### What to look out for
 
 Key thinking: each dataset/survey will have unique issues/problems that cannot always be predicted ahead.
 
-One of the hardest tasks for a RA is to *think criticallly* about what could go wrong with raw data and identify errors. It takes time and thoroughness but is essential to do good data work.
+One of the hardest tasks for a RA is to *think critically* about what could go wrong with raw data and identify errors. It takes time and thoroughness but is essential to do good data work.
 
 ---
 
