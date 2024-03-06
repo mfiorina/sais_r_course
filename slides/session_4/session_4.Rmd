@@ -169,11 +169,8 @@ magick::image_read_pdf("pics/reg_table_example.pdf",
 # Simplest regression format in R
 
 reg_example <- lm(
-    
     outcome_variable ~ independent_variable + control_variables,
-    
     data = dataset
-    
 )
 
 # Observe results
@@ -191,7 +188,6 @@ Simply do one of these!
 ```{r eval = FALSE}
 
 reg_example_ht <- reg_example %>%
-    
     huxtable::huxreg()
 
 ```
@@ -201,7 +197,6 @@ OR
 ```{r eval = FALSE}
 
 reg_example_sg <- reg_example %>%
-    
     stargazer::stargazer() # Many options to make prettier
 
 ```
@@ -248,18 +243,15 @@ Some simple options for the Huxtable table:
 # You can export a LateX script using the 'writeLines' function
 
 writeLines(
-    
     reg_example_sg,
-    
     "filepath/filepath/filepath/reg_example_sg.tex"
-    
 )
 
 ```
 
 To visualize your table, the easiest solution is to:
 
-- Create a free Overleaf account on overleaf.com
+- Create a free Overleaf account on [overleaf.com](https://www.overleaf.com)
 - Open a new document
 - Copy/paste your .tex output in between the `begin{document}` and `end{document}` lines
 - Click compile and then save!

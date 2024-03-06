@@ -148,11 +148,8 @@ Unless you're getting into academic research, you don't need to know how to prop
 # Simplest regression format in R
 
 reg_example &lt;- lm(
-    
     outcome_variable ~ independent_variable + control_variables,
-    
     data = dataset
-    
 )
 
 # Observe results
@@ -169,7 +166,6 @@ Simply do one of these!
 
 ```r
 reg_example_ht &lt;- reg_example %&gt;%
-    
     huxtable::huxreg()
 ```
 
@@ -178,7 +174,6 @@ OR
 
 ```r
 reg_example_sg &lt;- reg_example %&gt;%
-    
     stargazer::stargazer() # Many options to make prettier
 ```
 
@@ -223,17 +218,14 @@ Some simple options for the Huxtable table:
 # You can export a LateX script using the 'writeLines' function
 
 writeLines(
-    
     reg_example_sg,
-    
     "filepath/filepath/filepath/reg_example_sg.tex"
-    
 )
 ```
 
 To visualize your table, the easiest solution is to:
 
-- Create a free Overleaf account on overleaf.com
+- Create a free Overleaf account on [overleaf.com](https://www.overleaf.com)
 - Open a new document
 - Copy/paste your .tex output in between the `begin{document}` and `end{document}` lines
 - Click compile and then save!
