@@ -27,6 +27,9 @@ style_duo_accent(
   primary_color   = "#000000",
   secondary_color = "#FFFFFF",
   link_color      = "#0645AD",
+  header_font_google = google_font("Atkinson Hyperlegible"),
+  text_font_google   = google_font("Atkinson Hyperlegible"),
+  code_font_google   = google_font("Fira Code"),
   text_bold_color = NULL
 )
 ```
@@ -132,31 +135,15 @@ table_d2  # population
 
 class: middle, center
 
-## Data Visualization -- Simple Regression Table
+## Data Visualization — Simple Regression Table
 
 ---
 
 ### Regression Tables
 
-.pull-left-short[
-
-<br>
-
 Regression tables are very common in economic/policy analysis.
 
 They're very simple to create using R and a software called **LateX** (pronounced latek).
-
-]
-
-.pull-right-long[
-
-
-```{r, echo = FALSE, out.width = "100%", fig.align = "center"}
-magick::image_read_pdf("pics/reg_table_example.pdf",
-                       pages = 1)
-```
-
-]
 
 Unless you're getting into academic research, you don't need to know how to properly use LateX. Just enough to:
 
@@ -164,9 +151,14 @@ Unless you're getting into academic research, you don't need to know how to prop
 - Copy/paste it into a LateX-reading software, e.g. Overleaf
 - Export the pdf or png to share
 
+```{r, echo = FALSE, out.width = "50%", fig.align = "center"}
+magick::image_read_pdf("pics/reg_table_example.pdf",
+                       pages = 1)
+```
+
 ---
 
-### Regression Table -- Step by Step
+### Regression Table — Step by Step
 
 .panelset[
 
@@ -220,7 +212,7 @@ reg_example_sg <- reg_example %>%
 
 ---
 
-### Regression Table -- Step by Step
+### Regression Table — Step by Step
 
 .panelset[
 
@@ -282,26 +274,21 @@ You can also install the `tinytex` package and use `pdftolatex` to save a PDF fi
 
 class: center, middle
 
-## Data Visualization -- Descriptive Statistics -- Tables
+## Data Visualization — Descriptive Statistics — Tables
 
 ---
 
 ## Descriptive Statistics Tables
 
-.pull-left-short[
-
-<br>
-
 Thankfully, not every RA position requires academic-standard tables or use of LateX.
 
 It is still useful, however, to be able to communicate descriptive statistics about data.
 
-]
+There are countless R packages to help do this. Today, we're looking at the `gt` package. It's simple to use and it's very easy to create good-looking tables using it.
 
-.pull-right-long[
+`gt` exports into .png, .pdf, or .html. You can add interactive elements, plots within columns.
 
-
-```{r, echo = FALSE, out.width = "100%", fig.align = "center"}
+```{r, echo = FALSE, out.width = "50%", fig.align = "center"}
 
 knitr::include_graphics(
   
@@ -310,15 +297,9 @@ knitr::include_graphics(
 )
 ```
 
-]
-
-There are countless R packages to help do this. Today, we're looking at the `gt` package. It's simple to use and it's very easy to create good-looking tables using it.
-
-`gt` exports into .png, .pdf, or .html. You can add interactive elements, plots within columns.
-
 ---
 
-### Descriptive Statistics Table -- Step-by-Step
+### Descriptive Statistics Table — Step-by-Step
 
 We will mainly use the example in the script for this. To summarize, the steps are:
 
@@ -327,10 +308,10 @@ We will mainly use the example in the script for this. To summarize, the steps a
 - Run the dataset through the `gt()` function to create a gt object
 
 - Customize the table using functions from the `gt` package (see online for further things you can do). Examples of what you can do include:
-    - Modify column names -- `cols_label()`
-    - Modify borders -- `tab_style()`, `cell_borders()`
-    - Add colors conditional on cell value -- `data_color()`
-    - Add title/subtitle -- `tab_header()`
+    - Modify column names — `cols_label()`
+    - Modify borders — `tab_style()`, `cell_borders()`
+    - Add colors conditional on cell value — `data_color()`
+    - Add title/subtitle — `tab_header()`
 
 - Export the table using `gtsave()`
 
@@ -338,24 +319,21 @@ We will mainly use the example in the script for this. To summarize, the steps a
 
 class: center, middle
 
-## Data Visualization -- Descriptive Statistics -- Plots
+## Data Visualization — Descriptive Statistics — Plots
 
 ---
 
 ## Descriptive Stats Plots
 
-.pull-left-short[
-
 `ggplot2` is the gold standard in data visualization in data work. It's one of the main reason that people use R over other programming languages.
 
 Very simple syntax and allows you to add elements very easily.
 
-]
+You can use `ggplot2` to create any type of plot you can think of.
 
-.pull-right-long[
+I've included a lot of links at the end of these slides to explore the possibilities of `ggplot2` further. Strongly recommend you use them or at least save them somewhere.
 
-
-```{r, echo = FALSE, out.width = "100%", fig.align = "center"}
+```{r, echo = FALSE, out.width = "60%", fig.align = "center"}
 
 knitr::include_graphics(
   
@@ -364,15 +342,9 @@ knitr::include_graphics(
 )
 ```
 
-]
-
-You can use `ggplot2` to create any type of plot you can think of.
-
-I've included a lot of links at the end of these slides to explore the possibilities of `ggplot2` further. Strongly recommend you use them or at least save them somewhere.
-
 ---
 
-### Descriptive Statistics Table -- Step-by-Step
+### Descriptive Statistics Table — Step-by-Step
 
 .panelset[
 
@@ -485,7 +457,7 @@ mtcars %>%
 
 class: center, middle
 
-## Practical Exercise -- Using the World Values Survey Dataset
+## Practical Exercise — Using the World Values Survey Dataset
 
 ---
 <font size='+3'><b>World Values Survey</b></font>

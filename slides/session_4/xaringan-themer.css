@@ -18,21 +18,21 @@
  *  Version: 0.4.2
  *
  * ------------------------------------------------------- */
-@import url(https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700,700i&display=swap);
-@import url(https://fonts.googleapis.com/css?family=Cabin:600,600i&display=swap);
-@import url(https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700&display=swap);
+@import url(https://fonts.googleapis.com/css?family=Atkinson+Hyperlegible&display=swap);
+@import url(https://fonts.googleapis.com/css?family=Atkinson+Hyperlegible&display=swap);
+@import url(https://fonts.googleapis.com/css?family=Fira+Code&display=swap);
 
 
 :root {
   /* Fonts */
-  --text-font-family: 'Noto Sans';
+  --text-font-family: 'Atkinson Hyperlegible';
   --text-font-is-google: 1;
   --text-font-family-fallback: -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, Ubuntu, roboto, noto, segoe ui, arial;
   --text-font-base: sans-serif;
-  --header-font-family: Cabin;
+  --header-font-family: 'Atkinson Hyperlegible';
   --header-font-is-google: 1;
   --header-font-family-fallback: Georgia, serif;
-  --code-font-family: 'Source Code Pro';
+  --code-font-family: 'Fira Code';
   --code-font-is-google: 1;
   --base-font-size: 20px;
   --text-font-size: 1rem;

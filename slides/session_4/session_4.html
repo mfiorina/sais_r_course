@@ -117,28 +117,15 @@ table_d2  # population
 
 class: middle, center
 
-## Data Visualization -- Simple Regression Table
+## Data Visualization — Simple Regression Table
 
 ---
 
 ### Regression Tables
 
-.pull-left-short[
-
-&lt;br&gt;
-
 Regression tables are very common in economic/policy analysis.
 
 They're very simple to create using R and a software called **LateX** (pronounced latek).
-
-]
-
-.pull-right-long[
-
-
-&lt;img src="session_4_files/figure-html/unnamed-chunk-1-1.png" width="100%" style="display: block; margin: auto;" /&gt;
-
-]
 
 Unless you're getting into academic research, you don't need to know how to properly use LateX. Just enough to:
 
@@ -146,9 +133,11 @@ Unless you're getting into academic research, you don't need to know how to prop
 - Copy/paste it into a LateX-reading software, e.g. Overleaf
 - Export the pdf or png to share
 
+&lt;img src="session_4_files/figure-html/unnamed-chunk-1-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+
 ---
 
-### Regression Table -- Step by Step
+### Regression Table — Step by Step
 
 .panelset[
 
@@ -199,7 +188,7 @@ reg_example_sg &lt;- reg_example %&gt;%
 
 ---
 
-### Regression Table -- Step by Step
+### Regression Table — Step by Step
 
 .panelset[
 
@@ -259,36 +248,25 @@ You can also install the `tinytex` package and use `pdftolatex` to save a PDF fi
 
 class: center, middle
 
-## Data Visualization -- Descriptive Statistics -- Tables
+## Data Visualization — Descriptive Statistics — Tables
 
 ---
 
 ## Descriptive Statistics Tables
 
-.pull-left-short[
-
-&lt;br&gt;
-
 Thankfully, not every RA position requires academic-standard tables or use of LateX.
 
 It is still useful, however, to be able to communicate descriptive statistics about data.
-
-]
-
-.pull-right-long[
-
-
-&lt;img src="pics/gt_table_example.png" width="100%" style="display: block; margin: auto;" /&gt;
-
-]
 
 There are countless R packages to help do this. Today, we're looking at the `gt` package. It's simple to use and it's very easy to create good-looking tables using it.
 
 `gt` exports into .png, .pdf, or .html. You can add interactive elements, plots within columns.
 
+&lt;img src="pics/gt_table_example.png" width="50%" style="display: block; margin: auto;" /&gt;
+
 ---
 
-### Descriptive Statistics Table -- Step-by-Step
+### Descriptive Statistics Table — Step-by-Step
 
 We will mainly use the example in the script for this. To summarize, the steps are:
 
@@ -297,10 +275,10 @@ We will mainly use the example in the script for this. To summarize, the steps a
 - Run the dataset through the `gt()` function to create a gt object
 
 - Customize the table using functions from the `gt` package (see online for further things you can do). Examples of what you can do include:
-    - Modify column names -- `cols_label()`
-    - Modify borders -- `tab_style()`, `cell_borders()`
-    - Add colors conditional on cell value -- `data_color()`
-    - Add title/subtitle -- `tab_header()`
+    - Modify column names — `cols_label()`
+    - Modify borders — `tab_style()`, `cell_borders()`
+    - Add colors conditional on cell value — `data_color()`
+    - Add title/subtitle — `tab_header()`
 
 - Export the table using `gtsave()`
 
@@ -308,34 +286,25 @@ We will mainly use the example in the script for this. To summarize, the steps a
 
 class: center, middle
 
-## Data Visualization -- Descriptive Statistics -- Plots
+## Data Visualization — Descriptive Statistics — Plots
 
 ---
 
 ## Descriptive Stats Plots
 
-.pull-left-short[
-
 `ggplot2` is the gold standard in data visualization in data work. It's one of the main reason that people use R over other programming languages.
 
 Very simple syntax and allows you to add elements very easily.
-
-]
-
-.pull-right-long[
-
-
-&lt;img src="pics/plot_example2.png" width="100%" style="display: block; margin: auto;" /&gt;
-
-]
 
 You can use `ggplot2` to create any type of plot you can think of.
 
 I've included a lot of links at the end of these slides to explore the possibilities of `ggplot2` further. Strongly recommend you use them or at least save them somewhere.
 
+&lt;img src="pics/plot_example2.png" width="60%" style="display: block; margin: auto;" /&gt;
+
 ---
 
-### Descriptive Statistics Table -- Step-by-Step
+### Descriptive Statistics Table — Step-by-Step
 
 .panelset[
 
@@ -441,7 +410,7 @@ mtcars %&gt;%
 
 class: center, middle
 
-## Practical Exercise -- Using the World Values Survey Dataset
+## Practical Exercise — Using the World Values Survey Dataset
 
 ---
 &lt;font size='+3'&gt;&lt;b&gt;World Values Survey&lt;/b&gt;&lt;/font&gt;
