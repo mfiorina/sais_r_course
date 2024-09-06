@@ -1,0 +1,18 @@
+
+.pull-left {
+  float: left;
+  padding-left: 4%;
+  width: 40%;
+}
+
+.pull-right {
+  float: right;
+  padding-right: 4%;
+  width: 40%;
+}
+
+.timeline-position {
+  
+  padding-left : 11.5%;
+  padding-right: 0.5%;
+}

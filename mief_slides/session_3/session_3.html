@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>SAIS R Course</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Marc-Andrea Fiorina" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="custom_css.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+
+
+
+class: center, middle
+
+# Programming for Professional Research Using R
+
+## Session 3
+
+### February 28, 2024
+
+---
+
+class: middle
+
+## Today
+
+- Pop quiz
+
+- Learn how to:
+      - Filter, mutate, group, and summarize data using Tidyverse functions
+      - Reshape data using Tidyverse functions
+      - Check for duplicates and encode missing values
+      
+- Be introduced to:
+      - "Tidy" datasets and how to create them using pivot_longer() and pivot_wider()
+
+- Practice the above!
+
+---
+
+class: middle, center
+
+## Pop Quiz!
+
+## [https://pollev.com/marcandreafiorina503](https://pollev.com/marcandreafiorina503)
+
+---
+
+.panelset[
+
+.panel[.panel-name[mutate()]
+
+
+```r
+mutate_example &lt;- mtcars %&gt;%
+    mutate(
+        heavy = case_when(
+            wt &gt; 3 ~ "Yes",
+            TRUE   ~ "No"
+        )
+    ) %&gt;%
+    select(wt, heavy)
+
+mutate_example %&gt;% head()
+```
+
+```
+##                      wt heavy
+## Mazda RX4         2.620    No
+## Mazda RX4 Wag     2.875    No
+## Datsun 710        2.320    No
+## Hornet 4 Drive    3.215   Yes
+## Hornet Sportabout 3.440   Yes
+## Valiant           3.460   Yes
+```
+
+]
+
+.panel[.panel-name[filter()]
+
+
+```r
+filter_example &lt;- mtcars %&gt;%
+    filter(wt &gt; 3)
+
+filter_example %&gt;% head()
+```
+
+```
+##                    mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+## Hornet 4 Drive    21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout 18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2
+## Valiant           18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1
+## Duster 360        14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4
+## Merc 240D         24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2
+## Merc 230          22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2
+```
+
+]
+
+.panel[.panel-name[select()]
+
+
+```r
+select_example &lt;- mtcars %&gt;%
+    select(
+        matches("mpg|carb")
+    )
+select_example %&gt;% head()
+```
+
+```
+##                    mpg carb
+## Mazda RX4         21.0    4
+## Mazda RX4 Wag     21.0    4
+## Datsun 710        22.8    1
+## Hornet 4 Drive    21.4    1
+## Hornet Sportabout 18.7    2
+## Valiant           18.1    1
+```
+
+]
+
+]
+
+---
+
+.panelset[
+
+.panel[.panel-name[group_by() and summarize()]
+
+
+```r
+group_by_summarize_example &lt;- mtcars %&gt;%
+    group_by(cyl) %&gt;%
+    summarize(
+        mpg = mean(mpg, na.rm = TRUE)
+    )
+
+group_by_summarize_example
+```
+
+```
+## # A tibble: 3 × 2
+##     cyl   mpg
+##   &lt;dbl&gt; &lt;dbl&gt;
+## 1     4  26.7
+## 2     6  19.7
+## 3     8  15.1
+```
+
+]
+
+.panel[.panel-name[pivot_longer()]
+
+
+```r
+relig_income[1:6] %&gt;% head(n = 2)
+```
+
+```
+## # A tibble: 2 × 6
+##   religion `&lt;$10k` `$10-20k` `$20-30k` `$30-40k` `$40-50k`
+##   &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1 Agnostic      27        34        60        81        76
+## 2 Atheist       12        27        37        52        35
+```
+
+```r
+relig_income_long &lt;- relig_income %&gt;%
+    pivot_longer(
+        cols      = !religion, # Everything but religion
+        names_to  = "levels",
+        values_to = "num"
+    )
+
+relig_income_long %&gt;% head(n = 4)
+```
+
+```
+## # A tibble: 4 × 3
+##   religion levels    num
+##   &lt;chr&gt;    &lt;chr&gt;   &lt;dbl&gt;
+## 1 Agnostic &lt;$10k      27
+## 2 Agnostic $10-20k    34
+## 3 Agnostic $20-30k    60
+## 4 Agnostic $30-40k    81
+```
+
+]
+
+.panel[.panel-name[pivot_wider()]
+
+
+```r
+fish_encounters %&gt;% head(n = 4)
+```
+
+```
+## # A tibble: 4 × 3
+##   fish  station  seen
+##   &lt;fct&gt; &lt;fct&gt;   &lt;int&gt;
+## 1 4842  Release     1
+## 2 4842  I80_1       1
+## 3 4842  Lisbon      1
+## 4 4842  Rstr        1
+```
+
+```r
+fish_encounters_wide &lt;- fish_encounters %&gt;%
+    pivot_wider(
+        names_from  = station,
+        values_from = seen
+    )
+
+fish_encounters_wide[1:6] %&gt;% head(n = 2)
+```
+
+```
+## # A tibble: 2 × 6
+##   fish  Release I80_1 Lisbon  Rstr Base_TD
+##   &lt;fct&gt;   &lt;int&gt; &lt;int&gt;  &lt;int&gt; &lt;int&gt;   &lt;int&gt;
+## 1 4842        1     1      1     1       1
+## 2 4843        1     1      1     1       1
+```
+
+]
+
+]
+
+---
+
+class: middle, center
+
+## Data Cleaning
+
+---
+
+class: middle, center
+
+From the [DIME World Bank wiki](https://dimewiki.worldbank.org/Data_Cleaning):
+
+*Data cleaning is an essential step between data collection and data analysis. Raw primary data is always imperfect and needs to be prepared for a high quality analysis and overall replicability. [...] [I]n the vast majority of cases, data cleaning requires significant energy and attention, typically on the part of the Research Assistant (RA).*
+
+---
+
+class: middle
+
+### What to look out for
+
+Without data cleaning, you might end up with analysis that is either biased or fully inaccurate.
+
+Thinks that RAs usually have to check for:
+
+- **Uniquely and fully identified dataset** — no duplicates, no missing IDs. Each row should have a unique identifier.
+
+- **Survey codes and missing values**
+    - Most survey software will make you have to code categorical answers numerically -&gt; e.g. "yes" is 1, "no" is 0.
+    - In that framework, other possible answers that we don't want to analyze (e.g. "I don't know") also need to be coded numerically. But we can't keep them that way because they'll bias mean/sum aggregations.
+    - SOLUTION — convert to missing, i.e. NA
+    
+---
+
+### What to look out for
+
+Without data cleaning, you might end up with analysis that is either biased or fully inaccurate.
+
+Thinks that RAs usually have to check for:
+
+- **Illogical values** — questionnaires should follow a specific logic but good to check that there hasn't been a breakdown. e.g. a fully empty column that should have answers, or responses that don't make sense (e.g. 2 year old child with a full-time job).
+
+- **Multiple choice answers** — most survey softwares store multiple-choice answers in the same value (e.g. "1 2 3 4"), which makes them hard to use in data work. Good practice to "split" out the answers into individual variables.
+
+- **Labels** — cleaning is also the stage at which variables are given descriptive labels, usually in a codebook.
+
+---
+
+class: middle
+
+### What to look out for
+
+Key thinking: each dataset/survey will have unique issues/problems that cannot always be predicted ahead.
+
+One of the hardest tasks for a RA is to *think critically* about what could go wrong with raw data and identify errors. It takes time and thoroughness but is essential to do good data work.
+
+---
+
+class: center, middle
+
+## Working with 'Tidy' Datasets
+
+---
+
+class: middle
+
+```
+table1
+#&gt; # A tibble: 6 x 4
+#&gt;   country      year  cases population
+#&gt;   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
+#&gt; 1 Afghanistan  1999    745   19987071
+#&gt; 2 Afghanistan  2000   2666   20595360
+#&gt; 3 Brazil       1999  37737  172006362
+#&gt; 4 Brazil       2000  80488  174504898
+#&gt; 5 China        1999 212258 1272915272
+#&gt; 6 China        2000 213766 1280428583
+
+table2
+#&gt; # A tibble: 12 x 4
+#&gt;   country      year type           count
+#&gt;   &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;          &lt;int&gt;
+#&gt; 1 Afghanistan  1999 cases            745
+#&gt; 2 Afghanistan  1999 population  19987071
+#&gt; 3 Afghanistan  2000 cases           2666
+#&gt; 4 Afghanistan  2000 population  20595360
+#&gt; 5 Brazil       1999 cases          37737
+#&gt; 6 Brazil       1999 population 172006362
+#&gt; # … with 6 more rows
+```
+
+---
+
+class: middle
+
+```
+table3
+#&gt; # A tibble: 6 x 3
+#&gt;   country      year rate             
+#&gt; * &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;            
+#&gt; 1 Afghanistan  1999 745/19987071     
+#&gt; 2 Afghanistan  2000 2666/20595360    
+#&gt; 3 Brazil       1999 37737/172006362  
+#&gt; 4 Brazil       2000 80488/174504898  
+#&gt; 5 China        1999 212258/1272915272
+#&gt; 6 China        2000 213766/1280428583
+
+# Spread across two tibbles
+table4a  # cases
+#&gt; # A tibble: 3 x 3
+#&gt;   country     `1999` `2000`
+#&gt; * &lt;chr&gt;        &lt;int&gt;  &lt;int&gt;
+#&gt; 1 Afghanistan    745   2666
+#&gt; 2 Brazil       37737  80488
+#&gt; 3 China       212258 213766
+table4b  # population
+#&gt; # A tibble: 3 x 3
+#&gt;   country         `1999`     `2000`
+#&gt; * &lt;chr&gt;            &lt;int&gt;      &lt;int&gt;
+#&gt; 1 Afghanistan   19987071   20595360
+#&gt; 2 Brazil       172006362  174504898
+#&gt; 3 China       1272915272 1280428583
+```
+
+---
+
+class: middle
+
+These are all useable versions of the same data. Only one of them, however, is 'tidy'.
+
+What makes a dataset 'tidy'? From Hadley Wickham &amp; Garrett Grolemund, [*R for Data Science* Chapter 12 — Tidy Data](https://r4ds.had.co.nz/tidy-data.html):
+
+1. Each **variable** must have **its own column**.
+2. Each **observation** must have **its own row**.
+3. Each **value** must have **its own cell**.
+
+Easier to think about when these conditions are *not* met:
+
+- When one variable is spread across multiple columns.
+
+- When one observation is scattered across multiple rows.
+
+
+---
+
+class: center, middle
+
+## Practical Exercise — Using the World Values Survey Dataset
+
+---
+&lt;font size='+3'&gt;&lt;b&gt;World Values Survey&lt;/b&gt;&lt;/font&gt;
+
+&lt;font size='+2'&gt;&lt;b&gt;Background&lt;/b&gt;&lt;/font&gt;
+&lt;br&gt; &lt;br&gt;
+*"The survey, which started in 1981, seeks to use the most rigorous, high-quality research designs in each country. The WVS consists of nationally representative surveys conducted in almost 100 countries which contain almost 90 percent of the world’s population, using a common questionnaire. [...] WVS seeks to help scientists and policy makers understand changes in the beliefs, values and motivations of people throughout the world."*
+
+&lt;font size='+2'&gt;&lt;b&gt;Survey Contents&lt;/b&gt;&lt;/font&gt;
+.pull-left[
+- Social values, attitudes &amp; stereotypes
+- Societal well-being
+- Social capital, trust and organizational membership
+- Economic values
+- Corruption
+- Migration
+- Post-materialist index
+]
+
+.pull-right[
+- Science &amp; technology
+- Religious values
+- Security
+- Ethical values &amp; norms
+- Political interest and political participation
+- Political culture and political regimes
+- Demography
+]
+
+---
+
+### Today's practical component
+
+1. Successfully run the code in the `session_3_template.R` script
+
+2. Attempt the challenge at the bottom of the script: find the 5 most popular answers that people gave about what is important to teach their children.
+
+---
+
+### Today's practical component
+
+3\. Create your own script and do one or more of the following:
+  
+- Clean variables Q1-Q6 or variables Q18-Q26 from the `norms_values_data` dataset. i.e. Check for duplicate IDs and convert non-relevant answers such as "don't know" or "refused to respond" as NA
+  
+- Create a 'tidy' version of a dataset containing either Q1-Q6 or Q18-Q26. This means that the values should all be in one column called "life" for Q1-Q6 or "neighbor" for Q18-Q26.
+
+- For "life", find the 2 most important things in life for the survey's respondents. For "neighbor", find the 5 things that respondents would least want a neighbor to do.
+    
+**NOTE** You should refer to documentation for the dataset, which can be found in `SAIS R Course/documentation/`, for details on the variables and their given values.
+
+---
+
+## Links
+
+Syllabus: **https://mfiorina.github.io/sais_r_course/syllabus/r_course_syllabus.html**
+
+Session 1: **https://mfiorina.github.io/sais_r_course/session_1/session_1.html**
+
+Session 2: **https://mfiorina.github.io/sais_r_course/session_2/session_2.html**
+
+DIME World Bank Wiki, **[https://dimewiki.worldbank.org/Data_Cleaning](https://dimewiki.worldbank.org/Data_Cleaning)**
+
+Hadley Wickham &amp; Garrett Grolemund, **[R for Data Science Chapter 12 — Tidy data](https://r4ds.had.co.nz/tidy-data.html)**
+
+RStudio, **[RStudio Cheatsheets](https://www.rstudio.com/resources/cheatsheets/)**
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"slideNumberFormat": "%current%"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
