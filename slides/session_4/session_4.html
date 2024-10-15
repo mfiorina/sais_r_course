@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>SAIS R Course</title>
+    <title>R MIEF Skills Workshop</title>
     <meta charset="utf-8" />
     <meta name="author" content="Marc-Andrea Fiorina" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/panelset/panelset.css" rel="stylesheet" />
     <script src="libs/panelset/panelset.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="hygge.css" type="text/css" />
     <link rel="stylesheet" href="custom_css.css" type="text/css" />
   </head>
   <body>
@@ -22,11 +23,11 @@
 
 class: center, middle
 
-# Programming for Professional Research Using R
+# R MIEF Skills Workshop
 
 ## Session 4
 
-### March 6, 2024
+### September 27, 2024
 
 ---
 
@@ -34,369 +35,333 @@ class: middle
 
 ## Today
 
-- Pop quiz
-
 - Learn how to:
-      - Create simple academic-standard regression output tables using the `stargazer` package
-      - Create flexible and easy-to-read tables of any dataset using the `gt` package
-      - Create a scatter plot, density plot, and bar chart using the `ggplot2` package
+    - Create custom functions
+    - Use iterative coding in R using:
+        - The "for" loop
+        - The `across()` function
+        - The `map()` function from the `purrr` package
+   
+- Be introduced to:
+    - Communicating process and results using R Markdown
 
 - Practice the above!
 
 ---
 
-class: middle, center
+### Functions in R
 
-## Pop Quiz!
+What is a function?
 
-## [https://pollev.com/marcandreafiorina503](https://pollev.com/marcandreafiorina503)
+A function allows you to efficiently save an operation you may have to use repeatedly, and to run it while only having to modify its inputs, or **arguments**.
+
+I want to rescale the vectors a, b, c, and d so that the smallest value is 0 and the largest value is 1.
+Here's how I would do it in R:
+
+
+``` r
+(a-min(a, na.rm = TRUE)) / (max(a, na.rm = TRUE)-min(a, na.rm = TRUE))
+(b-min(b, na.rm = TRUE)) / (max(b, na.rm = TRUE)-min(b, na.rm = TRUE))
+(c-min(c, na.rm = TRUE)) / (max(c, na.rm = TRUE)-min(c, na.rm = TRUE))
+(d-min(d, na.rm = TRUE)) / (max(d, na.rm = TRUE)-min(d, na.rm = TRUE))
+```
+
+This is not considered good coding; it requires a lot of copying/pasting, it increases the number of opportunities to make a typo mistake, and it is not efficient.
 
 ---
 
-class: middle
-## Pop Quiz 'Tidy' Question
+### Functions in R
 
-```
-table_a
-#&gt; # A tibble: 6 x 3
-#&gt;   country      year rate             
-#&gt; * &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;            
-#&gt; 1 Afghanistan  1999 745/19987071     
-#&gt; 2 Afghanistan  2000 2666/20595360    
-#&gt; 3 Brazil       1999 37737/172006362  
-#&gt; 4 Brazil       2000 80488/174504898  
-#&gt; 5 China        1999 212258/1272915272
-#&gt; 6 China        2000 213766/1280428583
+Solution: custom functions. Custom functions in R are written in the following manner:
 
-table_b
-#&gt; # A tibble: 12 x 4
-#&gt;   country      year type           count
-#&gt;   &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;          &lt;int&gt;
-#&gt; 1 Afghanistan  1999 cases            745
-#&gt; 2 Afghanistan  1999 population  19987071
-#&gt; 3 Afghanistan  2000 cases           2666
-#&gt; 4 Afghanistan  2000 population  20595360
-#&gt; 5 Brazil       1999 cases          37737
-#&gt; 6 Brazil       1999 population 172006362
-#&gt; # … with 6 more rows
+
+``` r
+name &lt;- function(arguments) {
+  body
+}
 ```
 
----
+In the case of our reshaping function, it would look like this:
 
-class: middle
+
+``` r
+# Example for the argument a:
+# (a-min(a, na.rm = TRUE)) / (max(a, na.rm = TRUE)-min(a, na.rm = TRUE))
+
+reshape_function &lt;- function(x) {
+  (x-min(x,na.rm = TRUE)) / (max(x,na.rm = TRUE)-min(x,na.rm = TRUE))
+}
+reshape_function(c(-10, 0, 10))
 ```
-table_c
-#&gt; # A tibble: 6 x 4
-#&gt;   country      year  cases population
-#&gt;   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
-#&gt; 1 Afghanistan  1999    745   19987071
-#&gt; 2 Afghanistan  2000   2666   20595360
-#&gt; 3 Brazil       1999  37737  172006362
-#&gt; 4 Brazil       2000  80488  174504898
-#&gt; 5 China        1999 212258 1272915272
-#&gt; 6 China        2000 213766 1280428583
 
-# Spread across two tibbles
-table_d1  # cases
-#&gt; # A tibble: 3 x 3
-#&gt;   country     `1999` `2000`
-#&gt; * &lt;chr&gt;        &lt;int&gt;  &lt;int&gt;
-#&gt; 1 Afghanistan    745   2666
-#&gt; 2 Brazil       37737  80488
-#&gt; 3 China       212258 213766
-table_d2  # population
-#&gt; # A tibble: 3 x 3
-#&gt;   country         `1999`     `2000`
-#&gt; * &lt;chr&gt;            &lt;int&gt;      &lt;int&gt;
-#&gt; 1 Afghanistan   19987071   20595360
-#&gt; 2 Brazil       172006362  174504898
-#&gt; 3 China       1272915272 1280428583
+```
+## [1] 0.0 0.5 1.0
+```
+
+``` r
+reshape_function(c(1, 2, 3, 4, 5))
+```
+
+```
+## [1] 0.00 0.25 0.50 0.75 1.00
 ```
 
 ---
 
-class: middle, center
+### Iterative Functions in R
 
-## Data Visualization — Simple Regression Table
+What if I want to apply the same function to multiple objects?
+
+What if I wanted to apply `reshape_function`() to 30 variables in my dataset? Rewriting it would be inefficient...
+
+A possible, base R solution: use a "for" loop.
+
+
+``` r
+for(vector in list(c(-10, 0, 10), c(1, 2, 3, 4, 5))) {
+    print(reshape_function(vector))
+}
+```
+
+```
+## [1] 0.0 0.5 1.0
+## [1] 0.00 0.25 0.50 0.75 1.00
+```
+
+However, the use of "for" loops is discouraged in R because they have to run sequentially through each element of the object. To loop over large objects, this is much slower than alternative options, which directly apply to the whole object.
 
 ---
 
-### Regression Tables
+### Iterative Functions in R
 
-Regression tables are very common in economic/policy analysis.
-
-They're very simple to create using R and a software called **LateX** (pronounced latek).
-
-Unless you're getting into academic research, you don't need to know how to properly use LateX. Just enough to:
-
-- Export the LateX script from R
-- Copy/paste it into a LateX-reading software, e.g. Overleaf
-- Export the pdf or png to share
-
-&lt;img src="session_4_files/figure-html/unnamed-chunk-1-1.png" width="50%" style="display: block; margin: auto;" /&gt;
-
----
-
-### Regression Table — Step by Step
-
-.panelset[
-
-.panel[.panel-name[Run Regression in R]
+A more efficient solution: the function `map()` from the package `purrr`.
 
 
-```r
-# Simplest regression format in R
-
-reg_example &lt;- lm(
-    outcome_variable ~ independent_variable + control_variables,
-    data = dataset
-)
-
-# Observe results
-
-reg_example %&gt;% summary()
-```
-
-]
-
-.panel[.panel-name[Convert to Exportable Table]
-
-Simply do one of these!
-
-
-```r
-reg_example_ht &lt;- reg_example %&gt;%
-    huxtable::huxreg()
-```
-
-OR
-
-
-```r
-reg_example_sg &lt;- reg_example %&gt;%
-    stargazer::stargazer() # Many options to make prettier
-```
-
-]
-
-]
-
----
-
-### Regression Table — Step by Step
-
-.panelset[
-
-.panel[.panel-name[Export Huxtable Table]
-
-Some simple options for the Huxtable table:
-
-
-```r
-  huxtable::quick_latex(
-      reg_example_ht,
-      file = "filepath/filepath/filepath/reg_example_ht.tex"
-  )
-  
-  huxtable::quick_pdf
-      reg_example_ht,
-      file = "filepath/filepath/filepath/reg_example_ht.pdf"
-  )
-  
-  huxtable::quick_html(
-      reg_example_ht,
-      file = "filepath/filepath/filepath/reg_example_ht.html"
-  )
-```
-
-]
-
-.panel[.panel-name[Export Stargazer Table]
-
-
-```r
-# You can export a LateX script using the 'writeLines' function
-
-writeLines(
-    reg_example_sg,
-    "filepath/filepath/filepath/reg_example_sg.tex"
+``` r
+library(purrr)
+purrr::map(
+    .x = list(
+        c(-10, 0, 10), c(1, 2, 3, 4, 5)
+    ),
+    .f = reshape_function
 )
 ```
 
-To visualize your table, the easiest solution is to:
-
-- Create a free Overleaf account on [overleaf.com](https://www.overleaf.com)
-- Open a new document
-- Copy/paste your .tex output in between the `begin{document}` and `end{document}` lines
-- Click compile and then save!
-
-You can also install the `tinytex` package and use `pdftolatex` to save a PDF file.
-
-]
-
-]
+```
+## [[1]]
+## [1] 0.0 0.5 1.0
+## 
+## [[2]]
+## [1] 0.00 0.25 0.50 0.75 1.00
+```
 
 ---
 
-class: center, middle
+### Iterative Functions in R
 
-## Data Visualization — Descriptive Statistics — Tables
+Notice that the previous chunk's output is a list. If you want to output a different class of object, `purrr` has the functions `map_chr()`, `map_dbl()`, and `map_df()` amongst others.
 
----
+`map()` has a shorthand to simplify its use: instead of writing the function out, you can replace `function() {}` with `~` and the function's argument with `.x`.
 
-## Descriptive Statistics Tables
+.pull-left[
 
-Thankfully, not every RA position requires academic-standard tables or use of LateX.
-
-It is still useful, however, to be able to communicate descriptive statistics about data.
-
-There are countless R packages to help do this. Today, we're looking at the `gt` package. It's simple to use and it's very easy to create good-looking tables using it.
-
-`gt` exports into .png, .pdf, or .html. You can add interactive elements, plots within columns.
-
-&lt;img src="pics/gt_table_example.png" width="50%" style="display: block; margin: auto;" /&gt;
-
----
-
-### Descriptive Statistics Table — Step-by-Step
-
-We will mainly use the example in the script for this. To summarize, the steps are:
-
-- Create a dataset you want to export
-
-- Run the dataset through the `gt()` function to create a gt object
-
-- Customize the table using functions from the `gt` package (see online for further things you can do). Examples of what you can do include:
-    - Modify column names — `cols_label()`
-    - Modify borders — `tab_style()`, `cell_borders()`
-    - Add colors conditional on cell value — `data_color()`
-    - Add title/subtitle — `tab_header()`
-
-- Export the table using `gtsave()`
-
----
-
-class: center, middle
-
-## Data Visualization — Descriptive Statistics — Plots
-
----
-
-## Descriptive Stats Plots
-
-`ggplot2` is the gold standard in data visualization in data work. It's one of the main reason that people use R over other programming languages.
-
-Very simple syntax and allows you to add elements very easily.
-
-You can use `ggplot2` to create any type of plot you can think of.
-
-I've included a lot of links at the end of these slides to explore the possibilities of `ggplot2` further. Strongly recommend you use them or at least save them somewhere.
-
-&lt;img src="pics/plot_example2.png" width="60%" style="display: block; margin: auto;" /&gt;
-
----
-
-### Descriptive Statistics Table — Step-by-Step
-
-.panelset[
-
-.panel[.panel-name[Dataset]
-
-Start with a dataset you want to visualize
-
-
-```r
-mtcars %&gt;% head()
+``` r
+map_chr(
+    c(1, 3),
+    function(x) {
+        x + 10
+    }
+)
 ```
 
 ```
-##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
-## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
-## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
-## Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
-## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
-## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
-## Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1
+## [1] "11.000000" "13.000000"
+```
+]
+.pull-right[
+
+``` r
+map_chr(
+    c(1, 3),
+    ~ .x + 10
+)
 ```
 
+```
+## [1] "11.000000" "13.000000"
+```
 ]
 
-.panel[.panel-name[Convert to Plot]
+---
 
-.pull-left-wide[
+### Iterative Functions in R
+
+We can also apply `map()` to a data frame. If we do so, `map()` will apply the same function to every component of the data frame, i.e. its **columns**. In practice, this is equivalent to applying `map()` to a list of vectors.
 
 
-```r
-mtcars %&gt;%
-    ggplot()
+``` r
+library(palmerpenguins) # A fun practice dataset about penguins!
+data(package = 'palmerpenguins')
+# Let's take a glimpse at the dataset:
+penguins %&gt;% glimpse()
 ```
 
-]
+```
+## Rows: 344
+## Columns: 8
+## $ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…
+## $ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…
+## $ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …
+## $ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …
+## $ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…
+## $ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …
+## $ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…
+## $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…
+```
 
-.pull-right-wide[
+---
 
-&lt;img src="session_4_files/figure-html/unnamed-chunk-11-1.png" style="display: block; margin: auto;" /&gt;
+### Iterative Functions in R
 
-]
-
-]
-
-.panel[.panel-name[Add Something]
-
-.pull-left-wide[
+I want to reshape the numerical variables of the `penguins` dataset. Using `map()`:
 
 
-```r
-mtcars %&gt;%
-    ggplot() +
-    geom_point(
-        aes(x = mpg, y = wt)
+``` r
+penguins_reshaped &lt;- penguins %&gt;%
+  map_dfr(
+    ~ if(is.numeric(.x)) {
+      reshape_function(.x)
+    } else {
+      .x
+    }
+  )
+penguins_reshaped %&gt;% glimpse()
+```
+
+```
+## Rows: 344
+## Columns: 8
+## $ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…
+## $ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…
+## $ bill_length_mm    &lt;dbl&gt; 0.25454545, 0.26909091, 0.29818182, NA, 0.16727273, …
+## $ bill_depth_mm     &lt;dbl&gt; 0.6666667, 0.5119048, 0.5833333, NA, 0.7380952, 0.89…
+## $ flipper_length_mm &lt;dbl&gt; 0.15254237, 0.23728814, 0.38983051, NA, 0.35593220, …
+## $ body_mass_g       &lt;dbl&gt; 0.2916667, 0.3055556, 0.1527778, NA, 0.2083333, 0.26…
+## $ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…
+## $ year              &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
+```
+
+---
+
+### Iterative Functions in R
+
+The `dplyr` package offers us a function that makes it much easier to modify multiple dataset columns at once: `across()`:
+
+
+``` r
+penguins_reshaped &lt;- penguins %&gt;%
+  mutate(
+    across(
+      c(bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g),
+      ~ reshape_function(.x)
     )
+  )
+penguins_reshaped %&gt;% glimpse()
 ```
 
-]
-
-.pull-right-wide[
-
-&lt;img src="session_4_files/figure-html/unnamed-chunk-13-1.png" style="display: block; margin: auto;" /&gt;
-
-]
-
-]
-
-.panel[.panel-name[Make It More Interesting]
-
-.pull-left-wide[
-
-
-```r
-mtcars %&gt;%
-    ggplot() +
-    geom_point(
-        aes(
-            x = mpg, y = wt,
-            color = factor(cyl)
-        )
-    ) +
-    xlab("Miles/Gallon") +
-    ylab("Weight") +
-    scale_color_discrete(
-        name = "# of Cylinders"
-    ) +
-    theme_minimal()
+```
+## Rows: 344
+## Columns: 8
+## $ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…
+## $ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…
+## $ bill_length_mm    &lt;dbl&gt; 0.25454545, 0.26909091, 0.29818182, NA, 0.16727273, …
+## $ bill_depth_mm     &lt;dbl&gt; 0.6666667, 0.5119048, 0.5833333, NA, 0.7380952, 0.89…
+## $ flipper_length_mm &lt;dbl&gt; 0.15254237, 0.23728814, 0.38983051, NA, 0.35593220, …
+## $ body_mass_g       &lt;dbl&gt; 0.2916667, 0.3055556, 0.1527778, NA, 0.2083333, 0.26…
+## $ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…
+## $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…
 ```
 
-]
+---
 
-.pull-right-wide[
+`across()` identifies columns by name, or can be combined with `where()` to identify columns by their class. The following are equivalent:
 
-&lt;img src="session_4_files/figure-html/unnamed-chunk-15-1.png" style="display: block; margin: auto;" /&gt;
 
-]
+``` r
+penguins %&gt;%
+  mutate(
+    across(
+      c(bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g, year),
+      ~ reshape_function(.x)
+    )
+  )
+penguins %&gt;%
+  mutate(
+    across(
+      matches("length_mm|depth_mm|body_mass|year"),
+      ~ reshape_function(.x)
+    )
+  )
+penguins %&gt;%
+  mutate(
+    across(
+      where(is.numeric),
+      ~ reshape_function(.x)
+    )
+  )
+```
 
-]
+---
 
-]
+### Iterative Functions in R
+
+Beyond the scope of this class: sometimes we want to iterate functions that have more than one argument.
+
+To do so, `purrr` provides the following functions: `map2()` (two arguments) and `pmap()` (unlimited arguments)
+
+
+``` r
+animals &lt;- c("tiger", "elephant", "giraffe")
+colors &lt;- c("red", "orange", "blue")
+map2( # paste0() concatenates its arguments into a single string
+    animals, colors, ~ paste0("The ", .x, " is ", .y, ".")
+)
+```
+
+```
+## [[1]]
+## [1] "The tiger is red."
+## 
+## [[2]]
+## [1] "The elephant is orange."
+## 
+## [[3]]
+## [1] "The giraffe is blue."
+```
+
+For more on iterative functions, I strongly recommend [this blog post by Rebecca Barter](https://www.rebeccabarter.com/blog/2019-08-19_purrr).
+
+---
+
+### A (Quick) Introduction to R Markdown
+
+RStudio comes with a text and code compiler that allows you to craft narrated scripts, slide decks, blogs, books, and more: R Markdown.
+
+Instead of creating an R Script, you can select "R Markdown" when creating a new document in RStudio.
+
+R Markdown allows you to use the **["markdown" markup language](https://commonmark.org/help/)** to format your text, while include code and outputs using code "chunks":
+
+&lt;img src="pics/rmarkdown_example.png" width="90%" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: middle
+
+### A (Quick) Introduction to Quarto
+
+Quarto is a brand new publishing system from the RStudio creators, intended to improve on R Markdown. It allows to combine different coding languages (e.g. both R and Python) into reports, slide decks, websites, etc.
+
+See [https://quarto.org/](https://quarto.org/) for more information.
 
 ---
 
@@ -434,92 +399,100 @@ class: center, middle
 
 ---
 
+class: middle
+
 ### Today's practical component
 
-1. Successfully run the code in the `session_3_template.R` script
+1. Successfully **fix** the code in the `session_4.R` script.
 
-2. Attempt the challenges at the bottom of the script!
+2. Work on your final assignment! The final assignment is to complete the Session 2, 3, and 4 challenges. You can find the challenges rewritten together on the next slide.
+    
+**NOTE** — You should refer to documentation for the dataset, which can be found in the "Module" section, "Course Resources" Module on Canvas, for details on the variables and their given values.
 
-3. Optional assignment: complete as many of the challenges as you'd like and submit to me for review in the next two weeks
+---
+
+### End of Course Assignment (**Due on Thursday, October 10**)
+
+.panelset[
+
+.panel[.panel-name[Session 2 Challenge]
+
+Using child_values_country_data, create a scatter plot showing an interesting comparison between two child values across countries.
+  
+Using child_values_continent_data, create a bar plot comparing a specific child value across continents.
+  
+Using child_values_continent_data, create a `gt` table showcasing the same data as in your bar plot.
+
+]
+
+.panel[.panel-name[Session 3 Challenge]
+
+Create your own script and do the following:
+      
+1. Find mean values for 'importance in life' variables (Q1-6) for countries in another region than Europe
+
+2. Calculate average 'enthusiasm' for these life subjects in countries in that non-Europe region
+  
+3. Perform the same analysis, either on European countries or other countries, for one of the following group of indicators in the dataset:
+    - Important child qualities: Q7-18
+    - Neighbors: Q19-26
+    - Statements to agree with: Q27-41
+  
+4. Save one dataset for each of the tasks above.
+
+]
+
+.panel[.panel-name[Session 4 Challenge]
+
+CHALLENGE 1 — You are going to use the map() function to rewrite the data importing code below.
+Currently, the code loads year-by-year datasets individually and then uses bind_rows() to bring them together. Modify it to use map() and list_rbind() instead.
+Remember to use help(...) if you're unsure how a function works.
+
+CHALLENGE 2 — You are going to rewrite the data wrangling section from Session 3, replacing repetitive code with more efficient uses of the across() function.
+Hint — Steps 1, 2, and 5 shouldn't be affected. Focus on rewriting Steps 3 and 4 to be more efficient.
+
+]
+
+.panel[.panel-name[Overall]
+
+Final deliverable: a .zip file of the the "&lt;b&gt;&lt;span style = "color:red"&gt;your name&lt;/span&gt;&lt;/b&gt; R Course Final Assignment" folder. It should have the following:
+- An .rproj file in the main folder.
+
+- "code", "data", and "output" folders.
+
+- Three scripts in the "code" folder: `session_2_assignment.R`, `session_3_assignment.R`, and `session_4_assignment.R`. You can use the `session_2.R`, `session_3.R`, and `session_4.R` scripts as foundations for your assignment scripts.
+
+- The requisite data in the "data" folder. You should just need the data from the three sessions, which can be found in each session's Module on Canvas.
+
+- The outputs from your `session_2_assignment.R` script in the "output" folder.
+
+
+
+]
+
+]
 
 ---
 
-class: center, middle
+class: middle
 
-#[Please provide feedback at this link!](https://forms.gle/Af3uYEjny4YeZM219)
+# Course Feedback
+
+## [https://forms.gle/TbaSCbqqKAfpjtF59](https://forms.gle/TbaSCbqqKAfpjtF59)
 
 ---
+
+class: middle
 
 ## Links
 
-Syllabus: **https://mfiorina.github.io/sais_r_course/syllabus/r_course_syllabus.html**
+Hadley Wickham, Mine Çetinkaya-Rundel &amp; Garrett Grolemund, **[R for Data Science, 2e — Custom Functions](https://r4ds.hadley.nz/functions)**
 
-Session 1: **https://mfiorina.github.io/sais_r_course/session_1/session_1.html**
+Hadley Wickham, **[“dplyr 1.0.0: working across columns”](https://www.tidyverse.org/blog/2020/04/dplyr-1-0-0-colwise/)**
 
-Session 2: **https://mfiorina.github.io/sais_r_course/session_2/session_2.html**
-
-&lt;ins&gt;**Tables**&lt;/ins&gt;
-
-Marek Hlavac, **[“stargazer: beautiful LATEX, HTML and ASCII tables from R statistical output”](https://cran.rproject.org/web/packages/stargazer/vignettes/stargazer.pdf)**
-
-Thomas Mock, **[“gt - a (G)rammar of (T)ables”](https://themockup.blog/posts/2020-05-16-gt-a-grammer-of-tables/)**
-
-&lt;ins&gt;**Plots**&lt;/ins&gt;
-
-Alicia Horsch, **[“A quick introduction to ggplot2”](https://towardsdatascience.com/a-quick-introduction-to-ggplot2-d406f83bb9c9)**
+Rebecca Barter, **["Learn to purrr"](https://www.rebeccabarter.com/blog/2019-08-19_purrr)**
 
 RStudio, **[RStudio Cheatsheets](https://www.rstudio.com/resources/cheatsheets/)**
-
----
-
-## Explore R Further
-
-&lt;ins&gt;**More Complex Data Manipulation**&lt;/ins&gt;
-
-Iterative coding (using loops for repetitive code) – purrr ’s map function is your friend. I recommend Thomas Mock, **[“Functional programming in R with Purrr”](https://themockup.blog/posts/2018-12-11-functional-progamming-in-r-with-purrr/)** to get you started.
-
-User-made functions in R – At some point, it will become time-effective to create your own functions to apply to your work. Hadley Wickham, **[Advanced R Chapter 6 – Functions](https://advr.hadley.nz/functions.html)**.
-
-&lt;ins&gt;**Publishing Your R Work**&lt;/ins&gt;
-
-RStudio, **[“Introduction to RMarkdown”](https://rmarkdown.rstudio.com/lesson-1.html)**. Summarizes the uses and utility of the RMarkdown framework.
-
-Yihui Xie, **[“xaringan Presentations” – book chapter](https://bookdown.org/yihui/rmarkdown/xaringan.html)** and **[presentation](https://slides.yihui.org/xaringan/)**. Introduction to xaringan , a package
-that allows you to create slide decks using R. Also explore the **[xaringanExtra package](https://pkg.garrickadenbuie.com/xaringanExtra/#/)**.
-
-With RMarkdown, create books using **[bookdown](https://bookdown.org/)** or a blog using **[blogdown](https://bookdown.org/yihui/blogdown/)**.
-
----
-
-## Explore R Further
-
-&lt;ins&gt;**Data Visualization Using Plots**&lt;/ins&gt;
-
-The R community organizes **[“Tidy Tuesday”](https://www.tidytuesday.com/)**. This is a weekly challenge where users are provided a dataset and participants then swap graphs and scripts used to create their visualizations.
-
-David Robinson’s **[Tidy Tuesday live screencasts](https://www.youtube.com/user/safe4democracy)** on YouTube. The perfect resource to follow along and try to replicate a professional coder’s scripts.
-
-Yan Holtz and Conor Healy, **[“From Data to Viz”](https://www.data-toviz.com/)**. An amazing repository of methods to create different data visualizations using R.
-
----
-
-## Explore R Further
-
-&lt;ins&gt;**Geospatial Data Visualization**&lt;/ins&gt;
-
-Robin Lovelace, Jakub Nowosad, and Jannes Muenchow, **[Geocomputation with R](https://geocompr.robinlovelace.net/index.html)**. A great introduction to manipulating geospatial data (shapefiles and rasters) in R.
-
-Edzer Pebesma, **[“Simple Features for R”](https://rspatial.github.io/sf/articles/sf1.html)**. An introduction to the sf package, commonly used for geospatial work in R.
-
-Edzer Pebesma, **[“Plotting Simple Features”](https://rspatial.github.io/sf/articles/sf5.html)**. How to use sf and ggplot2 to visualize data using maps.
-
----
-
-## Explore R Further
-
-For those interested in conducting data work in the development world: Kristoffer Bjarkefur, Luiza Cardoso de Andrade, Benjamin Daniels, and Maria Ruth Jones, **[Development Research in Practice – The DIME Analytics Data Handbook](https://worldbank.github.io/dime-data-handbook/)**. A comprehensive account of tools and instruments to conduct quantitative development research.
-
-For those looking for more hands-on, real-world data work: Ben Baldwin, **[“A beginner’s guide to nflfastR”](https://www.nflfastr.com/articles/beginners_guide.html)**. How to download and explore NFL play-by-play data. This is how I learnt how to use R. Further tutorials using this data can be found at the **[“Open Source Football” blog](https://www.opensourcefootball.com/)**.
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>

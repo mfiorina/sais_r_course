@@ -1,12 +1,12 @@
 ---
-title: "SAIS R Course — Session 2"
+title: "R MIEF Skills Workshop"
 subtitle: "Session 2"
 author: "Marc-Andrea Fiorina"
-date: "2022/10/26 (updated: `r Sys.Date()`)"
+date: "2024/09/12 (updated: `r Sys.Date()`)"
 output:
   xaringan::moon_reader:
     seal: false
-    css: ["xaringan-themer.css", "hygge.css", "custom_css.css"]
+    css: ["xaringan-themer.css", "custom_css.css", "hygge.css"]
     lib_dir: libs
     nature:
       highlightStyle: github
@@ -27,11 +27,11 @@ style_duo_accent(
   primary_color   = "#000000",
   secondary_color = "#FFFFFF",
   link_color      = "#0645AD",
-  text_bold_color = NULL,
   header_font_google = google_font("Atkinson Hyperlegible"),
   text_font_google   = google_font("Atkinson Hyperlegible"),
   code_font_google   = google_font("Fira Code"),
-  code_font_size     = "0.8rem"
+  code_inline_background_color = "#e7e8e1",
+  text_bold_color = NULL
 )
 ```
 
@@ -41,33 +41,11 @@ xaringanExtra::use_panelset()
 
 class: center, middle
 
-# Programming for Professional Research Using R
+# R MIEF Skills Workshop
 
 ## Session 2
 
-### February 21, 2024
-
----
-
-class: middle
-
-## Setting Up
-
-- Open RStudio.
-- Type in the following lines, <font color = "red"><b>replacing "YOURFILEPATHHERE" with a file path where these files will be saved</b></font>.
-    - For MacBook users, this could be "/Users/marc-andreafiorina/Desktop/"
-    - For Windows users, this could be "C:/Users/marc-andreafiorina/Desktop/"
-
-```{r eval = FALSE}
-
-install.packages("usethis")
-library(usethis)
-usethis::use_course(
-    "https://github.com/mfiorina/sais_r_course/archive/main.zip",
-    destdir = "YOURFILEPATHHERE"
-)
-
-```
+### September 13, 2024
 
 ---
 
@@ -76,11 +54,9 @@ class: middle
 ## Today
 
 - Learn how to:
-  - Filter, mutate, group, and summarize data using Tidyverse functions
-  - Reshape data using Tidyverse functions
-      
-- Be introduced to:
-  - Code and data collaboration -- GitHub and data project reproducibility
+      - Create a scatter plot, density plot, and bar chart using the `ggplot2` package
+      - Create flexible and easy-to-read tables of any dataset using the `gt` package
+      - Create simple academic-standard regression output tables using the `stargazer` package
 
 - Practice the above!
 
@@ -88,88 +64,117 @@ class: middle
 
 class: center, middle
 
-# Data 'Wrangling'
+## Data Visualization — Descriptive Statistics — Plots
 
 ---
 
-### Tidyverse Introduction
+## Descriptive Stats Plots
+
+`ggplot2` is the gold standard in data visualization in data work. It's one of the main reason that people use R over other programming languages.
+
+Very simple syntax and allows you to add elements very easily.
+
+You can use `ggplot2` to create any type of plot you can think of.
+
+I've included a lot of links at the end of these slides to explore the possibilities of `ggplot2` further. Strongly recommend you use them or at least save them somewhere.
+
+```{r, echo = FALSE, out.width = "60%", fig.align = "center"}
+
+knitr::include_graphics(
+    "pics/plot_example2.png"
+)
+```
+
+---
+
+### The Magic of `ggplot2`
+
+Using `ggplot2` to create plots is great because the **structure** it sets up makes plot creation intuitive.
+
+.pull-left-wide[
+``` {r, eval = FALSE}
+ggplot(data = <DATA>) +
+  <GEOM_FUNCTION>(
+     mapping = aes(<MAPPINGS>),
+     stat = <STAT>,
+     position = <POSITION>
+  ) +
+  <SCALE_FUNTION> +
+  <FACET_FUNCTION> +
+  <THEME_FUNCTION>
+```
+]
+
+.pull-right-wide[
+1. `Data`: The data that you want to visualize
+2. `Layers`: geom\_ and stat\_ → The geometric shapes and statistical summaries representing the data
+3. `Aesthetics`: aes() → Aesthetic mappings of the geometric and statistical objects
+4. `Scales`: scale_ → Maps between the data and the aesthetic dimensions
+5. `Facets`: facet_ → The arrangement of the data into a grid of plots
+6. `Visual themes`: theme() and theme_ → The overall visual defaults of a plot
+]
+
+---
+
+### Scatter Plot — Step-by-Step
 
 .panelset[
 
-.panel[.panel-name[Base R Layout]
+.panel[.panel-name[Dataset]
+
+Start with a dataset you want to visualize
 
 ```{r}
-names(mtcars)
-```
-
-```{r}
-str_replace(str_to_upper(names(mtcars)), "MPG", "HELLO")
-```
-
-]
-
-.panel[.panel-name[Tidyverse Layout]
-
-Tidyverse functions introduce a 'cleaner' method to write code out, using what is called the 'pipe operator': **`%>%`**. It's almost like writing a recipe, step by step.
-
-```{r}
-names(mtcars)
-```
-
-```{r}
-mtcars %>%
-    names() %>%
-    str_to_upper() %>%
-    str_replace("MPG", "HELLO")
+head(mtcars)
 ```
 
 ]
 
-]
+.panel[.panel-name[Convert to Plot]
 
----
+.pull-left-wide[
 
-### Basic Wrangling Functions
+```{r, eval = FALSE}
+ggplot(mtcars)
 
-.panelset[
-
-.panel[.panel-name[mutate()]
-
-```{r}
-mutate_example <- mtcars %>%
-    mutate(
-        heavy = case_when(
-            wt > 3 ~ "Yes",
-            TRUE   ~ "No"
-        )
-    ) %>%
-    select(wt, heavy)
-
-mutate_example %>% head()
 ```
 
 ]
 
-.panel[.panel-name[filter()]
+.pull-right-wide[
 
-```{r}
-filter_example <- mtcars %>%
-    filter(wt > 3)
+```{r, fig.align = "center", echo = FALSE}
+ggplot(mtcars)
 
-filter_example %>% head()
 ```
 
 ]
 
-.panel[.panel-name[select()]
+]
 
-```{r}
-select_example <- mtcars %>%
-    select(
-        matches("mpg|carb")
-    )
-select_example %>% head()
+.panel[.panel-name[Add Something]
+
+.pull-left-wide[
+
+```{r, eval = FALSE}
+ggplot(mtcars) +
+  geom_point(
+    aes(x = mpg, y = wt)
+  )
 ```
+
+]
+
+.pull-right-wide[
+
+```{r, fig.align = "center", echo = FALSE}
+ggplot(mtcars) +
+  geom_point(
+    aes(x = mpg, y = wt)
+  )
+```
+
+]
 
 ]
 
@@ -177,207 +182,414 @@ select_example %>% head()
 
 ---
 
-### Basic Wrangling Functions
+### Scatter Plot — Make It Better
 
-.panelset[
+.pull-left-wide[
 
-.panel[.panel-name[group_by() and summarize()]
-
-```{r}
-group_by_summarize_example <- mtcars %>%
-    group_by(cyl) %>%
-    summarize(
-        mpg = mean(mpg, na.rm = TRUE)
-    )
-
-group_by_summarize_example
-```
-
-]
-
-.panel[.panel-name[pivot_longer()]
-
-```{r}
-relig_income[1:6] %>% head(n = 2)
-relig_income_long <- relig_income %>%
-    pivot_longer(
-        cols      = !religion, # Everything but religion
-        names_to  = "levels",
-        values_to = "num"
-    )
-relig_income_long %>% head(n = 2)
-```
-
-]
-
-.panel[.panel-name[pivot_wider()]
-
-```{r}
-fish_encounters %>% head(n = 2)
-fish_encounters_wide <- fish_encounters %>%
-    pivot_wider(
-        names_from  = station,
-        values_from = seen
-    )
-fish_encounters_wide[1:6] %>% head(n = 2)
-```
-
-]
-
-]
-
----
-
-### Functions in R
-
-What is a function?
-
-```{r}
-z_score <- function(vector) {
-    (vector - mean(vector)) / sd(vector)
-}
-z_score(seq(0, 10))
-```
-
-A function allows you to efficiently save an operation you may have to use repeatedly, and to run it while only having to modify its inputs, or **arguments**.
-
-```{r}
-# I want to find the z score of the following vectors: c(1, 3, 5) and
-# seq(20, 40). I could do the following:
-(c(1, 3, 5) - mean(c(1, 3, 5))) / sd(c(1, 3, 5))
-(seq(10, 20) - mean(seq(10, 20))) / sd(seq(10, 20))
-```
-
----
-
-### Functions in R
-
-```{r}
-# Easier is this:
-z_score(c(1, 3, 5))
-z_score(seq(10, 20))
-```
-
----
-
-### Iterative Functions in R
-
-What if I want to apply the same function to multiple objects?
-
-What if I wanted to apply the `z_score()` function to 30 variables in my dataset? Rewriting it would be inefficient...
-
-The solution: the function `map()` from the package `purrr`.
-
-```{r}
-library(purrr)
-purrr::map(
-    .x = list(
-        c(1, 3, 5), seq(10, 20)
+```{r, eval = FALSE}
+ggplot(mtcars) +
+  geom_point(
+    aes(
+      x = mpg, y = wt,
+      color = factor(cyl)
     ),
-    .f = z_score
-)
+    size = 6
+  ) +
+  xlab("Miles/Gallon") +
+  ylab("Weight") +
+  scale_color_discrete(
+    name = "# of Cylinders"
+  ) +
+  theme_minimal(base_size = 24) +
+  theme(
+    legend.position = "bottom"
+  )
 ```
 
----
-
-### Iterative Functions in R
-
-Notice that the previous chunk's output is a list. If you want to output a different class of object, `purrr` has the functions `map_chr()`, `map_dbl()`, and `map_df()` amongst others.
-
-`map()` has a shorthand to simplify its use: instead of writing the function out, you can replace `function() {}` with `~` and the function's argument with `.x`.
-
-.pull-left[
-```{r, warning = FALSE}
-map_chr(
-    c(1, 3, 5),
-    function(x) {
-        x + 10
-    }
-)
-```
-]
-.pull-right[
-```{r, warning = FALSE}
-map_chr(
-    c(1, 3, 5),
-    ~ .x + 10
-)
-```
 ]
 
----
+.pull-right-wide[
 
-### Iterative Functions in R
-
-We can also apply `map()` to a data frame. If we do so, `map()` will apply the same function to every component of the data frame, i.e. its **columns**. In practice, this is equivalent to applying `map()` to a list of vectors.
-
-```{r, warning = FALSE}
-library(palmerpenguins) # A fun practice dataset about penguins!
-# I want to know the class of every variable in the palmerpenguins data frame.
-data(package = 'palmerpenguins')
-
-# Let's take a glimpse at the dataset:
-penguins %>% head(n = 2)
-
-penguins %>% map_chr(~ class(.x))
+```{r, fig.align = "center", echo = FALSE}
+ggplot(mtcars) +
+  geom_point(
+    aes(
+      x = mpg, y = wt,
+      color = factor(cyl)
+    ),
+    size = 6
+  ) +
+  xlab("Miles/Gallon") +
+  ylab("Weight") +
+  scale_color_discrete(name = "# of Cylinders") +
+  theme_minimal(base_size = 24) +
+  theme(
+    legend.position = "bottom"
+  )
 ```
 
+]
+
 ---
 
-### Iterative Functions in R
+### Bar Plot — Step-by-Step
 
-Beyond the scope of this class: sometimes we want to iterate functions that have more than one argument.
+.panelset[
 
-To do so, `purrr` provides the following functions: `map2()` (two arguments) and `pmap()` (unlimited arguments)
+.panel[.panel-name[Dataset]
 
-```{r, warning = FALSE}
+Start with a dataset you want to visualize
 
-animals <- c("tiger", "elephant", "giraffe")
-colors <- c("red", "orange", "blue")
+```{r}
+mtcars_summary <- mtcars %>%
+  group_by(cyl) %>%
+  summarize(
+    mpg = mean(mpg)
+  ) %>%
+  ungroup()
 
-map2( # paste0() concatenates its arguments into a single string
-    animals, colors, ~ paste0("The ", .x, " is ", .y, ".")
-)
+mtcars_summary
+```
+
+]
+
+.panel[.panel-name[Convert to Plot]
+
+.pull-left-wide[
+
+```{r, eval = FALSE}
+ggplot(mtcars_summary)
 
 ```
 
-For more on iterative functions, I strongly recommend [this blog post by Rebecca Barter](https://www.rebeccabarter.com/blog/2019-08-19_purrr).
+]
+
+.pull-right-wide[
+
+```{r, fig.align = "center", echo = FALSE}
+ggplot(mtcars_summary)
+
+```
+
+]
+
+]
+
+.panel[.panel-name[Add Something]
+
+.pull-left-wide[
+
+```{r, eval = FALSE}
+ggplot(mtcars_summary) +
+  geom_col(
+    aes(
+      x = cyl,
+      y = mpg
+    )
+  )
+```
+
+]
+
+.pull-right-wide[
+
+```{r, fig.align = "center", echo = FALSE}
+ggplot(mtcars_summary) +
+  geom_col(
+    aes(
+      x = cyl,
+      y = mpg
+    )
+  )
+```
+
+]
+
+]
+
+.panel[.panel-name[Fix Class Issue]
+
+.pull-left-wide[
+
+```{r, eval = FALSE}
+ggplot(mtcars_summary) +
+  geom_col(
+    aes(
+      x = factor(cyl),
+      y = mpg
+    )
+  )
+```
+
+`cyl` categorizes cars by number of cylinders. Although the values are numbers, it is a **categorical** variable. We communicate this to `ggplot()` using the `factor()` function.
+
+]
+
+.pull-right-wide[
+
+```{r, fig.align = "center", echo = FALSE}
+ggplot(mtcars_summary) +
+    geom_col(
+        aes(
+            x = factor(cyl), y = mpg)
+    )
+```
+
+]
+
+]
+
+]
+
+---
+
+### Bar Plot — Make It Better
+
+.pull-left-wide[
+
+```{r, eval = FALSE}
+ggplot(mtcars_summary) +
+  geom_col(
+    aes(
+      x    = factor(cyl),
+      y    = mpg,
+      fill = factor(cyl)
+    )
+  ) +
+  xlab("# of Cylinders") +
+  ylab("Miles/Gallon") +
+  scale_y_continuous(
+      limits = c(0, 30)
+  ) +
+  theme_minimal(base_size = 24) +
+  theme(
+    legend.position = "none"
+  )
+```
+
+]
+
+.pull-right-wide[
+
+```{r, fig.align = "center", echo = FALSE}
+ggplot(mtcars_summary) +
+  geom_col(
+    aes(
+      x    = factor(cyl),
+      y    = mpg,
+      fill = factor(cyl)
+    )
+  ) +
+  xlab("# of Cylinders") +
+  ylab("Miles/Gallon") +
+  scale_y_continuous(
+      limits = c(0, 30)
+  ) +
+  theme_minimal(base_size = 24) +
+  theme(
+    legend.position = "none"
+  )
+```
+
+]
+
+---
+
+class: middle
+name: plot-standards
+
+## Plot Standards
+
+.content-box-blue[
+1. Your plot should be <font color = "red">**properly labeled**</font>:
+    - The plot should have a title describing its content
+    - Axes should be labeled
+    - Legend (if any) should have a title and labels
+    
+2. Your plot should be <font color = "red">**properly formatted**</font>:
+    - Axis dimensions should be appropriate. What is appropriate varies depending on context, but usually you should aim to fill the plot space with data
+    - Text size should be large enough for text to be legible
+    
+3. Your plot should be <font color = "red">**self contained**</font>. People should be able to understand your plot and its data without any other context or explanatory text. That means:
+    - A caption note that includes data source and any important data construction notes
+    - Title and subtitle that deliver the plot's *message*
+]
 
 ---
 
 class: center, middle
 
-# Code and Data Collaboration
-
-## Important Points
+## Data Visualization — Descriptive Statistics — Tables
 
 ---
 
-class: middle
+## Descriptive Statistics Tables
 
-## Professional settings are collaborative settings
+Thankfully, not every RA position requires academic-standard tables or use of LateX.
 
-Most R courses teach you to code in isolation. But **professional use of R often happens within teams of researchers**.
+It is still useful, however, to be able to communicate descriptive statistics about data.
 
-Reproducibility and shareability of your code are key to ensure:
-- Others can use and understand your work
-- Accountability
+There are countless R packages to help do this. Today, we're looking at the `gt` package. It's simple to use and it's very easy to create good-looking tables using it.
 
----
+`gt` exports into .png, .pdf, or .html. You can add interactive elements, plots within columns.
 
-## The ultimate collaborative tool: GitHub
-
-GitHub is the preferred code storing platform for data teams because of the following attributes:
-- **Easy sharing** of scripts between team members
-- **Tracked changes** — every changed line of code is attributed to a specific person
-- **'Commit' structure** — allows you to see how your changes affect other people's work on the same scripts
-
-```{r, echo = FALSE, out.width = "75%", fig.align = "center"}
+```{r, echo = FALSE, out.width = "50%", fig.align = "center"}
 
 knitr::include_graphics(
-    "pics/github_example.png"
+  
+    "pics/gt_table_example.png"
+  
 )
 ```
+
+---
+
+### Descriptive Statistics Table — Step-by-Step
+
+We will mainly use the example in the script for this. To summarize, the steps are:
+
+- Create a dataset you want to export
+
+- Run the dataset through the `gt()` function to create a gt object
+
+- Customize the table using functions from the `gt` package (see online for further things you can do). Examples of what you can do include:
+    - Modify column names — `cols_label()`
+    - Modify borders — `tab_style()`, `cell_borders()`
+    - Add colors conditional on cell value — `data_color()`
+    - Add title/subtitle — `tab_header()`
+
+- Export the table using `gtsave()`
+
+---
+
+class: middle, center
+
+## Data Visualization — Simple Regression Table
+
+---
+
+### Regression Tables
+
+Regression tables are very common in economic/policy analysis.
+
+They're very simple to create using R and a software called **LateX** (pronounced latek).
+
+Unless you're getting into academic research, you don't need to know how to properly use LateX. Just enough to:
+
+- Export the LateX script from R
+- Copy/paste it into a LateX-reading software, e.g. Overleaf
+- Export the pdf or png to share
+
+```{r, echo = FALSE, out.width = "50%", fig.align = "center"}
+magick::image_read_pdf("pics/reg_table_example.pdf",
+                       pages = 1)
+```
+
+---
+
+### Regression Table — Step by Step
+
+.panelset[
+
+.panel[.panel-name[Run Regression in R]
+
+```{r eval = FALSE}
+
+# Simplest regression format in R
+
+reg_example <- lm(
+    outcome_variable ~ independent_variable + control_variables,
+    data = dataset
+)
+
+# Observe results
+
+reg_example %>% summary()
+
+```
+
+]
+
+.panel[.panel-name[Convert to Exportable Table]
+
+Simply do one of these!
+
+```{r eval = FALSE}
+
+reg_example_ht <- reg_example %>%
+    huxtable::huxreg()
+
+```
+
+OR
+
+```{r eval = FALSE}
+
+reg_example_sg <- reg_example %>%
+    stargazer::stargazer() # Many options to make prettier
+
+```
+
+]
+
+]
+
+---
+
+### Regression Table — Step by Step
+
+.panelset[
+
+.panel[.panel-name[Export Huxtable Table]
+
+Some simple options for the Huxtable table:
+
+```{r eval = FALSE}
+  
+  huxtable::quick_latex(
+      reg_example_ht,
+      file = "filepath/filepath/filepath/reg_example_ht.tex"
+  )
+  
+  huxtable::quick_pdf
+      reg_example_ht,
+      file = "filepath/filepath/filepath/reg_example_ht.pdf"
+  )
+  
+  huxtable::quick_html(
+      reg_example_ht,
+      file = "filepath/filepath/filepath/reg_example_ht.html"
+  )
+  
+```
+
+]
+
+.panel[.panel-name[Export Stargazer Table]
+
+```{r eval = FALSE}
+
+# You can export a LateX script using the 'writeLines' function
+
+writeLines(
+    reg_example_sg,
+    "filepath/filepath/filepath/reg_example_sg.tex"
+)
+
+```
+
+To visualize your table, the easiest solution is to:
+
+- Create a free Overleaf account on [overleaf.com](https://www.overleaf.com)
+- Open a new document
+- Copy/paste your .tex output in between the `begin{document}` and `end{document}` lines
+- Click compile and then save!
+
+You can also install the `tinytex` package and use `pdftolatex` to save a PDF file.
+
+]
+
+]
 
 ---
 
@@ -386,7 +598,6 @@ class: center, middle
 ## Practical Exercise — Using the World Values Survey Dataset
 
 ---
-
 <font size='+3'><b>World Values Survey</b></font>
 
 <font size='+2'><b>Background</b></font>
@@ -416,46 +627,60 @@ class: center, middle
 
 ---
 
-class: middle
-
 ### Today's practical component
 
-1. Successfully run the code in the `session_2_template.R` script
+1. Successfully run the code in the `session_2.R` script
 
-2. Create your own script and do one or more of the following:
-  
-    - Find mean values for 'importance in life' variables (Q1-6) for countries in another region than Europe
-  
-    - Calculate average 'enthusiasm' for these life subjects in countries in another region than Europe
-  
-    - Perform the same analysis, either on European countries or other countries, for another group of indicators in the dataset:
-        - Important child qualities: Q7-18
-        - Neighbors: Q19-26
-        - Statements to agree with: Q27-41
-        
-3. Attempt the bonus section on `map()` if you're done!
+2. Attempt the challenges at the bottom of the script!
+
+---
+
+### Mid-Course Assignment (**Due on Thursday, September 26**)
+
+<ol>
+<li> Find an open-source dataset. Anything will do, there is ton of data out there. If you are looking for inspiration, you can explore the <a href = https://github.com/rfordatascience/tidytuesday>Tidy Tuesday Github repository</a>. <br></br></li>
+<li> Create a new folder called "<b><span style = "color:red">your name</span></b> R Course Assignment". Replace <b><span style = "color:red">your name</span></b> with your name. <br></br></li>
+<li> Set up that folder for data use:
+    - Create empty "code", "data", and "output" folders within it
+    - Create an R Project in that folder. Refer back to last week's slides if you're not sure on how to do this. <br></br></li>
+<li> Add your open-source dataset (I strongly recommend downloading or converting it to CSV format) to the "data" folder. <br></br></li>
+<li> Download the "r_template.R" script from the "Course Resources" module on Canvas and place it in the "code" folder. <br></br></li>
+<li> Write a script that produces and saves a plot using your open-source dataset. </li>
+</ol>
+
+---
+
+### Grading criteria
+
+You will submit a .zip file of the "<b><span style = "color:red">your name</span></b> R Course Assignment" folder.
+
+.content-box-blue[
+- Setup
+    - The script's purpose should be stated at the top of the script
+    - The script should load required packages for it to run
+    - The script should successfully import the data used for the data visualization
     
-**NOTE** — You should refer to documentation for the dataset, which can be found in `Dropbox/SAIS R Course/documentation/`, for details on the variables and their given values.
+- Plot
+    - The plot should convey an interesting relationship between variables. For instance, you could use a scatter plot to show how two variables are positively or negatively correlated. Or you could use a bar plot to show the evolution of a variable over time.
+    - The plot should meet the "plot standards" laid out in [slide 11](#plot-standards).
+    - The script should end with the plot being saved in the "output" folder.
+]
+    
+To receive top grades, the script must fully run in one click without any errors.
 
 ---
 
 ## Links
 
-Syllabus: **https://mfiorina.github.io/sais_r_course/syllabus/r_course_syllabus.html**
+<ins>**Tables**</ins>
 
-Session 1: **https://mfiorina.github.io/sais_r_course/session_1/session_1.html**
+Marek Hlavac, **[“stargazer: beautiful LATEX, HTML and ASCII tables from R statistical output”](https://cran.rproject.org/web/packages/stargazer/vignettes/stargazer.pdf)**
 
-Thomas Mock, “A Gentle Introduction to Tidy Statistics in R” (**[blog post](https://themockup.blog/posts/2018-12-10-a-gentle-guide-to-tidy-statistics-in-r/)** and **[video](https://www.rstudio.com/resources/webinars/a-gentle-introduction-to-tidy-statistics-in-r/)**)
+Thomas Mock, **[“gt - a (G)rammar of (T)ables”](https://themockup.blog/posts/2020-05-16-gt-a-grammer-of-tables/)**
 
-Dominic Royé, **[“A very short introduction to Tidyverse”](https://dominicroye.github.io/en/2020/a-very-short-introduction-to-tidyverse/)**
+<ins>**Plots**</ins>
 
-tidyr, **[“Pivoting”](https://tidyr.tidyverse.org/articles/pivot.html)**
-
-Rebecca Barter, **["Learn to purrr"](https://www.rebeccabarter.com/blog/2019-08-19_purrr)**
-
-Hadley Wickham, **[“dplyr 1.0.0: working across columns”](https://www.tidyverse.org/blog/2020/04/dplyr-1-0-0-colwise/)**
-
-Hadley Wickham & Garrett Grolemund, **[R for Data Science](https://r4ds.had.co.nz/)**
+Alicia Horsch, **[“A quick introduction to ggplot2”](https://towardsdatascience.com/a-quick-introduction-to-ggplot2-d406f83bb9c9)**
 
 RStudio, **[RStudio Cheatsheets](https://www.rstudio.com/resources/cheatsheets/)**
 

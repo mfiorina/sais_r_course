@@ -36,7 +36,7 @@
   --code-font-is-google: 1;
   --base-font-size: 20px;
   --text-font-size: 1rem;
-  --code-font-size: 0.8rem;
+  --code-font-size: 0.9rem;
   --code-inline-font-size: 1em;
   --header-h1-font-size: 2.75rem;
   --header-h2-font-size: 2.25rem;
@@ -101,6 +101,8 @@ h1, h2, h3 {
 .remark-inline-code {
   font-size: var(--code-inline-font-size);
   color: #000000;
+  background-color: #e7e8e1;
+  padding: 2px;
 }
 .remark-slide-number {
   color: #000000;

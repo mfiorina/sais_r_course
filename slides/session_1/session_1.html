@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>SAIS R Course — Session 1</title>
+    <title>R MIEF Skills Workshop — Session 1</title>
     <meta charset="utf-8" />
     <meta name="author" content="Marc-Andrea Fiorina" />
     <script src="libs/header-attrs/header-attrs.js"></script>
@@ -23,11 +23,11 @@
 
 class: center, middle
 
-# Programming for Professional Research Using R
+# R MIEF Skills Workshop
 
 ## Session 1
 
-### February 14, 2024
+### September 6, 2024
 
 ---
 
@@ -37,7 +37,9 @@ class: center, middle
 
 .panel[.panel-name[Purpose]
 
-### Purpose of this course: Put you on the right track to use R for professional research.
+### Purpose of this course: Put you on the right track to use R for data or policy analysis.
+
+- As data work has become near-ubiquitous in the research/policy world, so have basic tasks like aggregating, analyzing, summarizing, and visualizing data.
 
 - **The vast majority** of research assistant/analyst (RA) work consists of cleaning and constructing datasets for analysis
 
@@ -248,6 +250,12 @@ vector
 ## [1] 2 3 4 5 6
 ```
 
+]
+
+.panel[.panel-name[More Vectors]
+
+These are more vectors:
+
 
 ```r
 vector &lt;- seq(2, 3, by = 0.5)
@@ -350,13 +358,13 @@ In practice, we visualize data frames as **tables** where each vector is a **col
 
 KEY — We can classify the code we write in our script into two general categories:
 
-1. Assignment code. We are **assigning** a value to an object:
+1- Assignment code. We are **assigning** a value to an object:
 
 ```r
 a &lt;- 2
 ```
 
-2. Printing code. We are **printing** an object's value:
+2- Printing code. We are **printing** an object's value:
 
 ```r
 a
@@ -376,7 +384,7 @@ print(a)
 ## [1] 2
 ```
 
-**Only 2. results in something appearing in your console. When you assign a value to an object, nothing prints in the console.**
+**Only 2- results in something appearing in your console. When you assign a value to an object, nothing prints in the console.**
 
 ]
 
@@ -415,6 +423,46 @@ a
 ```
 ## [1] 2.5
 ```
+
+---
+
+## R Basics
+
+.panelset[
+
+.panel[.panel-name[Functions]
+
+Like in mathematics, a function is an expression or rule that takes an input, or *argument*, and returns an *output*. A function is any `f` such that `f(x) = y`.
+
+In R, functions take the following form:
+
+
+```r
+# The function is called
+sum_function &lt;- function(x, y) { # x and y are the function's arguments
+    x + y # Within the brackets {}, we define the function's output
+}
+
+sum_function(2, 3)
+```
+
+```
+## [1] 5
+```
+
+The vast majority of using R is done using functions, either included with R or written by external users. For instance, to find the sum of 2 and 3, we can use the "base R" function `sum()`.
+
+]
+
+.panel[.panel-name[Packages]
+
+A package is a bundle of functions created by external users. They innovate and, in many cases, improve upon base R functions. Most work in R is done using functions from external packages.
+
+We will look at how to install and load packages shortly. Examples of commonly-used packages are `dplyr`, `tidyr`, `stringr`, `ggplot2`, and `data.table`.
+
+]
+
+]
 
 ---
 
@@ -472,9 +520,7 @@ Better solution:
 ```r
 # Set User (this allows us to use fixed file paths but to adapt them
 # for multiple possible users)
-  
       # 1 — Marc-Andrea Fiorina
-  
       # 2 — Enter here if needed
   
 user &lt;- 1
@@ -485,7 +531,6 @@ if(user == 1) {
 }
 
 # Notice the relative file paths
-
 data_filepath &lt;- paste0(main_filepath, "data/")
 ```
 
@@ -515,6 +560,8 @@ norms_values_data &lt;- data.table::fread(
     na.strings = ""
 )
 ```
+
+Note the construction of the "harder" method, with the "`::`". This is used to refer to the package from which the function originates. The structure is `package::function()`.
 
 ---
 
@@ -662,11 +709,9 @@ class: center, middle
 
 ## Links
 
-Syllabus: **https://mfiorina.github.io/sais_r_course/syllabus/r_course_syllabus.html**
-
 Thomas Mock, “A Gentle Introduction to Tidy Statistics in R” (**[blog post](https://themockup.blog/posts/2018-12-10-a-gentle-guide-to-tidy-statistics-in-r/)** and **[video](https://www.rstudio.com/resources/webinars/a-gentle-introduction-to-tidy-statistics-in-r/)**)
 
-Hadley Wickham &amp; Garrett Grolemund, **[R for Data Science](https://r4ds.had.co.nz/)**
+Hadley Wickham &amp; Garrett Grolemund, **[R for Data Science, Second Edition](https://r4ds.hadley.nz/)**
 
 RStudio, **[RStudio Cheatsheets](https://www.rstudio.com/resources/cheatsheets/)**
 

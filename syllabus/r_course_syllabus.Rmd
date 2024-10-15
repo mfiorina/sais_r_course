@@ -22,13 +22,17 @@ knitr::include_graphics(
 
 <center>
 ### Professional Skills Course
-### Syllabus — Spring 2024
+### Syllabus — Fall 2024
 
 # Programming for Professional Research Using R
 
 ## Marc-Andrea Fiorina
-Contact: marcandrea.fiorina@gmail.com
+Contact: mfiorin2@jhu.edu
 </center>
+
+---
+
+### The course slides, syllabus, and other resources are available at the following link: https://mfiorina.github.io/sais_r_course/.
 
 ---
 
@@ -37,41 +41,34 @@ Contact: marcandrea.fiorina@gmail.com
 <center>
 | Weekday   | Date              | Room           | Start Time | End Time |
 |:---------:|:-----------------:|:--------------:|:----------:|:--------:|
-| Wednesday | February 14, 2024 | 555 Penn, B226 | 6:00pm     | 8:00pm   |
-| Wednesday | February 21, 2024 | 555 Penn, B226 | 6:00pm     | 8:00pm   |
-| Wednesday | February 28, 2024 | 555 Penn, B226 | 6:00pm     | 8:00pm   |
-| Wednesday | March 6, 2024     | 555 Penn, B226 | 6:00pm     | 8:00pm   |
+| Wednesday | October 16, 2024  | 555 Penn, B238 | 6:00pm     | 8:00pm   |
+| Wednesday | October 30, 2024  | 555 Penn, B238 | 6:00pm     | 8:00pm   |
+| Wednesday | November 6, 2024  | 555 Penn, B238 | 6:00pm     | 8:00pm   |
+| Wednesday | November 13, 2024 | 555 Penn, B238 | 6:00pm     | 8:00pm   |
 </center>
 
 ---
 
 ## Course Description
 
-Entry-level research positions in universities, government offices, think tanks, and multilateral institutions are increasingly expected to perform basic quantitative tasks using statistical software such as Stata, R, or Python. As data work has become near-ubiquitous in the policy world, so have basic tasks like aggregating, analyzing, summarizing, and visualizing data.
+Entry-level research and analysis positions in universities, government offices and contractors, think tanks, and multilateral institutions are increasingly expected to perform basic quantitative tasks using statistical software such as Stata, R, or Python. As data work has become near-ubiquitous in the policy world, so have basic tasks like aggregating, analyzing, summarizing, and visualizing data.
 
-This course approaches the use of a statistical software — R — from the perspective of a research assistant. It will introduce you to the methods needed for quantitative work in such a position. This course will also aim to provide you with the resources to continue developing your knowledge and experience of R beyond its duration.
+This course introduces you to statistical analysis programming using the R language. R is an open-source, statistical programming language used widely across a number of industries. This course will also aim to provide you with the foundation to continue to develop your knowledge and experience of R beyond its duration.
 
 ---
 
 ## Course Objectives
 
-By the end of this course, students will be familiar with the instruments they are expected to use in entry-level professional research positions. They will also have resources to further their education in R past the course.
+By the end of this course, students will be able to set up their own R environment and feel comfortable using R for simple data tasks in coursework, internships, or entry-level research/data positions. They will have the foundation to continue to learn by practicing R beyond this course.
 
 In more detail, students will be introduced to the use of:
 
 - `dplyr`'s `select()` and `mutate()` functions to explore and modify datasets;
 - `dplyr`'s `group_by()` and `summarize()` functions to generate summary statistics;
 - `tidyr`'s `pivot_longer()` and `pivot_wider()` functions to reshape data for easier analysis;
+- `purrr`'s `map()` and `dplyr`'s `across()` functions to perform iterative coding;
 - The `gt` and `stargazer` packages to generate HTML, PNG, or LateX summary tables;
-- The `ggplot2` package to generate descriptive scatter plots of data
-
-Students will also be taught how to clean raw data by:
-
-- Identifying duplicates
-- Finding outliers
-- Looking for data inconsistencies
-- Codifying missing values
-- Encoding categorical character variables
+- The `ggplot2` package to generate descriptive scatter plots of data.
 
 ---
 
@@ -80,14 +77,12 @@ Students will also be taught how to clean raw data by:
 <br>
 <center>
 | Session | Description |
-|---------|-------------|
-| **I — Introduction to R** | - Introduction to Coding — learn how to think as a coder, how to identify the basic components of data analysis<br>- Introduction to the RStudio Interface — learn how to set up your environment to use R and RStudio<br>- Troubleshooting R — How to identify and address basic errors in your R setup |
-| **II — Learning R through the Tidyverse** | - Using Basic Tidyverse Functions — how to subset, mutate, summarize, and reshape data<br>- Iterative and Function-Based Coding — learn the basics of iterative coding in R using `purrr::map()`<br>- Using R in a Collaborative Setting — Introduction to downloading and publishing data using GitHub |
-| **III — Cleaning and Constructing Data Using R** | - Raw Data Cleaning — How to identify and fix data errors prior to its use<br>- Data Construction — How to build and reshape datasets for analysis |
-| **IV — Producing Research Output Using R** | - Exporting Summary/Regression Tables — How to produce (i) regression tables and (ii) descriptive summary tables for academic or policy audiences<br>- Introduction to R Data Visualization — How to produce beautiful and informative visualizations: scatter plots, density plots, and more |
+| ------- | ----------- |
+| **I — Setting Up Your R Environment** | - Introduction to Coding — Learn how to think as a coder, how to identify the basic components of data analysis<br>- Introduction to the RStudio Interface — Learn how to set up your environment to use R and RStudio<br>- Troubleshooting R — How to identify and address basic errors in your R setup |
+| **II — Visualization** | - Creating Plots and Graphs — Learn how to create scatter and bar plots using `ggplot2` <br>- Creating HTML and PDF Tables — Learn how to create shareable tables using `gt` |
+| **III — Transformation** | - The Building Blocks of R — Explore scalars, vectors, lists, and tibbles in R <br>- The Basic Verbs of R — Learn how to use `mutate()`, `select()`, `filter()`, `group_by()`, and `summarize()` <br>- Tidy Data — Introduction to tidy datasets, `pivot_longer()`, and `pivot_wider()` |
+| **IV — Programming and Communication** | - Programming in R — Learn about functions and iteration using `map` and `across` in R |
 </center>
-
-**Note** — The course slides, syllabus, and other resources will be shared at the following link: https://mfiorina.github.io/sais_r_course/.
 
 ---
 
@@ -104,10 +99,10 @@ The last two sessions will begin with multiple-choice questionnaires on the topi
 As there will be no time for this in class, **YOU NEED TO DO THE FOLLOWING BEFORE THE FIRST SESSION:**
 
 - Download R at this link: https://cran.r-project.org/
-  - Windows users, click on 'Download R for Windows' and then download the 'base' version. The file should be called `R-4.3.2-win.exe`.
+  - Windows users, click on 'Download R for Windows' and then download the 'base' version. The file should be called `R-4.4.1-win.exe`.
   - Mac users, click on 'Download R for MacOS' and then download the file called:
-      - `R-4.3.2-arm64.pkg` if you have a more recent MacBook with an M1 chip.
-      - `R-4.3.2.pkg` if you have an older MacBook with an Intel chip or run an older iOs.
+      - `R-4.4.1-arm64.pkg` if you have a more recent MacBook with an M1 chip.
+      - `R-4.4.1.pkg` if you have an older MacBook with an Intel chip or run an older iOs.
   
 - Download RStudio at this link: https://www.rstudio.com/products/rstudio/. Download the 'RStudio Desktop: Open Source Edition' version.
 
@@ -135,7 +130,7 @@ usethis::use_course(
 
 ### Overall Readings and Resources
 
-- Hadley Wickham & Garrett Grolemund, [*R for Data Science*](https://r4ds.had.co.nz/). This is the foundational textbook for use of the "Tidyverse" package suite in R.
+- Hadley Wickham, Mine Çetinkaya-Rundel & Garrett Grolemund, [*R for Data Science (2e)*](https://r4ds.hadley.nz/). This is the foundational textbook for use of the "Tidyverse" package suite in R.
 
 - RStudio, [RStudio Cheatsheets](https://www.rstudio.com/resources/cheatsheets/). Cheatsheets to help perform basic data tasks in R.
 
@@ -149,44 +144,40 @@ usethis::use_course(
 
 - For those who are fully new to R, I strongly recommend: Thomas Mock, "A Gentle Introduction to Tidy Statistics in R" — [blog post](https://themockup.blog/posts/2018-12-10-a-gentle-guide-to-tidy-statistics-in-r/) and [video](https://www.rstudio.com/resources/webinars/a-gentle-introduction-to-tidy-statistics-in-r/). We won't have much time to review the basics of R programming during the first session.
 
-### Session 2 — Learning R through the Tidyverse
-
-- Dominic Royé, ["A very short introduction to Tidyverse"](https://dominicroye.github.io/en/2020/a-very-short-introduction-to-tidyverse/). Blog post covering the basics of Tidyverse use in R.
-
-- tidyr, ["Pivoting"](https://tidyr.tidyverse.org/articles/pivot.html). Vignette explaining how to reshape datasets using `pivot_longer` and `pivot_wider`.
-
-- Hadley Wickham, ["dplyr 1.0.0: working across columns"](https://www.tidyverse.org/blog/2020/04/dplyr-1-0-0-colwise/). Explains the basics for flexible column-wise operations using `across` in R.
-
-- Rebecca Barter, ["Learn to purrr"](https://www.rebeccabarter.com/blog/2019-08-19_purrr). Blog post covering the basics of using iterative functions with the `purrr` package in R.
-
 <br>
 
-### Session 3 — Cleaning and Constructing Data Using R
-
-- DIME, ["Data Cleaning"](https://dimewiki.worldbank.org/Data_Cleaning). Instructions on how to clean raw household data for use in a development setting.
-
-- Wickham and Grolemund, [*R for Data Science* Chapter 12 — Tidy Data](https://r4ds.had.co.nz/tidy-data.html). How to structure ("tidy") your dataset for flexible use in data analysis.
-
-<br>
-
-### Session 4 — Producing Research Output Using R
+## Session 2 — Visualization
+<ins>Plots</ins>
+- Alicia Horsch, [“A quick introduction to ggplot2”](https://towardsdatascience.com/a-quick-introduction-to-ggplot2-d406f83bb9c9). Introduction to the ggplot2 package, the main instrument for plot creation in R.
 
 <ins>Tables</ins>
+- Thomas Mock, [“gt - a (G)rammar of (T)ables”](https://themockup.blog/posts/2020-05-16-gt-a-grammer-of-tables/). Introduction to the gt package, a more flexible instrument to export tables in PNG, PDF, or HTML formats.
 
-- Marek Hlavac, ["stargazer: beautiful LATEX, HTML and ASCII tables from R statistical output"](https://cran.r-project.org/web/packages/stargazer/vignettes/stargazer.pdf). Vignette for the `stargazer` package, main tool to export regression tables to LateX
+- Marek Hlavac, [“stargazer: beautiful LATEX, HTML and ASCII tables from R statistical output”](https://cran.r-project.org/web/packages/stargazer/vignettes/stargazer.pdf). Vignette for the stargazer package, main tool to export regression tables to LateX
 
-- Thomas Mock, ["gt - a (G)rammar of (T)ables"](https://themockup.blog/posts/2020-05-16-gt-a-grammer-of-tables/). Introduction to the `gt` package, a more flexible instrument to export tables in PNG, PDF, or HTML formats.
+<br>
 
-<ins>Plots</ins>
+## Session 3 — Transformation
 
-- Alicia Horsch, ["A quick introduction to ggplot2"](https://towardsdatascience.com/a-quick-introduction-to-ggplot2-d406f83bb9c9). Introduction to the `ggplot2` package, the main instrument for plot creation in R.
+- Dominic Royé, [“A very short introduction to Tidyverse”](https://dominicroye.github.io/en/2020/a-very-short-introduction-to-tidyverse/). Blog post covering the basics of Tidyverse use in R.
+
+- Wickham, Çetinkaya-Rundel & Grolemund, [R for Data Science (2e) Chapter 5 — Data Tidying](https://r4ds.hadley.nz/data-tidy.html#sec-tidy-data). How to structure (“tidy”) your dataset for flexible use in data analysis.
+
+- tidyr, [“Pivoting”](https://tidyr.tidyverse.org/articles/pivot.html). Vignette explaining how to reshape datasets using pivot_longer and pivot_wider.
+
+<br>
+
+## Session 4 — Iterative Coding
+
+- Rebecca Barter, [“Learn to purrr”](https://www.rebeccabarter.com/blog/2019-08-19_purrr). Blog post covering the basics of using iterative functions with the purrr package in R.
+
+- Hadley Wickham, [“dplyr 1.0.0: working across columns”](https://www.tidyverse.org/blog/2020/04/dplyr-1-0-0-colwise/). Explains the basics for flexible column-wise operations using across in R.
 
 <br>
 
 ### Further Resources
 
 - We won't have time to explore more advanced data manipulation techniques. Here are some resources for those who are interested in learning on their own:
-  - Iterative coding (using loops for repetitive code) — `purrr`'s `map` function is your friend. I recommend Thomas Mock, ["Functional programming in R with Purrr"](https://themockup.blog/posts/2018-12-11-functional-progamming-in-r-with-purrr/) to get you started.
   - User-made functions in R — At some point, it will become time-effective to create your own functions to apply to your work. [Hadley Wickham, *Advanced R* Chapter 6 — Functions](https://adv-r.hadley.nz/functions.html).
   
 <br>
@@ -220,9 +211,7 @@ usethis::use_course(
 
 ## Instructor Biography
 
-My name is Marc-Andrea Fiorina (MA — SAIS Bologna 2018, DC 2019), and I am a research analyst with the Development Impact Evaluation unit (DIME) at the World Bank. Prior to studying at SAIS, I received my BA (Hons) in Philosophy, Politics, and Economics from the University of Oxford.
-
-I started at DIME as an intern in the Spring 2019 Semester and worked as a research assistant there from October 2019 to August 2021. I now work on a project that analyzes the gendered impacts of providing cash-for-work programs to women in low- and middle-income countries.
+My name is Marc-Andrea Fiorina, and I am a research analyst at OpenResearch. Over the past six years, I worked as an intern, research assistant, and analyst using R for impact evaluations and economic research programs with Development Impact (DIME) at the World Bank. I hold a Bachelor of Arts (Hons.) in Philosophy, Politics, and Economics from the University of Oxford (2017) and a Master of Arts in International Politics and Economics (Bologna 2018, DC 2019) from Johns Hopkins University SAIS.
 
 As a research assistant, I learnt how to work with data in a collaborative space and how to improve my coding language learning through continuous use and good practices. I hope to share those practices and resources with you through this course.
 

@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>SAIS R Course</title>
+    <title>R MIEF Skills Workshop</title>
     <meta charset="utf-8" />
     <meta name="author" content="Marc-Andrea Fiorina" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/panelset/panelset.css" rel="stylesheet" />
     <script src="libs/panelset/panelset.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="hygge.css" type="text/css" />
     <link rel="stylesheet" href="custom_css.css" type="text/css" />
   </head>
   <body>
@@ -22,11 +23,11 @@
 
 class: center, middle
 
-# Programming for Professional Research Using R
+# R MIEF Skills Workshop
 
 ## Session 3
 
-### February 28, 2024
+### September 20, 2024
 
 ---
 
@@ -34,64 +35,92 @@ class: middle
 
 ## Today
 
-- Pop quiz
-
 - Learn how to:
-      - Filter, mutate, group, and summarize data using Tidyverse functions
-      - Reshape data using Tidyverse functions
-      - Check for duplicates and encode missing values
+  - Filter, mutate, group, and summarize data using Tidyverse functions
+  - Reshape data using Tidyverse functions
       
 - Be introduced to:
-      - "Tidy" datasets and how to create them using pivot_longer() and pivot_wider()
+  - The concept of a "tidy" dataset
 
 - Practice the above!
 
 ---
 
-class: middle, center
+class: center, middle
 
-## Pop Quiz!
-
-## [https://pollev.com/marcandreafiorina503](https://pollev.com/marcandreafiorina503)
+# Data 'Wrangling'
 
 ---
 
+### Tidyverse Introduction
+
 .panelset[
 
-.panel[.panel-name[mutate()]
+.panel[.panel-name[Base R Layout]
 
 
-```r
-mutate_example &lt;- mtcars %&gt;%
-    mutate(
-        heavy = case_when(
-            wt &gt; 3 ~ "Yes",
-            TRUE   ~ "No"
-        )
-    ) %&gt;%
-    select(wt, heavy)
-
-mutate_example %&gt;% head()
+``` r
+names(iris)
 ```
 
 ```
-##                      wt heavy
-## Mazda RX4         2.620    No
-## Mazda RX4 Wag     2.875    No
-## Datsun 710        2.320    No
-## Hornet 4 Drive    3.215   Yes
-## Hornet Sportabout 3.440   Yes
-## Valiant           3.460   Yes
+## [1] "Sepal.Length" "Sepal.Width"  "Petal.Length" "Petal.Width"  "Species"
+```
+
+
+``` r
+str_replace(str_to_lower(names(iris)), "\\.", "_")
+```
+
+```
+## [1] "sepal_length" "sepal_width"  "petal_length" "petal_width"  "species"
 ```
 
 ]
 
+.panel[.panel-name[Tidyverse Layout]
+
+Tidyverse functions introduce a 'cleaner' method to write code out, using what is called the 'pipe operator': **`%&gt;%`**. It's almost like writing a recipe, step by step.
+
+
+``` r
+names(iris)
+```
+
+```
+## [1] "Sepal.Length" "Sepal.Width"  "Petal.Length" "Petal.Width"  "Species"
+```
+
+
+``` r
+iris %&gt;%
+  names() %&gt;%
+  str_to_lower() %&gt;%
+  str_replace("\\.", "_")
+```
+
+```
+## [1] "sepal_length" "sepal_width"  "petal_length" "petal_width"  "species"
+```
+
+]
+
+]
+
+---
+
+### Basic Wrangling Functions
+
+.panelset[
+
 .panel[.panel-name[filter()]
 
+`filter()` is used to **extract** rows (a.k.a. observations) from a dataset. It does so using a logical condition.
 
-```r
+
+``` r
 filter_example &lt;- mtcars %&gt;%
-    filter(wt &gt; 3)
+  filter(wt &gt; 3)
 
 filter_example %&gt;% head()
 ```
@@ -110,12 +139,14 @@ filter_example %&gt;% head()
 
 .panel[.panel-name[select()]
 
+`select()` is used to **extract** columns (a.k.a variables) from a dataset. It does so using the variable(s)'s name.
 
-```r
+
+``` r
 select_example &lt;- mtcars %&gt;%
-    select(
-        matches("mpg|carb")
-    )
+  select(
+    mpg, carb
+  )
 select_example %&gt;% head()
 ```
 
@@ -131,21 +162,53 @@ select_example %&gt;% head()
 
 ]
 
+.panel[.panel-name[mutate()]
+
+`mutate()` can be used to either **create** a new column (a.k.a. variable) or to **modify** an existing column (a.k.a. variable).
+
+
+``` r
+mutate_example &lt;- mtcars %&gt;%
+  mutate(
+    heavy = case_when(
+      wt &gt; 3 ~ "Yes",
+      TRUE   ~ "No"
+    )
+  )
+mutate_example %&gt;% select(wt, heavy) %&gt;% head()
+```
+
+```
+##                      wt heavy
+## Mazda RX4         2.620    No
+## Mazda RX4 Wag     2.875    No
+## Datsun 710        2.320    No
+## Hornet 4 Drive    3.215   Yes
+## Hornet Sportabout 3.440   Yes
+## Valiant           3.460   Yes
+```
+
+]
+
 ]
 
 ---
+
+### Basic Wrangling Functions
 
 .panelset[
 
 .panel[.panel-name[group_by() and summarize()]
 
+`group_by()` and `summarize()` are used to **aggregate** data, i.e. to summarize information to a different level of observation.
 
-```r
+
+``` r
 group_by_summarize_example &lt;- mtcars %&gt;%
-    group_by(cyl) %&gt;%
-    summarize(
-        mpg = mean(mpg, na.rm = TRUE)
-    )
+  group_by(cyl) %&gt;%
+  summarize(
+    mpg = mean(mpg, na.rm = TRUE)
+  )
 
 group_by_summarize_example
 ```
@@ -164,7 +227,7 @@ group_by_summarize_example
 .panel[.panel-name[pivot_longer()]
 
 
-```r
+``` r
 relig_income[1:6] %&gt;% head(n = 2)
 ```
 
@@ -176,14 +239,33 @@ relig_income[1:6] %&gt;% head(n = 2)
 ## 2 Atheist       12        27        37        52        35
 ```
 
-```r
+``` r
 relig_income_long &lt;- relig_income %&gt;%
     pivot_longer(
         cols      = !religion, # Everything but religion
         names_to  = "levels",
         values_to = "num"
     )
+```
 
+]
+
+.panel[.panel-name[pivot_longer() result]
+
+
+``` r
+relig_income[1:6] %&gt;% head(n = 2)
+```
+
+```
+## # A tibble: 2 × 6
+##   religion `&lt;$10k` `$10-20k` `$20-30k` `$30-40k` `$40-50k`
+##   &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1 Agnostic      27        34        60        81        76
+## 2 Atheist       12        27        37        52        35
+```
+
+``` r
 relig_income_long %&gt;% head(n = 4)
 ```
 
@@ -202,7 +284,7 @@ relig_income_long %&gt;% head(n = 4)
 .panel[.panel-name[pivot_wider()]
 
 
-```r
+``` r
 fish_encounters %&gt;% head(n = 4)
 ```
 
@@ -216,13 +298,34 @@ fish_encounters %&gt;% head(n = 4)
 ## 4 4842  Rstr        1
 ```
 
-```r
+``` r
 fish_encounters_wide &lt;- fish_encounters %&gt;%
     pivot_wider(
         names_from  = station,
         values_from = seen
     )
+```
 
+]
+
+.panel[.panel-name[pivot_wider() result]
+
+
+``` r
+fish_encounters %&gt;% head(n = 4)
+```
+
+```
+## # A tibble: 4 × 3
+##   fish  station  seen
+##   &lt;fct&gt; &lt;fct&gt;   &lt;int&gt;
+## 1 4842  Release     1
+## 2 4842  I80_1       1
+## 3 4842  Lisbon      1
+## 4 4842  Rstr        1
+```
+
+``` r
 fish_encounters_wide[1:6] %&gt;% head(n = 2)
 ```
 
@@ -237,61 +340,6 @@ fish_encounters_wide[1:6] %&gt;% head(n = 2)
 ]
 
 ]
-
----
-
-class: middle, center
-
-## Data Cleaning
-
----
-
-class: middle, center
-
-From the [DIME World Bank wiki](https://dimewiki.worldbank.org/Data_Cleaning):
-
-*Data cleaning is an essential step between data collection and data analysis. Raw primary data is always imperfect and needs to be prepared for a high quality analysis and overall replicability. [...] [I]n the vast majority of cases, data cleaning requires significant energy and attention, typically on the part of the Research Assistant (RA).*
-
----
-
-class: middle
-
-### What to look out for
-
-Without data cleaning, you might end up with analysis that is either biased or fully inaccurate.
-
-Thinks that RAs usually have to check for:
-
-- **Uniquely and fully identified dataset** — no duplicates, no missing IDs. Each row should have a unique identifier.
-
-- **Survey codes and missing values**
-    - Most survey software will make you have to code categorical answers numerically -&gt; e.g. "yes" is 1, "no" is 0.
-    - In that framework, other possible answers that we don't want to analyze (e.g. "I don't know") also need to be coded numerically. But we can't keep them that way because they'll bias mean/sum aggregations.
-    - SOLUTION — convert to missing, i.e. NA
-    
----
-
-### What to look out for
-
-Without data cleaning, you might end up with analysis that is either biased or fully inaccurate.
-
-Thinks that RAs usually have to check for:
-
-- **Illogical values** — questionnaires should follow a specific logic but good to check that there hasn't been a breakdown. e.g. a fully empty column that should have answers, or responses that don't make sense (e.g. 2 year old child with a full-time job).
-
-- **Multiple choice answers** — most survey softwares store multiple-choice answers in the same value (e.g. "1 2 3 4"), which makes them hard to use in data work. Good practice to "split" out the answers into individual variables.
-
-- **Labels** — cleaning is also the stage at which variables are given descriptive labels, usually in a codebook.
-
----
-
-class: middle
-
-### What to look out for
-
-Key thinking: each dataset/survey will have unique issues/problems that cannot always be predicted ahead.
-
-One of the hardest tasks for a RA is to *think critically* about what could go wrong with raw data and identify errors. It takes time and thoroughness but is essential to do good data work.
 
 ---
 
@@ -367,7 +415,7 @@ class: middle
 
 These are all useable versions of the same data. Only one of them, however, is 'tidy'.
 
-What makes a dataset 'tidy'? From Hadley Wickham &amp; Garrett Grolemund, [*R for Data Science* Chapter 12 — Tidy Data](https://r4ds.had.co.nz/tidy-data.html):
+What makes a dataset 'tidy'? From Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund, [*R for Data Science (2e)* Chapter 5 — Tidy Tidying](https://r4ds.hadley.nz/data-tidy):
 
 1. Each **variable** must have **its own column**.
 2. Each **observation** must have **its own row**.
@@ -379,6 +427,145 @@ Easier to think about when these conditions are *not* met:
 
 - When one observation is scattered across multiple rows.
 
+`table1` is the tidy version of this dataset. How can we convert the other versions to be tidy?
+
+---
+
+.panelset[
+
+.panel[.panel-name[`table2`]
+
+
+``` r
+table2 %&gt;% head(n = 2)
+```
+
+```
+## # A tibble: 2 × 4
+##   country      year type          count
+##   &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;
+## 1 Afghanistan  1999 cases           745
+## 2 Afghanistan  1999 population 19987071
+```
+
+``` r
+table2 %&gt;%
+  pivot_wider(
+    names_from  = type,
+    values_from = count
+  ) %&gt;% head(n = 4)
+```
+
+```
+## # A tibble: 4 × 4
+##   country      year cases population
+##   &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;
+## 1 Afghanistan  1999   745   19987071
+## 2 Afghanistan  2000  2666   20595360
+## 3 Brazil       1999 37737  172006362
+## 4 Brazil       2000 80488  174504898
+```
+]
+
+.panel[.panel-name[`table3`]
+
+
+``` r
+table3 %&gt;% head(n = 2)
+```
+
+```
+## # A tibble: 2 × 3
+##   country      year rate         
+##   &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;        
+## 1 Afghanistan  1999 745/19987071 
+## 2 Afghanistan  2000 2666/20595360
+```
+
+``` r
+table3 %&gt;%
+  mutate(
+    cases      = as.numeric(str_extract(rate, ".*(?=\\/)")),
+    population = as.numeric(str_extract(rate, "(?&lt;=\\/).*"))
+  ) %&gt;% select(-rate) %&gt;% head(n = 4)
+```
+
+```
+## # A tibble: 4 × 4
+##   country      year cases population
+##   &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;
+## 1 Afghanistan  1999   745   19987071
+## 2 Afghanistan  2000  2666   20595360
+## 3 Brazil       1999 37737  172006362
+## 4 Brazil       2000 80488  174504898
+```
+]
+
+.panel[.panel-name[`table4`]
+
+
+``` r
+table4a %&gt;% head(n = 2)
+```
+
+```
+## # A tibble: 2 × 3
+##   country     `1999` `2000`
+##   &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;
+## 1 Afghanistan    745   2666
+## 2 Brazil       37737  80488
+```
+
+``` r
+table4b %&gt;% head(n = 2)
+```
+
+```
+## # A tibble: 2 × 3
+##   country        `1999`    `2000`
+##   &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;
+## 1 Afghanistan  19987071  20595360
+## 2 Brazil      172006362 174504898
+```
+
+]
+
+.panel[.panel-name[`table4 results`]
+
+
+``` r
+table4a %&gt;%
+  pivot_longer(
+    cols      = c(`1999`, `2000`),
+    names_to  = "year",
+    values_to = "cases"
+  ) %&gt;%
+  left_join(
+    table4b %&gt;%
+      pivot_longer(
+        cols      = c(`1999`, `2000`),
+        names_to  = "year",
+        values_to = "population"
+      )
+  ) %&gt;% head(n = 4)
+```
+
+```
+## Joining with `by = join_by(country, year)`
+```
+
+```
+## # A tibble: 4 × 4
+##   country     year  cases population
+##   &lt;chr&gt;       &lt;chr&gt; &lt;dbl&gt;      &lt;dbl&gt;
+## 1 Afghanistan 1999    745   19987071
+## 2 Afghanistan 2000   2666   20595360
+## 3 Brazil      1999  37737  172006362
+## 4 Brazil      2000  80488  174504898
+```
+]
+
+]
 
 ---
 
@@ -387,6 +574,7 @@ class: center, middle
 ## Practical Exercise — Using the World Values Survey Dataset
 
 ---
+
 &lt;font size='+3'&gt;&lt;b&gt;World Values Survey&lt;/b&gt;&lt;/font&gt;
 
 &lt;font size='+2'&gt;&lt;b&gt;Background&lt;/b&gt;&lt;/font&gt;
@@ -416,39 +604,38 @@ class: center, middle
 
 ---
 
-### Today's practical component
-
-1. Successfully run the code in the `session_3_template.R` script
-
-2. Attempt the challenge at the bottom of the script: find the 5 most popular answers that people gave about what is important to teach their children.
-
----
+class: middle
 
 ### Today's practical component
 
-3\. Create your own script and do one or more of the following:
-  
-- Clean variables Q1-Q6 or variables Q18-Q26 from the `norms_values_data` dataset. i.e. Check for duplicate IDs and convert non-relevant answers such as "don't know" or "refused to respond" as NA
-  
-- Create a 'tidy' version of a dataset containing either Q1-Q6 or Q18-Q26. This means that the values should all be in one column called "life" for Q1-Q6 or "neighbor" for Q18-Q26.
+1. Successfully run the code in the `session_3.R` script
 
-- For "life", find the 2 most important things in life for the survey's respondents. For "neighbor", find the 5 things that respondents would least want a neighbor to do.
+2. Create your own script and do the following:
+  
+    - Find mean values for 'importance in life' variables (Q1-6) for countries in another region than Europe
+  
+    - Calculate average 'enthusiasm' for these life subjects in countries in another region than Europe
+  
+    - Perform the same analysis, either on European countries or other countries, for another group of indicators in the dataset:
+        - Important child qualities: Q7-18
+        - Neighbors: Q19-26
+        - Statements to agree with: Q27-41
+        
+    - Save one dataset for each of the tasks above.
     
-**NOTE** You should refer to documentation for the dataset, which can be found in `SAIS R Course/documentation/`, for details on the variables and their given values.
+**NOTE** — You should refer to documentation for the dataset, which can be found in the "Module" section, "Course Resources" Module on Canvas, for details on the variables and their given values.
 
 ---
+
+class: middle
 
 ## Links
 
-Syllabus: **https://mfiorina.github.io/sais_r_course/syllabus/r_course_syllabus.html**
+Dominic Royé, **[“A very short introduction to Tidyverse”](https://dominicroye.github.io/en/2020/a-very-short-introduction-totidyverse/)**
 
-Session 1: **https://mfiorina.github.io/sais_r_course/session_1/session_1.html**
+tidyr, **[“Pivoting”](https://tidyr.tidyverse.org/articles/pivot.html)**
 
-Session 2: **https://mfiorina.github.io/sais_r_course/session_2/session_2.html**
-
-DIME World Bank Wiki, **[https://dimewiki.worldbank.org/Data_Cleaning](https://dimewiki.worldbank.org/Data_Cleaning)**
-
-Hadley Wickham &amp; Garrett Grolemund, **[R for Data Science Chapter 12 — Tidy data](https://r4ds.had.co.nz/tidy-data.html)**
+Hadley Wickham, Mine Çetinkaya-Rundel &amp; Garrett Grolemund, **[R for Data Science, 2e](https://r4ds.hadley.nz/)**
 
 RStudio, **[RStudio Cheatsheets](https://www.rstudio.com/resources/cheatsheets/)**
 
