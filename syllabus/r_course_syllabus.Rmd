@@ -1,5 +1,5 @@
 ---
-title: "r_course_syllabus"
+title: "SAIS R Course Syllabus"
 output:
     html_document:
         css: "meta/style.css"
