@@ -2,7 +2,7 @@
 title: "R MIEF Skills Workshop"
 subtitle: "Session 1"
 author: "Marc-Andrea Fiorina"
-date: "2024/09/06 (updated: `r Sys.Date()`)"
+date: "2024/10/16 (updated: `r Sys.Date()`)"
 output:
   xaringan::moon_reader:
     seal: false
@@ -40,11 +40,11 @@ xaringanExtra::use_panelset()
 
 class: center, middle
 
-# R MIEF Skills Workshop
+# Programming for Professional Research Using R
 
 ## Session 1
 
-### September 6, 2024
+### October 16, 2024
 
 ---
 

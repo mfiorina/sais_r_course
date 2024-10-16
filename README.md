@@ -12,8 +12,7 @@ Click on the links below to get access to:
 
 - The syllabus ([.html](https://mfiorina.github.io/sais_r_course/syllabus/r_course_syllabus.html) or [.pdf](https://mfiorina.github.io/sais_r_course/syllabus/r_course_syllabus.pdf))
 
-- Session 1 slides TBA
-[]([.html](https://mfiorina.github.io/sais_r_course/slides/session_1/session_1.html))
+- Session 1 slides ([.html](https://mfiorina.github.io/sais_r_course/slides/session_1/session_1.html))
 
 - Session 2 slides TBA
 []([.html](https://mfiorina.github.io/sais_r_course/slides/session_2/session_2.html))

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>R MIEF Skills Workshop — Session 1</title>
+    <title>R MIEF Skills Workshop</title>
     <meta charset="utf-8" />
     <meta name="author" content="Marc-Andrea Fiorina" />
     <script src="libs/header-attrs/header-attrs.js"></script>
@@ -23,11 +23,11 @@
 
 class: center, middle
 
-# R MIEF Skills Workshop
+# Programming for Professional Research Using R
 
 ## Session 1
 
-### September 6, 2024
+### October 16, 2024
 
 ---
 
@@ -218,7 +218,7 @@ Import your data — Which data frames do you need to fulfill the script's purpo
 This is a scalar:
 
 
-```r
+``` r
 a &lt;- 2
 ```
 
@@ -231,7 +231,7 @@ It's an object (`a`) with a single value (`2`). Notice that we assign the value 
 These are vectors:
 
 
-```r
+``` r
 vector &lt;- c(1, 2, 5)
 vector
 ```
@@ -241,7 +241,7 @@ vector
 ```
 
 
-```r
+``` r
 vector &lt;- 2:6
 vector
 ```
@@ -257,7 +257,7 @@ vector
 These are more vectors:
 
 
-```r
+``` r
 vector &lt;- seq(2, 3, by = 0.5)
 vector
 ```
@@ -273,7 +273,7 @@ Vectors take multiple values. Notice that vectors have a specific **order**: `c(
 .panel[.panel-name[Selecting Vector Elements]
 
 
-```r
+``` r
 ## By Position
 
 x[4]       # Fourth element
@@ -288,7 +288,7 @@ x[c(1, 5)] # Elements one and five
 ```
 
 
-```r
+``` r
 # By Value
 
 x[x == 10]           # Elements which are equal to 10
@@ -313,7 +313,7 @@ x[x %in% c(1, 2, 5)] # Elements in the set 1, 2, 5
 This is a list:
 
 
-```r
+``` r
 y &lt;- list("a", 1, "b")
 ```
 
@@ -326,7 +326,7 @@ Lists are different from vectors in one key manner: **they can take objects of d
 Here are some classes in R:
 
 
-```r
+``` r
 a &lt;- "a"    # Character
 b &lt;- 1      # Integer
 c &lt;- 1.2    # Numeric
@@ -341,7 +341,7 @@ e &lt;- TRUE   # Logical
 This is a data frame:
 
 
-```r
+``` r
 df &lt;- data.frame(
     first_name = c("Mark", "Mary", "July"),
     last_name  = c("Smith", "John", "Sanchez"),
@@ -360,13 +360,13 @@ KEY — We can classify the code we write in our script into two general categor
 
 1- Assignment code. We are **assigning** a value to an object:
 
-```r
+``` r
 a &lt;- 2
 ```
 
 2- Printing code. We are **printing** an object's value:
 
-```r
+``` r
 a
 ```
 
@@ -376,7 +376,7 @@ a
 
 
 
-```r
+``` r
 print(a)
 ```
 
@@ -398,7 +398,7 @@ NOTE — R works in a manner that allows to write a specific function over multi
 
 This:
 
-```r
+``` r
 a &lt;- mean(c(seq(1, 4, by = 0.5)))
 
 a
@@ -410,7 +410,7 @@ a
 
 Is the same as this:
 
-```r
+``` r
 a &lt;- mean(
     c(
         seq(1, 4, by = 0.5)
@@ -437,7 +437,7 @@ Like in mathematics, a function is an expression or rule that takes an input, or
 In R, functions take the following form:
 
 
-```r
+``` r
 # The function is called
 sum_function &lt;- function(x, y) { # x and y are the function's arguments
     x + y # Within the brackets {}, we define the function's output
@@ -489,7 +489,7 @@ Packages are groups of user-created functions that help us accomplish tasks that
 ### Easy
 
 
-```r
+``` r
 install.packages("tidyverse")
 library(tidyverse)
 ```
@@ -499,7 +499,7 @@ library(tidyverse)
 The `pacman` package installs packages if they aren't installed yet, loads them otherwise
 
 
-```r
+``` r
 if(!require(pacman)) install.packages("pacman")
 pacman::p_load(tidyverse)
 ```
@@ -517,7 +517,7 @@ Simple solution: Create an `.rproj` file that people can open to access your R e
 Better solution:
 
 
-```r
+``` r
 # Set User (this allows us to use fixed file paths but to adapt them
 # for multiple possible users)
       # 1 — Marc-Andrea Fiorina
@@ -554,7 +554,7 @@ Easiest file type to import into R is a .csv file. But you can also import .xlsx
 - Harder (faster) `-&gt;` `data.table::fread()`
 
 
-```r
+``` r
 norms_values_data &lt;- data.table::fread(
     "raw/wvs_values_norms_data.csv",
     na.strings = ""
