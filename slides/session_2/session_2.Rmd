@@ -1,8 +1,8 @@
 ---
-title: "R MIEF Skills Workshop"
+title: "R Professional Skills Course"
 subtitle: "Session 2"
 author: "Marc-Andrea Fiorina"
-date: "2024/09/12 (updated: `r Sys.Date()`)"
+date: "2024/10/30 (updated: `r Sys.Date()`)"
 output:
   xaringan::moon_reader:
     seal: false
@@ -41,11 +41,11 @@ xaringanExtra::use_panelset()
 
 class: center, middle
 
-# R MIEF Skills Workshop
+# Programming for Professional Research Using R
 
 ## Session 2
 
-### September 13, 2024
+### October 30, 2024
 
 ---
 
@@ -240,7 +240,7 @@ ggplot(mtcars) +
 
 Start with a dataset you want to visualize
 
-```{r}
+```{r, include = FALSE}
 mtcars_summary <- mtcars %>%
   group_by(cyl) %>%
   summarize(
@@ -248,6 +248,9 @@ mtcars_summary <- mtcars %>%
   ) %>%
   ungroup()
 
+```
+
+```{r}
 mtcars_summary
 ```
 
@@ -504,7 +507,7 @@ reg_example <- lm(
 
 # Observe results
 
-reg_example %>% summary()
+summary(reg_example)
 
 ```
 
@@ -516,8 +519,7 @@ Simply do one of these!
 
 ```{r eval = FALSE}
 
-reg_example_ht <- reg_example %>%
-    huxtable::huxreg()
+reg_example_ht <- huxtable::huxreg(reg_example)
 
 ```
 
@@ -525,8 +527,8 @@ OR
 
 ```{r eval = FALSE}
 
-reg_example_sg <- reg_example %>%
-    stargazer::stargazer() # Many options to make prettier
+reg_example_sg <- stargazer::stargazer(reg_example)
+# Many options to make prettier
 
 ```
 
@@ -635,40 +637,7 @@ class: center, middle
 
 ---
 
-### Mid-Course Assignment (**Due on Thursday, September 26**)
-
-<ol>
-<li> Find an open-source dataset. Anything will do, there is ton of data out there. If you are looking for inspiration, you can explore the <a href = https://github.com/rfordatascience/tidytuesday>Tidy Tuesday Github repository</a>. <br></br></li>
-<li> Create a new folder called "<b><span style = "color:red">your name</span></b> R Course Assignment". Replace <b><span style = "color:red">your name</span></b> with your name. <br></br></li>
-<li> Set up that folder for data use:
-    - Create empty "code", "data", and "output" folders within it
-    - Create an R Project in that folder. Refer back to last week's slides if you're not sure on how to do this. <br></br></li>
-<li> Add your open-source dataset (I strongly recommend downloading or converting it to CSV format) to the "data" folder. <br></br></li>
-<li> Download the "r_template.R" script from the "Course Resources" module on Canvas and place it in the "code" folder. <br></br></li>
-<li> Write a script that produces and saves a plot using your open-source dataset. </li>
-</ol>
-
----
-
-### Grading criteria
-
-You will submit a .zip file of the "<b><span style = "color:red">your name</span></b> R Course Assignment" folder.
-
-.content-box-blue[
-- Setup
-    - The script's purpose should be stated at the top of the script
-    - The script should load required packages for it to run
-    - The script should successfully import the data used for the data visualization
-    
-- Plot
-    - The plot should convey an interesting relationship between variables. For instance, you could use a scatter plot to show how two variables are positively or negatively correlated. Or you could use a bar plot to show the evolution of a variable over time.
-    - The plot should meet the "plot standards" laid out in [slide 11](#plot-standards).
-    - The script should end with the plot being saved in the "output" folder.
-]
-    
-To receive top grades, the script must fully run in one click without any errors.
-
----
+class: middle
 
 ## Links
 

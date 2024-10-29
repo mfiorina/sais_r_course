@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>R MIEF Skills Workshop</title>
+    <title>R Professional Skills Course</title>
     <meta charset="utf-8" />
     <meta name="author" content="Marc-Andrea Fiorina" />
     <script src="libs/header-attrs/header-attrs.js"></script>
@@ -23,11 +23,11 @@
 
 class: center, middle
 
-# R MIEF Skills Workshop
+# Programming for Professional Research Using R
 
 ## Session 2
 
-### September 13, 2024
+### October 30, 2024
 
 ---
 
@@ -208,14 +208,9 @@ ggplot(mtcars) +
 Start with a dataset you want to visualize
 
 
-``` r
-mtcars_summary &lt;- mtcars %&gt;%
-  group_by(cyl) %&gt;%
-  summarize(
-    mpg = mean(mpg)
-  ) %&gt;%
-  ungroup()
 
+
+``` r
 mtcars_summary
 ```
 
@@ -243,7 +238,7 @@ ggplot(mtcars_summary)
 
 .pull-right-wide[
 
-&lt;img src="session_2_files/figure-html/unnamed-chunk-12-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="session_2_files/figure-html/unnamed-chunk-13-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -268,7 +263,7 @@ ggplot(mtcars_summary) +
 
 .pull-right-wide[
 
-&lt;img src="session_2_files/figure-html/unnamed-chunk-14-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="session_2_files/figure-html/unnamed-chunk-15-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -295,7 +290,7 @@ ggplot(mtcars_summary) +
 
 .pull-right-wide[
 
-&lt;img src="session_2_files/figure-html/unnamed-chunk-16-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="session_2_files/figure-html/unnamed-chunk-17-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -334,7 +329,7 @@ ggplot(mtcars_summary) +
 
 .pull-right-wide[
 
-&lt;img src="session_2_files/figure-html/unnamed-chunk-18-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="session_2_files/figure-html/unnamed-chunk-19-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -418,7 +413,7 @@ Unless you're getting into academic research, you don't need to know how to prop
 - Copy/paste it into a LateX-reading software, e.g. Overleaf
 - Export the pdf or png to share
 
-&lt;img src="session_2_files/figure-html/unnamed-chunk-20-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="session_2_files/figure-html/unnamed-chunk-21-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -439,7 +434,7 @@ reg_example &lt;- lm(
 
 # Observe results
 
-reg_example %&gt;% summary()
+summary(reg_example)
 ```
 
 ]
@@ -450,16 +445,15 @@ Simply do one of these!
 
 
 ``` r
-reg_example_ht &lt;- reg_example %&gt;%
-    huxtable::huxreg()
+reg_example_ht &lt;- huxtable::huxreg(reg_example)
 ```
 
 OR
 
 
 ``` r
-reg_example_sg &lt;- reg_example %&gt;%
-    stargazer::stargazer() # Many options to make prettier
+reg_example_sg &lt;- stargazer::stargazer(reg_example)
+# Many options to make prettier
 ```
 
 ]
@@ -565,40 +559,7 @@ class: center, middle
 
 ---
 
-### Mid-Course Assignment (**Due on Thursday, September 26**)
-
-&lt;ol&gt;
-&lt;li&gt; Find an open-source dataset. Anything will do, there is ton of data out there. If you are looking for inspiration, you can explore the &lt;a href = https://github.com/rfordatascience/tidytuesday&gt;Tidy Tuesday Github repository&lt;/a&gt;. &lt;br&gt;&lt;/br&gt;&lt;/li&gt;
-&lt;li&gt; Create a new folder called "&lt;b&gt;&lt;span style = "color:red"&gt;your name&lt;/span&gt;&lt;/b&gt; R Course Assignment". Replace &lt;b&gt;&lt;span style = "color:red"&gt;your name&lt;/span&gt;&lt;/b&gt; with your name. &lt;br&gt;&lt;/br&gt;&lt;/li&gt;
-&lt;li&gt; Set up that folder for data use:
-    - Create empty "code", "data", and "output" folders within it
-    - Create an R Project in that folder. Refer back to last week's slides if you're not sure on how to do this. &lt;br&gt;&lt;/br&gt;&lt;/li&gt;
-&lt;li&gt; Add your open-source dataset (I strongly recommend downloading or converting it to CSV format) to the "data" folder. &lt;br&gt;&lt;/br&gt;&lt;/li&gt;
-&lt;li&gt; Download the "r_template.R" script from the "Course Resources" module on Canvas and place it in the "code" folder. &lt;br&gt;&lt;/br&gt;&lt;/li&gt;
-&lt;li&gt; Write a script that produces and saves a plot using your open-source dataset. &lt;/li&gt;
-&lt;/ol&gt;
-
----
-
-### Grading criteria
-
-You will submit a .zip file of the "&lt;b&gt;&lt;span style = "color:red"&gt;your name&lt;/span&gt;&lt;/b&gt; R Course Assignment" folder.
-
-.content-box-blue[
-- Setup
-    - The script's purpose should be stated at the top of the script
-    - The script should load required packages for it to run
-    - The script should successfully import the data used for the data visualization
-    
-- Plot
-    - The plot should convey an interesting relationship between variables. For instance, you could use a scatter plot to show how two variables are positively or negatively correlated. Or you could use a bar plot to show the evolution of a variable over time.
-    - The plot should meet the "plot standards" laid out in [slide 11](#plot-standards).
-    - The script should end with the plot being saved in the "output" folder.
-]
-    
-To receive top grades, the script must fully run in one click without any errors.
-
----
+class: middle
 
 ## Links
 
