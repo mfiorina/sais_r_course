@@ -8,7 +8,10 @@ This repository will store the resources needed for the "R for Professional Rese
 
 Click on the links below to get access to:
 
-- The data [Dropbox folder](https://www.dropbox.com/scl/fo/6m5hzlrc82i04oi0qoam7/h?rlkey=ctf6b0stve3vgbck9ka7mj5ia&st=x9y9ce88&dl=0)
+- The data:
+    - [Dropbox folder](https://www.dropbox.com/scl/fo/6m5hzlrc82i04oi0qoam7/h?rlkey=ctf6b0stve3vgbck9ka7mj5ia&st=x9y9ce88&dl=0)
+    - [Codebook](https://mfiorina.github.io/sais_r_course/documentation/World%20Values%20Survey/codebook.pdf)
+    - [Questionnaire](https://mfiorina.github.io/sais_r_course/documentation/World%20Values%20Survey/questionnaire.pdf)
 
 - The syllabus ([.html](https://mfiorina.github.io/sais_r_course/syllabus/r_course_syllabus.html) or [.pdf](https://mfiorina.github.io/sais_r_course/syllabus/r_course_syllabus.pdf))
 
