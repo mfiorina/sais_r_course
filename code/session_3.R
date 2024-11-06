@@ -1,4 +1,4 @@
-## R MIEF Skills Workshop — Session 3
+## R Practical Skills Course — Session 3
 
   ### Session Description
 

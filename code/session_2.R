@@ -364,13 +364,15 @@
       parent_child_hux, file = "output/regression_table.html"
   )
   
+  ## Step 4 — Challenges ----
+  
 # Challenges for today:
   
   # Using child_values_country_data, create a scatter plot showing an interesting comparison between
-  # two child values across countries.
+  # two different variables of important child values across countries.
   
-  # Using child_values_continent_data, create a bar plot comparing a specific child value across
-  # continents.
+  # Using child_values_continent_data, create a bar plot comparing a specific variable of important
+  # child value across continents.
   
   # Using child_values_continent_data, create a gt table showcasing the same data as in your bar plot.
   
