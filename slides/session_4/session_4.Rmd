@@ -391,7 +391,7 @@ Final deliverable: a .zip file of the the "<b><span style = "color:red">your nam
 
 - Three scripts in the "code" folder: `session_2_assignment.R`, `session_3_assignment.R`, and `session_4_assignment.R`. You can use the `session_2.R`, `session_3.R`, and `session_4.R` scripts as foundations for your assignment scripts.
 
-- The requisite data in the "data" folder. You should just need the data from the three sessions, which can be found in each session's Module on Canvas.
+- The requisite data in the "data" folder. You should just need the data from the three sessions, which you should have already downloaded.
 
 - The outputs from your `session_2_assignment.R` script in the "output" folder.
 
