@@ -144,11 +144,11 @@
   # Second — Bar chart, grouping by continent
   
   politics_religion_bar_chart <- ggplot(politics_religion_plot_data_long_continent) +
-      geom_bar(
+      geom_col(
           aes(
               x = continent, y = life_importance, fill = variable
           ),
-          position = "dodge", stat = "identity"
+          position = "dodge"
       ) +
       xlab("Continent") +
       ylab("Importance in Life (1-4)") +

@@ -45,7 +45,7 @@ class: center, middle
 
 ## Session 3
 
-### November 6, 2024
+### April 10, 2025
 
 ---
 
@@ -66,7 +66,7 @@ class: middle
 
 class: center, middle
 
-# Data 'Wrangling'
+# Data Wrangling
 
 ---
 

@@ -45,7 +45,7 @@ class: center, middle
 
 ## Session 2
 
-### October 30, 2024
+### April 3, 2025
 
 ---
 
@@ -631,9 +631,11 @@ class: center, middle
 
 ### Today's practical component
 
-1. Successfully run the code in the `session_2.R` script
+1. Download the required data for this session from [this Dropbox folder](https://www.dropbox.com/scl/fo/6m5hzlrc82i04oi0qoam7/h?rlkey=ctf6b0stve3vgbck9ka7mj5ia&st=x9y9ce88&dl=0)
 
-2. Attempt the challenges at the bottom of the script!
+2. Successfully run the code in the `session_2.R` script
+
+3. Attempt the challenges at the bottom of the script!
 
 ---
 

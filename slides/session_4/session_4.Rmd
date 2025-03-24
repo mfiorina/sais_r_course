@@ -45,7 +45,7 @@ class: center, middle
 
 ## Session 4
 
-### November 13, 2024
+### April 17, 2025
 
 ---
 
@@ -340,7 +340,7 @@ class: middle
 
 ---
 
-### End of Course Assignment (**Due on Wednesday, November 27**)
+### End of Course Assignment (**Due on Wednesday, April 30**)
 
 .panelset[
 
@@ -394,7 +394,7 @@ Final deliverable: a .zip file of the the "<b><span style = "color:red">your nam
 - The requisite data in the "data" folder. You should just need the data from the three sessions, which you should have already downloaded.
 
 - The outputs from your `session_2_assignment.R` script in the "output" folder.
-
+x
 
 
 ]

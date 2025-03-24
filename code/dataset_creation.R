@@ -28,7 +28,7 @@
       select(
           D_INTERVIEW, matches("B_COUNTRY"), A_YEAR, J_INTDATE,
           matches("^N_"), matches("^G_"), matches("^H_"), matches("^Q[1-9]$"),
-          matches("^Q[1-3][0-9](_3){0,1}$"), matches("^Q4[0-5]$")
+          matches("^Q[1-3][0-9](_3){0,1}$"), matches("^Q4[0-1]$")
       ) %>%
       rename(
           Q01_life_family                  = Q1,
@@ -74,11 +74,30 @@
           Q38_agree_old_parent_duty        = Q38,
           Q39_agree_lazy_unemployed        = Q39,
           Q40_agree_work_duty              = Q40,
-          Q41_agree_work_first             = Q41,
-          Q42_society_attitudes            = Q42,
-          Q43_future_changes               = Q43,
-          Q44_technology                   = Q44,
-          Q45_authority                    = Q45
+          Q41_agree_work_first             = Q41
+      ) %>%
+      mutate(
+          # Reverse order of ordinal questions so that higher value is better
+          across(
+              c(
+                  Q01_life_family:Q06_life_religion,
+                  Q27_agree_parents_proud:Q33_agree_men_jobs, # Need to deal with _3 variables differently
+                  Q34_agree_nation_jobs, Q35_agree_women_income_problem,
+                  Q36_agree_homosexual_parents:Q41_agree_work_first
+              ),
+              ~ case_when(
+                  .x < 0 ~ .x,    # Leave missing values as they are
+                  TRUE   ~ 5 - .x # i.e. 4 becomes 1, 3 becomes 2, 2 becomes 3, and 1 becomes 4
+              )
+          ),
+          # Convert 1 = yes and 2 = no to 0 = no and 1 = yes
+          across(
+              Q07_child_manners:Q26_neighbor_language,
+              ~ case_when(
+                  .x < 0 ~ .x,    # Leave missing values as they are
+                  TRUE   ~ 2 - .x # i.e. 2 becomes 0 and 1 stays as 1 ()
+              )
+          )
       )
   
   ## 4. Construct Secondary Datasets ----
@@ -91,19 +110,6 @@
       select(
           D_INTERVIEW, B_COUNTRY_ALPHA,
           Q04_life_politics, Q06_life_religion
-      ) %>%
-      mutate(
-          across(
-              Q04_life_politics:Q06_life_religion,
-              ~ case_when(
-                  .x < 0 ~ NA_real_,
-                  .x == 4 ~ 1, # 4 is 'strongly disagree' and 1 is 'strongly agree'.
-                  # I like bigger = better
-                  .x == 3 ~ 2,
-                  .x == 2 ~ 3,
-                  .x == 1 ~ 4
-              )
-          )
       ) %>%
       # We want to visualize the relationship between the politics and religion variables, but there
       # are 83,000 observations (too many). So aggregate at the country level
@@ -170,19 +176,6 @@
       #### Parent/Child Values Dataset ----
   
   parent_child_data <- norms_values_data %>%
-      mutate(
-          across(
-              c(Q07_child_manners:Q17_child_obedient, Q27_agree_parents_proud),
-              ~ case_when(
-                  .x < 0 ~ NA_real_,
-                  .x == 4 ~ 1, # 4 is 'strongly disagree' and 1 is 'strongly agree'.
-                  # I like bigger = better
-                  .x == 3 ~ 2,
-                  .x == 2 ~ 3,
-                  .x == 1 ~ 4
-              )
-          )
-      ) %>%
       select(
           D_INTERVIEW, B_COUNTRY_ALPHA,
           Q07_child_manners:Q17_child_obedient, Q27_agree_parents_proud
@@ -193,17 +186,7 @@
   child_data_country <- norms_values_data %>%
       select(
           D_INTERVIEW, B_COUNTRY_ALPHA,
-          matches("^Q(0[7-9]|1[0-7])") # See how much quicker this is?
-      ) %>%
-      mutate(
-          across(
-              Q07_child_manners:Q17_child_obedient,
-              ~ case_when(
-                  .x < 0  ~ NA_integer_,
-                  .x == 2 ~ 0,
-                  TRUE    ~ .x
-              )
-          )
+          matches("^Q(0[7-9]|1[0-7])")
       ) %>%
       group_by(B_COUNTRY_ALPHA) %>%
       dplyr::summarize(
@@ -232,16 +215,6 @@
       left_join(
           country_continent_data,
           by = c("B_COUNTRY_ALPHA" = "country")
-      ) %>%
-      mutate(
-          across(
-              Q07_child_manners:Q17_child_obedient,
-              ~ case_when(
-                  .x < 0  ~ NA_integer_,
-                  .x == 2 ~ 0,
-                  TRUE    ~ .x
-              )
-          )
       ) %>%
       group_by(continent) %>%
       dplyr::summarize(

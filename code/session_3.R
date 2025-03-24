@@ -73,7 +73,13 @@
           )
       )
   
-# Check that it worked
+# Check that it worked.
+# Explanation: the tabyl() function counts the number of observations (rows) in the dataset
+# that take the value(s) of one or two variables. For example, if you look at the console
+# after running the code below, you can see that 1,004 observations take the value european == 1
+# and B_COUNTRY_ALPHA == "AND". So there are 1,004 respondents who were from Andorra who are
+# now classified as European, which is good! Check whether China's respondents (country code "CHN")
+# were classified as European or not.
   
   norms_values_data %>%
       tabyl(european, B_COUNTRY_ALPHA)
@@ -179,7 +185,8 @@
   
   # Check that it worked
   
-  european_country_data_long %>% tabyl(topic) # It did!
+  european_country_data_long %>% head() # It did! Each row now corresponds to a
+                                        # B_COUNTRY_ALPHA/topic combination
   
   # Now for example I can look at average 'enthusiasm' by country
   

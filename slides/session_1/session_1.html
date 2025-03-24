@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>R MIEF Skills Workshop</title>
+    <title>R Professional Skills Course</title>
     <meta charset="utf-8" />
     <meta name="author" content="Marc-Andrea Fiorina" />
     <script src="libs/header-attrs/header-attrs.js"></script>
@@ -27,7 +27,7 @@ class: center, middle
 
 ## Session 1
 
-### October 16, 2024
+### March 27, 2025
 
 ---
 
@@ -682,14 +682,16 @@ class: center, middle
 ### Today's practical component
 
 1— Download the World Values Survey (Wave 7) at this link: [https://www.worldvaluessurvey.org/WVSDocumentationWV7.jsp](https://www.worldvaluessurvey.org/WVSDocumentationWV7.jsp)
+  - You can theoretically download any of the provided file types, but the easiest to use will be the .csv file (WVS Cross-National Wave 7 csv v6 0.zip).
+  - You'll have to agree to WVS's conditions of use and provide contact information to download this data.
 
 2— Set up your data analysis folder. Make sure that it has the following components:
-  - Data
-      - Raw
-      - Intermediate
-  - Code
-  - Outputs
-  - Documentation
+  - data
+      - raw
+      - intermediate
+  - code
+  - outputs
+  - documentation
     
 3— Place the data and documentation files that you find appropriate for your analysis in the corresponding folders.
 
@@ -703,7 +705,7 @@ class: center, middle
   - Package setup. For now, have the script load the `dplyr`, `data.table`, and `janitor` packages.
   - Data import. Import your data into the script using `read.csv()` or `fread()`. Remember to give your data frame an intuitive name!
     
-6— Test your R Script. Type and run the following line in your code: `[[DATASETNAME]] %&gt;% head()`. If this works without issue, you're free to go!
+6— Test your R Script. Type and run the following line in your code (**replacing `[[DATASETNAME]]` with the name you gave your dataset**): `[[DATASETNAME]] %&gt;% head()`. If this works without issue, you're free to go!
 
 ---
 
@@ -719,10 +721,10 @@ RStudio, **[RStudio Cheatsheets](https://www.rstudio.com/resources/cheatsheets/)
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
-"highlightStyle": "github",
-"highlightLines": true,
-"countIncrementalSlides": false,
-"slideNumberFormat": "%current%"
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "countIncrementalSlides": false,
+  "slideNumberFormat": "%current%"
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
