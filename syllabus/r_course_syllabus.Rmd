@@ -106,22 +106,6 @@ As there will be no time for this in class, **YOU NEED TO DO THE FOLLOWING BEFOR
   
 - Download RStudio at this link: https://posit.co/download/rstudio-desktop/. Download 'RStudio Desktop'.
 
-Students can then download data and code templates using the following instructions:
-
-- Open RStudio.
-- Type in the following lines, replacing "YOURFILEPATHHERE" with a file path where these files will be saved:
-
-```{r eval = FALSE}
-
-install.packages("usethis")
-library(usethis)
-usethis::use_course(
-    "https://github.com/mfiorina/sais_r_course/archive/main.zip",
-    destdir = "YOURFILEPATHHERE"
-)
-
-```
-
 <br><br>
 
 **Note** — Readings and resources below are optional and are provided for context and use after the course is finished. The session slides will cover everything needed for the course.
