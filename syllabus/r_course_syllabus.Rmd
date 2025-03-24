@@ -130,7 +130,7 @@ As there will be no time for this in class, **YOU NEED TO DO THE FOLLOWING BEFOR
 
 <br>
 
-## Session 2 — Visualization
+### Session 2 — Visualization
 <ins>Plots</ins>
 - Alicia Horsch, [“A quick introduction to ggplot2”](https://towardsdatascience.com/a-quick-introduction-to-ggplot2-d406f83bb9c9). Introduction to the ggplot2 package, the main instrument for plot creation in R.
 
@@ -141,7 +141,7 @@ As there will be no time for this in class, **YOU NEED TO DO THE FOLLOWING BEFOR
 
 <br>
 
-## Session 3 — Transformation
+### Session 3 — Transformation
 
 - Dominic Royé, [“A very short introduction to Tidyverse”](https://dominicroye.github.io/en/2020/a-very-short-introduction-to-tidyverse/). Blog post covering the basics of Tidyverse use in R.
 
@@ -151,7 +151,7 @@ As there will be no time for this in class, **YOU NEED TO DO THE FOLLOWING BEFOR
 
 <br>
 
-## Session 4 — Iterative Coding
+### Session 4 — Iterative Coding
 
 - Rebecca Barter, [“Learn to purrr”](https://www.rebeccabarter.com/blog/2019-08-19_purrr). Blog post covering the basics of using iterative functions with the purrr package in R.
 
