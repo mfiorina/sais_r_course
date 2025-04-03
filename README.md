@@ -22,7 +22,7 @@ Click on the links below to get access to:
     - Slides ([.html](https://mfiorina.github.io/sais_r_course/slides/session_1/session_1.html) or [.pdf](https://mfiorina.github.io/sais_r_course/slides/session_1/session_1.pdf))
 <br>
 <br>
-- Session 2: to be added
+- Session 2:
     - Slides ([.html](https://mfiorina.github.io/sais_r_course/slides/session_2/session_2.html) or [.pdf](https://mfiorina.github.io/sais_r_course/slides/session_2/session_2.pdf))
     - [Code](https://mfiorina.github.io/sais_r_course/code/session_2.R)
 <br>
