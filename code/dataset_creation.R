@@ -13,7 +13,7 @@
   ## 2. Import Data ----
   
   raw_data <- fread(
-      "data/raw/wvs_data_2021.csv", na.strings = ""
+      "data/raw/wvs_data_2022.csv", na.strings = ""
   )
   
   country_continent_data <- data.table::fread(

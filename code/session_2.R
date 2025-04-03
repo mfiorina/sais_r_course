@@ -57,7 +57,7 @@
   ## Country Continent Data
   
   country_continent_raw <- data.table::fread(
-      "data/final/country_continent.csv", na.strings = ""
+      "data/raw/country_continent.csv", na.strings = ""
   )
   
   ## Politics/Religion Country Data (Plot)
