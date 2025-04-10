@@ -27,9 +27,10 @@ Click on the links below to get access to:
     - [Code](https://mfiorina.github.io/sais_r_course/code/session_2.R)
 <br>
 <br>
-- Session 3: to be added
-    [](- Slides ([.html](https://mfiorina.github.io/sais_r_course/slides/session_3/session_3.html) or [.pdf](https://mfiorina.github.io/sais_r_course/slides/session_3/session_3.pdf)))
-    [](- [Code](https://mfiorina.github.io/sais_r_course/code/session_3.R))
+- Session 3:
+    - Slides ([.html](https://mfiorina.github.io/sais_r_course/slides/session_3/session_3.html) or [.pdf](https://mfiorina.github.io/sais_r_course/slides/session_3/session_3.pdf))
+    - [Code](https://mfiorina.github.io/sais_r_course/code/session_3.R)
+<br>
 <br>
 - Session 4: to be added
     [](- Slides ([.html](https://mfiorina.github.io/sais_r_course/slides/session_4/session_4.html) or [.pdf](https://mfiorina.github.io/sais_r_course/slides/session_4/session_4.pdf)))

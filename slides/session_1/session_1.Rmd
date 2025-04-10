@@ -68,7 +68,7 @@ class: center, middle
 
 ### You should think of learning R like learning a language.
 
-- Taking a six-hour course won't make you proficient in it
+- Taking an eight-hour course won't make you proficient in it
 
 - If you don't practice it, you'll forget it
 

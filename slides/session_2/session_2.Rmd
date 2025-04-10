@@ -99,7 +99,7 @@ ggplot(data = <DATA>) +
      stat = <STAT>,
      position = <POSITION>
   ) +
-  <SCALE_FUNTION> +
+  <SCALE_FUNCTION> +
   <FACET_FUNCTION> +
   <THEME_FUNCTION>
 ```
