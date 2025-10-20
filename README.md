@@ -22,16 +22,16 @@ Click on the links below to get access to:
     - Slides ([.html](https://mfiorina.github.io/sais_r_course/slides/session_1/session_1.html) or [.pdf](https://mfiorina.github.io/sais_r_course/slides/session_1/session_1.pdf))
 <br>
 <br>
-- Session 2:
-    - Slides ([.html](https://mfiorina.github.io/sais_r_course/slides/session_2/session_2.html) or [.pdf](https://mfiorina.github.io/sais_r_course/slides/session_2/session_2.pdf))
-    - [Code](https://mfiorina.github.io/sais_r_course/code/session_2.R)
+- Session 2: to be added
+    - [](Slides ([.html](https://mfiorina.github.io/sais_r_course/slides/session_2/session_2.html) or [.pdf](https://mfiorina.github.io/sais_r_course/slides/session_2/session_2.pdf)))
+    - []([Code](https://mfiorina.github.io/sais_r_course/code/session_2.R))
 <br>
 <br>
-- Session 3:
-    - Slides ([.html](https://mfiorina.github.io/sais_r_course/slides/session_3/session_3.html) or [.pdf](https://mfiorina.github.io/sais_r_course/slides/session_3/session_3.pdf))
-    - [Code](https://mfiorina.github.io/sais_r_course/code/session_3.R)
+- Session 3: to be added
+    - [](Slides ([.html](https://mfiorina.github.io/sais_r_course/slides/session_3/session_3.html) or [.pdf](https://mfiorina.github.io/sais_r_course/slides/session_3/session_3.pdf)))
+    - []([Code](https://mfiorina.github.io/sais_r_course/code/session_3.R))
 <br>
 <br>
-- Session 4:
-    - Slides ([.html](https://mfiorina.github.io/sais_r_course/slides/session_4/session_4.html) or [.pdf](https://mfiorina.github.io/sais_r_course/slides/session_4/session_4.pdf))
-    - [Code](https://mfiorina.github.io/sais_r_course/code/session_4.R)
+- Session 4: to be added
+    - [](Slides ([.html](https://mfiorina.github.io/sais_r_course/slides/session_4/session_4.html) or [.pdf](https://mfiorina.github.io/sais_r_course/slides/session_4/session_4.pdf)))
+    - []([Code](https://mfiorina.github.io/sais_r_course/code/session_4.R))

@@ -1,5 +1,5 @@
 ---
-title: "R Professional Skills Course"
+title: "R Professional Skills Course — Session 1"
 subtitle: "Session 1"
 author: "Marc-Andrea Fiorina"
 date: "2024/10/16 (updated: `r Sys.Date()`)"
@@ -44,7 +44,7 @@ class: center, middle
 
 ## Session 1
 
-### March 27, 2025
+### October 22, 2025
 
 ---
 
@@ -741,7 +741,7 @@ class: center, middle
   - Package setup. For now, have the script load the `dplyr`, `data.table`, and `janitor` packages.
   - Data import. Import your data into the script using `read.csv()` or `fread()`. Remember to give your data frame an intuitive name!
     
-6— Test your R Script. Type and run the following line in your code (**replacing `[[DATASETNAME]]` with the name you gave your dataset**): `[[DATASETNAME]] %>% head()`. If this works without issue, you're free to go!
+6— Test your R Script. Type and run the following line in your code (**replacing `DATASETNAME` with the name you gave your dataset**): `DATASETNAME %>% head()`. If this works without issue, you're free to go!
 
 ---
 

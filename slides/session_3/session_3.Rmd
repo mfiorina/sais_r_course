@@ -1,5 +1,5 @@
 ---
-title: "R Professional Skills Course"
+title: "R Professional Skills Course — Session 3"
 subtitle: "Session 3"
 author: "Marc-Andrea Fiorina"
 date: "2024/11/06 (updated: `r Sys.Date()`)"
