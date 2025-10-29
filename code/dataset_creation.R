@@ -97,6 +97,12 @@
                   .x < 0 ~ .x,    # Leave missing values as they are
                   TRUE   ~ 2 - .x # i.e. 2 becomes 0 and 1 stays as 1 ()
               )
+          ),
+          # 10/29/25 found country code mistake compared to codebook. For Morocco,
+          # "MAR" should be "MOR"
+          B_COUNTRY_ALPHA = case_when(
+              B_COUNTRY_ALPHA == "MAR" ~ "MOR",
+              TRUE                     ~ B_COUNTRY_ALPHA
           )
       )
   
@@ -179,6 +185,15 @@
       select(
           D_INTERVIEW, B_COUNTRY_ALPHA,
           Q07_child_manners:Q17_child_obedient, Q27_agree_parents_proud
+      ) %>%
+      mutate( # Make sure we don't have negative values
+          across(
+              matches("^Q"),
+              ~ case_when(
+                  .x < 0 ~ NA_real_,
+                  TRUE   ~ .x
+              )
+          )
       )
   
     #### Child Values Country Dataset ----
@@ -187,6 +202,15 @@
       select(
           D_INTERVIEW, B_COUNTRY_ALPHA,
           matches("^Q(0[7-9]|1[0-7])")
+      ) %>%
+      mutate( # Make sure we don't have negative values
+          across(
+              matches("^Q"),
+              ~ case_when(
+                  .x < 0 ~ NA_real_,
+                  TRUE   ~ .x
+              )
+          )
       ) %>%
       group_by(B_COUNTRY_ALPHA) %>%
       dplyr::summarize(
@@ -215,6 +239,15 @@
       left_join(
           country_continent_data,
           by = c("B_COUNTRY_ALPHA" = "country")
+      ) %>%
+      mutate( # Make sure we don't have negative values
+          across(
+              matches("^Q"),
+              ~ case_when(
+                  .x < 0 ~ NA_real_,
+                  TRUE   ~ .x
+              )
+          )
       ) %>%
       group_by(continent) %>%
       dplyr::summarize(

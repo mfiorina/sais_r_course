@@ -45,7 +45,7 @@
   
   if(!require(pacman)) install.packages("pacman") 
   
-  pacman::p_load(dplyr, tidyr, ggplot2, stringr, purrr, data.table, janitor, usethis, stargazer, huxtable, gt, paletteer)
+  pacman::p_load(dplyr, tidyr, ggplot2, skimr, stringr, purrr, data.table, janitor, usethis, stargazer, huxtable, gt, paletteer)
   
   ## 2. Import Data ----
  
@@ -124,6 +124,10 @@
       ) +
       xlab("Importance in Life (1 - 4)")
   
+  politics_religion_density_plot # Notice that the code above *assigns* the plot to the object
+                                 # politics_religion_density_plot. This code *prints* the plot,
+                                 # so now you can actually see it!
+  
   # No legend though. Solution: Use long version so that we have a "category" variable
   # of religion or politics
   
@@ -140,6 +144,8 @@
           plot.background = element_rect(color = "white") # Without this the graph's background is
           # transparent
       )
+  
+  politics_religion_density_plot2
   
   # Second — Bar chart, grouping by continent
   
@@ -159,6 +165,8 @@
           plot.background = element_rect(color = "white") # Without this the graph's background is
           # transparent
       )
+  
+  politics_religion_bar_chart
   
   # Finally — Scatter plot of all countries
   
@@ -186,6 +194,8 @@
           # transparent
       )
   
+  politics_religion_scatter_plot
+  
   # Fun alternative — replace points with country abbreviation
   
   politics_religion_scatter_plot2 <- ggplot(politics_religion_plot_data) +
@@ -210,6 +220,8 @@
           plot.background = element_rect(color = "white") # Without this the graph's background is
           # transparent
       )
+  
+  politics_religion_scatter_plot2
   
   # Save everything important
   
@@ -240,9 +252,9 @@
   
 # First check if our variables are okay
   
-  tabyl(norms_values_raw, Q04_life_politics)
-  
-  tabyl(norms_values_raw, Q06_life_religion)
+  skimr::skim(politics_religion_table_data, Q04_life_politics)
+
+  skimr::skim(politics_religion_table_data, Q06_life_religion)
 
 # Use the gt() package to create a descriptive statistics table out of this. Using gt() is a very
 # iterative process, I'd recommend just trying out the basic one shown below and then adding

@@ -32,7 +32,7 @@
   
   if(!require(pacman)) install.packages("pacman")
   
-  pacman::p_load(dplyr, tidyr, stringr, ggplot2, purrr, data.table, janitor)
+  pacman::p_load(dplyr, tidyr, stringr, skimr, ggplot2, purrr, data.table, janitor)
   
   ## 2. Import Data ----
   
