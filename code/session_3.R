@@ -141,6 +141,14 @@
 # NOTE — The above is super long and annoying code, requiring a lot of copy/pasting.
 # Next week, we will look at how to write this code much more efficiently using the across() function.
   
+# Check that the above code worked using the skim() function from the skimr package:
+  
+  european_data %>%
+      select(matches("^Q0[1-6]")) %>%
+      skim()
+
+# The variables now all take values between 1 and 4 with no -1, -2, -4, or -5 values. All good!
+  
   ### Step 4 — Summarize variables at the country level ----
   
   # We want a dataset where each observation (row) is a country, not a household. To do this, we use
@@ -196,8 +204,8 @@
           average_score = mean(score, na.rm = TRUE)
       ) %>%
       ungroup() %>%
-      arrange(average_score) # Order them from highest to lowest enthusiasm (NOTE —
-                             # smaller number means more enthusiasm)
+      arrange(-average_score) # Order them from highest to lowest enthusiasm (NOTE —
+                              # higher number means more enthusiasm)
   
   # check what we created:
   
@@ -225,11 +233,9 @@
   
     # 2. Calculate average 'enthusiasm' for these life subjects in countries in that non-Europe region
   
-    # 3. Perform the same analysis, either on European countries or other countries, for one of
+    # 3. Perform steps 1. and 2., either on European countries or other countries, for one of
     #    the following group of indicators in the dataset:
-           # Important child qualities: Q7-18
-           # Neighbors: Q19-26
+           # Important child qualities: Q7-17
+           # Neighbors: Q18-26
            # Statements to agree with: Q27-41
-  
-    # 4. Save one dataset for each of the tasks above.
   

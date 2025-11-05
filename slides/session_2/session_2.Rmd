@@ -45,7 +45,7 @@ class: center, middle
 
 ## Session 2
 
-### October 9, 2025
+### October 29, 2025
 
 ---
 
@@ -70,7 +70,7 @@ class: center, middle
 
 ## Descriptive Stats Plots
 
-`ggplot2` is the gold standard in data visualization in data work. It's one of the main reason that people use R over other programming languages.
+`ggplot2` is the gold standard in data visualization in data work. It's one of the main reasons that people use R over other programming languages.
 
 Very simple syntax and allows you to add elements very easily.
 

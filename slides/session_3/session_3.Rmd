@@ -45,7 +45,7 @@ class: center, middle
 
 ## Session 3
 
-### April 10, 2025
+### November 5, 2025
 
 ---
 
@@ -428,11 +428,9 @@ class: middle
     - Calculate average 'enthusiasm' for these life subjects in countries in another region than Europe
   
     - Perform the same analysis, either on European countries or other countries, for another group of indicators in the dataset:
-        - Important child qualities: Q7-18
-        - Neighbors: Q19-26
+        - Important child qualities: Q7-17
+        - Neighbors: Q18-26
         - Statements to agree with: Q27-41
-        
-    - Save one dataset for each of the tasks above.
     
 **NOTE** — You should refer to documentation for the dataset, which can be found at [https://mfiorina.github.io/sais_r_course/](https://mfiorina.github.io/sais_r_course/)
 
