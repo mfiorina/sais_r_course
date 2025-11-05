@@ -45,7 +45,10 @@
   
   if(!require(pacman)) install.packages("pacman") 
   
-  pacman::p_load(dplyr, tidyr, ggplot2, skimr, stringr, purrr, data.table, janitor, usethis, stargazer, huxtable, gt, paletteer)
+  pacman::p_load(
+      dplyr, tidyr, ggplot2, skimr, stringr, purrr, data.table, janitor,
+      usethis, stargazer, huxtable, gt, chromote, paletteer
+  )
   
   ## 2. Import Data ----
  
