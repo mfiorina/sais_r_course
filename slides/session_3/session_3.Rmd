@@ -101,6 +101,8 @@ iris %>%
   str_replace("\\.", "_")
 ```
 
+(Note — you can also write the pipe operator as **|>**)
+
 ]
 
 ]
