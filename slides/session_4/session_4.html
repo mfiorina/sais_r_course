@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>R Professional Skills Course</title>
+    <title>R Professional Skills Course — Session 4</title>
     <meta charset="utf-8" />
     <meta name="author" content="Marc-Andrea Fiorina" />
     <script src="libs/header-attrs/header-attrs.js"></script>
@@ -27,7 +27,7 @@ class: center, middle
 
 ## Session 4
 
-### April 17, 2025
+### November 12, 2025
 
 ---
 
@@ -119,7 +119,8 @@ A possible, base R solution: use a "for" loop.
 
 ``` r
 for(vector in list(c(-10, 0, 10), c(1, 2, 3, 4, 5))) {
-    print(reshape_function(vector))
+    new_vector &lt;- reshape_function(vector)
+    print(new_vector)
 }
 ```
 
@@ -159,36 +160,36 @@ purrr::map(
 
 ### Iterative Functions in R
 
-Notice that the previous chunk's output is a list. If you want to output a different class of object, `purrr` has the functions `map_chr()`, `map_dbl()`, and `map_df()` amongst others.
-
-`map()` has a shorthand to simplify its use: instead of writing the function out, you can replace `function() {}` with `~` and the function's argument with `.x`.
+`map()` has a shorthand to simplify its use: instead of writing the function out, you can replace `function() {}` with `\(argument)` and the function's argument with `argument` ("argument" can be replaced with whatever you want).
 
 .pull-left[
 
 ``` r
-map_chr(
-    c(1, 3),
+c(1, 3) %&gt;%
+  map(
     function(x) {
         x + 10
     }
-)
+  ) %&gt;%
+  as.character()
 ```
 
 ```
-## [1] "11.000000" "13.000000"
+## [1] "11" "13"
 ```
 ]
 .pull-right[
 
 ``` r
-map_chr(
-    c(1, 3),
-    ~ .x + 10
-)
+c(1, 3) %&gt;%
+  map(
+    \(vlu) vlu + 10
+  ) %&gt;%
+  as.character()
 ```
 
 ```
-## [1] "11.000000" "13.000000"
+## [1] "11" "13"
 ```
 ]
 
@@ -200,7 +201,7 @@ We can also apply `map()` to a data frame. If we do so, `map()` will apply the s
 
 
 ``` r
-library(palmerpenguins) # A fun practice dataset about penguins!
+library(palmerpenguins, warn.conflicts = FALSE) # A fun practice dataset about penguins!
 data(package = 'palmerpenguins')
 # Let's take a glimpse at the dataset:
 penguins %&gt;% glimpse()
@@ -228,13 +229,14 @@ I want to reshape the numerical variables of the `penguins` dataset. Using `map(
 
 ``` r
 penguins_reshaped &lt;- penguins %&gt;%
-  map_dfr(
-    ~ if(is.numeric(.x)) {
-      reshape_function(.x)
-    } else {
-      .x
+  map(
+    \(col) {
+      if(is.numeric(col)) {
+        reshape_function(col)
+      }
+      col
     }
-  )
+  ) %&gt;% as_tibble()
 penguins_reshaped %&gt;% glimpse()
 ```
 
@@ -243,12 +245,12 @@ penguins_reshaped %&gt;% glimpse()
 ## Columns: 8
 ## $ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…
 ## $ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…
-## $ bill_length_mm    &lt;dbl&gt; 0.25454545, 0.26909091, 0.29818182, NA, 0.16727273, …
-## $ bill_depth_mm     &lt;dbl&gt; 0.6666667, 0.5119048, 0.5833333, NA, 0.7380952, 0.89…
-## $ flipper_length_mm &lt;dbl&gt; 0.15254237, 0.23728814, 0.38983051, NA, 0.35593220, …
-## $ body_mass_g       &lt;dbl&gt; 0.2916667, 0.3055556, 0.1527778, NA, 0.2083333, 0.26…
+## $ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …
+## $ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …
+## $ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…
+## $ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …
 ## $ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…
-## $ year              &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
+## $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…
 ```
 
 ---
@@ -263,7 +265,7 @@ penguins_reshaped &lt;- penguins %&gt;%
   mutate(
     across(
       c(bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g),
-      ~ reshape_function(.x)
+      \(var) reshape_function(var)
     )
   )
 penguins_reshaped %&gt;% glimpse()
@@ -292,21 +294,21 @@ penguins %&gt;%
   mutate(
     across(
       c(bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g, year),
-      ~ reshape_function(.x)
+      \(var) reshape_function(var)
     )
   )
 penguins %&gt;%
   mutate(
     across(
       matches("length_mm|depth_mm|body_mass|year"),
-      ~ reshape_function(.x)
+      \(var) reshape_function(var)
     )
   )
 penguins %&gt;%
   mutate(
     across(
       where(is.numeric),
-      ~ reshape_function(.x)
+      \(var) reshape_function(var)
     )
   )
 ```
@@ -324,7 +326,7 @@ To do so, `purrr` provides the following functions: `map2()` (two arguments) and
 animals &lt;- c("tiger", "elephant", "giraffe")
 colors &lt;- c("red", "orange", "blue")
 map2( # paste0() concatenates its arguments into a single string
-    animals, colors, ~ paste0("The ", .x, " is ", .y, ".")
+    animals, colors, \(anm, clr) paste0("The ", anm, " is ", clr, ".")
 )
 ```
 
@@ -434,8 +436,8 @@ Create your own script and do the following:
 2. Calculate average 'enthusiasm' for these life subjects in countries in that non-Europe region
   
 3. Perform the same analysis, either on European countries or other countries, for one of the following group of indicators in the dataset:
-    - Important child qualities: Q7-18
-    - Neighbors: Q19-26
+    - Important child qualities: Q7-17
+    - Neighbors: Q18-26
     - Statements to agree with: Q27-41
   
 4. Save one dataset for each of the tasks above.
@@ -465,8 +467,6 @@ Final deliverable: a .zip file of the the "&lt;b&gt;&lt;span style = "color:red"
 - The requisite data in the "data" folder. You should just need the data from the three sessions, which you should have already downloaded.
 
 - The outputs from your `session_2_assignment.R` script in the "output" folder.
-x
-
 
 ]
 

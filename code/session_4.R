@@ -46,7 +46,7 @@
 # bring them together. Modify it to use map() and list_rbind() instead. Remember to use help(...)
 # if you're unsure how a function works.
   
-# REWRITE THIS
+# REWRITE THIS (code from lines 51-80)
   
   norms_values_raw_2017 <- read.csv(
     "data/final/wvs_norms_values_data_2017.csv", na.strings = ""
@@ -71,8 +71,6 @@
   norms_values_raw_2022 <- read.csv(
     "data/final/wvs_norms_values_data_2022.csv", na.strings = ""
   )
-  
-# REWRITE THIS
   
   norms_values_raw <- norms_values_raw_2017 %>%
     bind_rows(norms_values_raw_2018) %>%
@@ -146,7 +144,7 @@
   
   ### Step 3 -- Clean variables ----
   
-  # REWRITE THIS
+# REWRITE THIS (code from lines 149-177)
   
   european_data <- european_data %>%
     mutate(
@@ -183,7 +181,7 @@
 # We want a dataset where each observation (row) is a country, not a household. To do this, we use
 # group_by() and summarize()
   
-  # REWRITE THIS
+# REWRITE THIS (code from lines 186-198)
   
   european_country_data <- european_data %>% # New observation level so new dataset
     group_by(B_COUNTRY_ALPHA) %>% # We're telling R at which level to do the grouping

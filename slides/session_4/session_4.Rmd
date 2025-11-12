@@ -45,7 +45,7 @@ class: center, middle
 
 ## Session 4
 
-### April 17, 2025
+### November 12, 2025
 
 ---
 
@@ -123,7 +123,8 @@ A possible, base R solution: use a "for" loop.
 
 ```{r}
 for(vector in list(c(-10, 0, 10), c(1, 2, 3, 4, 5))) {
-    print(reshape_function(vector))
+    new_vector <- reshape_function(vector)
+    print(new_vector)
 }
 ```
 
@@ -149,26 +150,26 @@ purrr::map(
 
 ### Iterative Functions in R
 
-Notice that the previous chunk's output is a list. If you want to output a different class of object, `purrr` has the functions `map_chr()`, `map_dbl()`, and `map_df()` amongst others.
-
-`map()` has a shorthand to simplify its use: instead of writing the function out, you can replace `function() {}` with `~` and the function's argument with `.x`.
+`map()` has a shorthand to simplify its use: instead of writing the function out, you can replace `function() {}` with `\(argument)` and the function's argument with `argument` ("argument" can be replaced with whatever you want).
 
 .pull-left[
 ```{r, warning = FALSE}
-map_chr(
-    c(1, 3),
+c(1, 3) %>%
+  map(
     function(x) {
         x + 10
     }
-)
+  ) %>%
+  as.character()
 ```
 ]
 .pull-right[
 ```{r, warning = FALSE}
-map_chr(
-    c(1, 3),
-    ~ .x + 10
-)
+c(1, 3) %>%
+  map(
+    \(vlu) vlu + 10
+  ) %>%
+  as.character()
 ```
 ]
 
@@ -179,7 +180,7 @@ map_chr(
 We can also apply `map()` to a data frame. If we do so, `map()` will apply the same function to every component of the data frame, i.e. its **columns**. In practice, this is equivalent to applying `map()` to a list of vectors.
 
 ```{r, warning = FALSE}
-library(palmerpenguins) # A fun practice dataset about penguins!
+library(palmerpenguins, warn.conflicts = FALSE) # A fun practice dataset about penguins!
 data(package = 'palmerpenguins')
 # Let's take a glimpse at the dataset:
 penguins %>% glimpse()
@@ -193,13 +194,14 @@ I want to reshape the numerical variables of the `penguins` dataset. Using `map(
 
 ```{r}
 penguins_reshaped <- penguins %>%
-  map_dfr(
-    ~ if(is.numeric(.x)) {
-      reshape_function(.x)
-    } else {
-      .x
+  map(
+    \(col) {
+      if(is.numeric(col)) {
+        reshape_function(col)
+      }
+      col
     }
-  )
+  ) %>% as_tibble()
 penguins_reshaped %>% glimpse()
 ```
 
@@ -214,7 +216,7 @@ penguins_reshaped <- penguins %>%
   mutate(
     across(
       c(bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g),
-      ~ reshape_function(.x)
+      \(var) reshape_function(var)
     )
   )
 penguins_reshaped %>% glimpse()
@@ -229,21 +231,21 @@ penguins %>%
   mutate(
     across(
       c(bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g, year),
-      ~ reshape_function(.x)
+      \(var) reshape_function(var)
     )
   )
 penguins %>%
   mutate(
     across(
       matches("length_mm|depth_mm|body_mass|year"),
-      ~ reshape_function(.x)
+      \(var) reshape_function(var)
     )
   )
 penguins %>%
   mutate(
     across(
       where(is.numeric),
-      ~ reshape_function(.x)
+      \(var) reshape_function(var)
     )
   )
 ```
@@ -260,7 +262,7 @@ To do so, `purrr` provides the following functions: `map2()` (two arguments) and
 animals <- c("tiger", "elephant", "giraffe")
 colors <- c("red", "orange", "blue")
 map2( # paste0() concatenates its arguments into a single string
-    animals, colors, ~ paste0("The ", .x, " is ", .y, ".")
+    animals, colors, \(anm, clr) paste0("The ", anm, " is ", clr, ".")
 )
 ```
 
@@ -363,8 +365,8 @@ Create your own script and do the following:
 2. Calculate average 'enthusiasm' for these life subjects in countries in that non-Europe region
   
 3. Perform the same analysis, either on European countries or other countries, for one of the following group of indicators in the dataset:
-    - Important child qualities: Q7-18
-    - Neighbors: Q19-26
+    - Important child qualities: Q7-17
+    - Neighbors: Q18-26
     - Statements to agree with: Q27-41
   
 4. Save one dataset for each of the tasks above.
@@ -394,8 +396,6 @@ Final deliverable: a .zip file of the the "<b><span style = "color:red">your nam
 - The requisite data in the "data" folder. You should just need the data from the three sessions, which you should have already downloaded.
 
 - The outputs from your `session_2_assignment.R` script in the "output" folder.
-x
-
 
 ]
 
