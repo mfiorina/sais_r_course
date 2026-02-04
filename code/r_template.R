@@ -1,4 +1,4 @@
-## R MIEF Skills Workshop — R Template
+## R Skills Workshop — R Template
 
   ## Purpose
 

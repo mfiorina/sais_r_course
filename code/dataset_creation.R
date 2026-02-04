@@ -13,11 +13,11 @@
   ## 2. Import Data ----
   
   raw_data <- fread(
-      "data/raw/wvs_data_2022.csv", na.strings = ""
+    "data/raw/wvs_data_2022.csv", na.strings = ""
   )
   
   country_continent_data <- data.table::fread(
-      "data/raw/country_continent.csv", na.strings = ""
+    "data/raw/country_continent.csv", na.strings = ""
   )
   
   ## 3. Construct Dataset ----

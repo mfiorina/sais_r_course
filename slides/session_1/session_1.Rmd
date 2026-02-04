@@ -44,7 +44,7 @@ class: center, middle
 
 ## Session 1
 
-### October 22, 2025
+### February 5, 2026
 
 ---
 
@@ -203,66 +203,6 @@ knitr::include_graphics(
     "pics/rstudio.png"
 )
 ```
-
----
-
-## Setting Up Your RStudio Environment
-
-.panelset[
-
-.panel[.panel-name[Setting Up Your Data Structure]
-
-```{r, echo = FALSE, out.width = "55%", fig.align = "center"}
-
-knitr::include_graphics(
-    "pics/folder.png"
-)
-```
-
-.content-box-green[
-- Code
-- Data
-  - Raw Data
-  - Intermediate Data
-- Outputs
-- (Optional) Documentation
-- (Optional) Presentations/Slides
-]
-
-]
-
-.panel[.panel-name[Setting Up Your Script]
-
-Defining your code's purpose — What are its inputs? What are its outputs?
-
-```{r, echo = FALSE, out.width = "50%", fig.align = "center"}
-
-knitr::include_graphics(
-    "pics/script1.png"
-)
-```
-
-Set up your packages — Which user-created functions do you plan to use?
-
-```{r, echo = FALSE, out.width = "50%", fig.align = "center"}
-
-knitr::include_graphics(
-    "pics/script2.png"
-)
-```
-
-Import your data — Which data frames do you need to fulfill the script's purpose?
-
-```{r, echo = FALSE, out.width = "40%", fig.align = "center"}
-
-knitr::include_graphics(
-    "pics/script3.png"
-)
-```
-
-]
-
-]
 
 ---
 
@@ -425,21 +365,16 @@ NOTE — R works in a manner that allows to write a specific function over multi
 
 This:
 ```{r}
-a <- mean(c(seq(1, 4, by = 0.5)))
-
-a
+str_replace(str_to_lower(c("Petal.Length","Petal.Width")), "\\.", "_")
 ```
 
 Is the same as this:
 ```{r}
-a <- mean(
-    c(
-        seq(1, 4, by = 0.5)
-    )
+str_replace(
+  str_to_lower(
+    c("Petal.Length","Petal.Width")
+  ), "\\.", "_"
 )
-
-a
-
 ```
 
 ---
@@ -481,6 +416,8 @@ We will look at how to install and load packages shortly. Examples of commonly-u
 
 ---
 
+class: middle
+
 ## R Basics
 
 You can click anywhere in the code chunk and click "run" or Cmd+Enter (Mac)/Ctrl+Enter (Windows), and the whole chunk will run.
@@ -492,6 +429,66 @@ KEY — If you only select a portion of the code chunk and run that, then R will
 class: center, middle
 
 # Coding Set Up
+
+---
+
+## Setting Up Your RStudio Environment
+
+.panelset[
+
+.panel[.panel-name[Setting Up Your Data Structure]
+
+```{r, echo = FALSE, out.width = "55%", fig.align = "center"}
+
+knitr::include_graphics(
+    "pics/folder.png"
+)
+```
+
+.content-box-green[
+- code
+- data
+  - raw
+  - intermediate
+- output
+- (Optional) documentation
+- (Optional) slides
+]
+
+]
+
+.panel[.panel-name[Setting Up Your Script]
+
+Defining your code's purpose — What are its inputs? What are its outputs?
+
+```{r, echo = FALSE, out.width = "50%", fig.align = "center"}
+
+knitr::include_graphics(
+    "pics/script1.png"
+)
+```
+
+Set up your packages — Which user-created functions do you plan to use?
+
+```{r, echo = FALSE, out.width = "50%", fig.align = "center"}
+
+knitr::include_graphics(
+    "pics/script2.png"
+)
+```
+
+Import your data — Which data frames do you need to fulfill the script's purpose?
+
+```{r, echo = FALSE, out.width = "40%", fig.align = "center"}
+
+knitr::include_graphics(
+    "pics/script3.png"
+)
+```
+
+]
+
+]
 
 ---
 
@@ -686,13 +683,15 @@ class: center, middle
 ## Practical Exercise — Using the World Values Survey Dataset
 
 ---
-<font size='+3'><b>World Values Survey</b></font>
 
-<font size='+2'><b>Background</b></font>
-<br> <br>
+class: middle
+
+## The World Values Survey
+
+.block-blue[
 *"The survey, which started in 1981, seeks to use the most rigorous, high-quality research designs in each country. The WVS consists of nationally representative surveys conducted in almost 100 countries which contain almost 90 percent of the world’s population, using a common questionnaire. [...] WVS seeks to help scientists and policy makers understand changes in the beliefs, values and motivations of people throughout the world."*
+]
 
-<font size='+2'><b>Survey Contents</b></font>
 .pull-left[
 - Social values, attitudes & stereotypes
 - Societal well-being
@@ -738,12 +737,14 @@ class: center, middle
 ### Today's practical component
 
 5— Set up your R Script. It should have the following components:
-  - Package setup. For now, have the script load the `dplyr`, `data.table`, and `janitor` packages.
+  - Package setup. For now, have the script load the `dplyr`, `data.table`, and `skimr` packages.
   - Data import. Import your data into the script using `read.csv()` or `fread()`. Remember to give your data frame an intuitive name!
     
-6— Test your R Script. Type and run the following line in your code (**replacing `DATASETNAME` with the name you gave your dataset**): `DATASETNAME %>% head()`. If this works without issue, you're free to go!
+6— Test your R Script. Type and run the following line in your code (**replacing `DATASETNAME` with the name you gave your dataset**): `DATASETNAME %>% skim()`. If this works without issue, you're free to go!
 
 ---
+
+class: middle
 
 ## Links
 
