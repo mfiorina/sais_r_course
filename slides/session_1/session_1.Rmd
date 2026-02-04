@@ -24,9 +24,10 @@ library(xaringanExtra)
 ```{r xaringan-themer, include=FALSE, warning=FALSE}
 library(xaringanthemer)
 style_duo_accent(
-  primary_color   = "#000000",
-  secondary_color = "#FFFFFF",
-  link_color      = "#0645AD",
+  primary_color                = "#000000",
+  secondary_color              = "#FFFFFF",
+  link_color                   = "#0645AD",
+  code_inline_background_color = "#CCCCCC",
   text_bold_color = NULL,
   header_font_google = google_font("Atkinson Hyperlegible"),
   text_font_google   = google_font("Atkinson Hyperlegible"),
