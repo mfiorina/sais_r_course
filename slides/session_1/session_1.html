@@ -438,15 +438,11 @@ class: center, middle
 
 ---
 
-## Setting Up Your RStudio Environment
+## Setting Up Your Data Structure
 
-.panelset[
+&lt;img src="pics/folder.png" width="70%" style="display: block; margin: auto;" /&gt;
 
-.panel[.panel-name[Setting Up Your Data Structure]
-
-&lt;img src="pics/folder.png" width="55%" style="display: block; margin: auto;" /&gt;
-
-.content-box-green[
+.block-orange[
 - code
 - data
   - raw
@@ -456,21 +452,33 @@ class: center, middle
 - (Optional) slides
 ]
 
-]
+---
 
-.panel[.panel-name[Setting Up Your Script]
+## Setting Up Your Script
+
+.panelset[
+
+.panel[.panel-name[Purpose]
 
 Defining your code's purpose — What are its inputs? What are its outputs?
 
-&lt;img src="pics/script1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img style="border:1px solid black;" src="pics/script1.png" width="100%"/&gt;
+
+]
+
+.panel[.panel-name[Packages]
 
 Set up your packages — Which user-created functions do you plan to use?
 
-&lt;img src="pics/script2.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img style="border:1px solid black;" src="pics/script2.png" width="100%"/&gt;
+
+]
+
+.panel[.panel-name[Import Data]
 
 Import your data — Which data frames do you need to fulfill the script's purpose?
 
-&lt;img src="pics/script3.png" width="40%" style="display: block; margin: auto;" /&gt;
+&lt;img style="border:1px solid black;" src="pics/script3.png" width="100%"/&gt;
 
 ]
 
@@ -525,7 +533,7 @@ user &lt;- 1
   
 if(user == 1) {
     # Absolute file path
-    main_filepath &lt;- "/Users/marc-andreafiorina/Dropbox/SAIS R Course/"
+    main_filepath &lt;- "/Users/marc-andreafiorina/Documents/R Training/"
 }
 
 # Notice the relative file paths
@@ -535,12 +543,6 @@ data_filepath &lt;- paste0(main_filepath, "data/")
 ]
 
 ]
-
----
-
-class: center, middle
-
-# Importing Data
 
 ---
 
@@ -597,11 +599,11 @@ Solutions:
 ### Function Not Found
 
 Check:
-- From which package the function comes. You can do this using `??FUNCTION NAME` (e.g. `??tabyl`) or through a Google search.
+- From which package the function comes. You can do this using `??FUNCTION NAME` (e.g. `??tabyl`) or through a Google search. We identify in this case that `tabyl()` is a function from the `janitor` package!
 - That the package is (1) installed in your environment and (2) loaded. Having the package installed isn't sufficient!
 
 Solutions:
-- If the package isn't installed, use `install.packages("tabyl")`. If the package isn't loaded, use `library(tabyl)` or `pacman::p_load(tabyl)`.
+- If the package isn't installed, use `install.packages("janitor")`. If the package isn't loaded, use `library(janitor)` or `pacman::p_load(janitor)`.
 
 ---
 
