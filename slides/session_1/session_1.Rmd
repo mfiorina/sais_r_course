@@ -708,17 +708,17 @@ class: middle
   - You can theoretically download any of the provided file types, but the easiest to use will be the .csv file (WVS Cross-National Wave 7 csv v6 0.zip).
   - You'll have to agree to WVS's conditions of use and provide contact information to download this data.
 
-2— Set up your data analysis folder. Make sure that it has the following components:
+2— Set up your data project folder. Make sure that it has the following components:
   - data
       - raw
       - intermediate
   - code
-  - outputs
+  - output
   - documentation
     
 3— Place the data and documentation files that you find appropriate for your analysis in the corresponding folders.
 
-4— Open RStudio and click on "New Project" in the "File" dropdown menu. Navigate to your data folder and select it.
+4— Open RStudio and click on "New Project" and then "Existing Directory" in the "File" dropdown menu. Navigate to your data folder and select it.
 
 ---
 
