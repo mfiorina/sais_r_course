@@ -24,13 +24,13 @@ library(xaringanExtra)
 ```{r xaringan-themer, include=FALSE, warning=FALSE}
 library(xaringanthemer)
 style_duo_accent(
-  primary_color   = "#000000",
-  secondary_color = "#FFFFFF",
-  link_color      = "#0645AD",
+  primary_color                = "#000000",
+  secondary_color              = "#FFFFFF",
+  link_color                   = "#0645AD",
+  code_inline_background_color = "#CCCCCC",
   header_font_google = google_font("Atkinson Hyperlegible"),
   text_font_google   = google_font("Atkinson Hyperlegible"),
   code_font_google   = google_font("Fira Code"),
-  code_inline_background_color = "#e7e8e1",
   text_bold_color = NULL
 )
 ```
@@ -45,7 +45,7 @@ class: center, middle
 
 ## Session 3
 
-### November 5, 2025
+### February 19, 2026
 
 ---
 
@@ -388,13 +388,14 @@ class: center, middle
 
 ---
 
-<font size='+3'><b>World Values Survey</b></font>
+class: middle
 
-<font size='+2'><b>Background</b></font>
-<br> <br>
+## The World Values Survey
+
+.block-blue[
 *"The survey, which started in 1981, seeks to use the most rigorous, high-quality research designs in each country. The WVS consists of nationally representative surveys conducted in almost 100 countries which contain almost 90 percent of the world’s population, using a common questionnaire. [...] WVS seeks to help scientists and policy makers understand changes in the beliefs, values and motivations of people throughout the world."*
+]
 
-<font size='+2'><b>Survey Contents</b></font>
 .pull-left[
 - Social values, attitudes & stereotypes
 - Societal well-being
@@ -434,7 +435,7 @@ class: middle
         - Neighbors: Q18-26
         - Statements to agree with: Q27-41
     
-**NOTE** — You should refer to documentation for the dataset, which can be found at [https://mfiorina.github.io/sais_r_course/](https://mfiorina.github.io/sais_r_course/)
+**NOTE** — You should refer to documentation for the dataset, which can be found on Canvas.
 
 ---
 
